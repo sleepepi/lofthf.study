@@ -29,5 +29,8 @@
 # Ignore code coverage results.
 /coverage/*
 
+# Ignore system test documentation output.
+/docs/*
+
 # Ignore OS generated files.
 .DS_Store

@@ -1,7 +1,11 @@
 ## 1.0.0
 
 ### Enhancements
-- **Base Web Framework Added**
+- **General Changes**
+  - Add landing page
+  - Add contact page
+  - Add version page
+- **Base Web Framework**
   - Rails for the web framework
   - Amazon AWS for hosting and continuous deployment
   - Travis CI for continuous integration testing
