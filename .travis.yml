@@ -1,0 +1,13 @@
+sudo: false
+language: ruby
+rvm:
+- 2.5.1
+- ruby-head
+# gemfile: "gems.rb"
+before_install: gem install bundler --no-document # Fixes ruby 2.5.1 tests
+before_script:
+- cp config/.travis.database.yml config/database.yml
+- psql -c 'create database travis_test;' -U postgres
+matrix:
+  allow_failures:
+  - rvm: ruby-head
