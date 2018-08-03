@@ -16,7 +16,7 @@ deploy:
   access_key_id: $AWS_ACCESS_KEY
   secret_access_key: $AWS_SECRET_KEY
   region: us-east-1
-  app: loft-hf.study
+  app: lofthf.study
   env: loft-hf-production
   bucket_name: elasticbeanstalk-us-east-1-910353042999
   on:
