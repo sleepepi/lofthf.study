@@ -23,4 +23,8 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
     page.save_screenshot(Rails.root.join(relative_location))
     # puts "[Screenshot]: #{relative_location}"
   end
+
+  def click_form_submit
+    find("input[type=submit]").click
+  end
 end

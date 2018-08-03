@@ -1,2 +1,8 @@
-%h1 Version
-%p= "v#{LoftHF::VERSION::STRING}"
+- @title = "Version"
+
+- render "themes/random"
+
+.page-box.last-box.d-flex.align-items-center
+  .container
+    .text-center{ class: @theme != "default" ? "text-white" : nil, style: "font-size: 2rem;" }
+      = "v#{LoftHF::VERSION::STRING}"

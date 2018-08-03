@@ -5,6 +5,7 @@
   - Add landing page
   - Add contact page
   - Add version page
+  - Add dashboard
 - **Base Web Framework**
   - Rails for the web framework
   - Amazon AWS for hosting and continuous deployment

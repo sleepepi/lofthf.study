@@ -10,8 +10,9 @@ class ExternalController < ApplicationController
   # def contact
   # end
 
-  # # GET /version
-  # # GET /version.json
-  # def version
-  # end
+  # GET /version
+  # GET /version.json
+  def version
+    render layout: "layouts/full_page"
+  end
 end

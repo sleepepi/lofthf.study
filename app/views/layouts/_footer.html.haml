@@ -1,0 +1,20 @@
+.footer-container.footer-custom
+  %div{ class: @container.presence || "container" }
+    .footer
+      .nowrap.row
+
+        .col
+          &copy;
+          .d-none.d-sm-inline= Time.zone.today.year
+          = link_to "LOFT-HF", root_path
+
+        - if false
+          .col.text-center.d-none.d-sm-block
+            %small.px-2= link_to "Terms", terms_and_conditions_path
+            %small.px-2= link_to "Privacy", privacy_policy_path
+
+        - if false
+          .col.text-right{ style: "margin-top: -14px;" }
+            = link_to "Questions?", search_path
+            &nbsp;
+            = image_tag "logos/bwh-logo.png", size: "48x56", alt: ""
