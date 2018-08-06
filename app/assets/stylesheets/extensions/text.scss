@@ -1,0 +1,7 @@
+@each $name, $theme in $themes {
+  .theme-#{$name}-bg {
+    .text-shadow {
+      text-shadow: 0 2px 3px map-get($theme, shadow-color);
+    }
+  }
+}

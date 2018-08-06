@@ -8,7 +8,7 @@
     -# Don't cache any pages
     %meta{ name: "turbolinks-cache-control", content: "no-cache" }
     %title= [@title, "LOFT-HF"].compact.join(" - ").html_safe
-    =# favicon_link_tag
+    = favicon_link_tag
     = csrf_meta_tags
     = csp_meta_tag
     = stylesheet_link_tag "application", media: "all", data: { turbolinks_track: "reload" }

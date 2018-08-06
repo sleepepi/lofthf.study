@@ -1,4 +1,4 @@
-$default: (
+$deep-red: (
   brand-white: #fff,
   brand-black: $p900-grey,
 
@@ -20,18 +20,18 @@ $default: (
   selection-bg: $p200-black, // $p200-COLOR
   selection-color: #fff,
 
-  menu-bg: $p600-deep-red, // $p900-COLOR
+  menu-bg: null, // $p900-COLOR  TODO: WAS $p600-deep-red
   menu-color: null, // brand-white
 
-  header-bg: $p500-deep-red,
+  header-bg: $p900-deep-red,
   header-border: $p200-black,
 
-  body-bg: $p50-grey,
+  body-bg: $p900-deep-red,
   body-color: $p900-grey,
   body-focus: $p700-deep-red,
 
-  footer-bg: null, // $p100-grey
-  footer-color: null, // $p900-grey
+  footer-bg: $p900-deep-red, // $p100-grey
+  footer-color: #fff, // $p900-grey
 
   dashboard-bg: #fff,
   form-title-bg: $p500-deep-red, // $p500-COLOR

@@ -1,2 +1,5 @@
-%h1 Landing
-%p Find me in app/views/external/landing.html.haml
+- @theme = "deep-red"
+
+.page-box.last-box{ class: "theme-#{@theme}-focus-bg" }
+  .container
+    = image_tag "logos/loft-logo-v1.png", class: "img-fluid img-ignore-selection rounded"

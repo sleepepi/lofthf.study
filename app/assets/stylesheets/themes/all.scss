@@ -2,7 +2,9 @@
 
 @import 'themes/colors';
 @import 'themes/default';
+@import 'themes/deep_red';
 
 $themes: (
-  default: $default
+  default: $default,
+  deep-red: $deep-red
 );

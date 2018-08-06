@@ -2,9 +2,10 @@
 
 # Public pages.
 class ExternalController < ApplicationController
-  # # GET /
-  # def landing
-  # end
+  # GET /
+  def landing
+    render layout: "layouts/full_page"
+  end
 
   # # GET /contact
   # def contact
