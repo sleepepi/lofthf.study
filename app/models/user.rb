@@ -16,6 +16,8 @@ class User < ApplicationRecord
   strip :username
 
   # Validations
+  validates :full_name, presence: true
+  validates :full_name, format: { with: /\A.+\s.+\Z/, message: "must include first and last name" }
   validates :username, presence: true
   validates :username, format: {
                          with: /\A[a-zA-Z0-9]+\Z/i,
@@ -30,5 +32,9 @@ class User < ApplicationRecord
   # Overriding Devise built-in active_for_authentication? method.
   def active_for_authentication?
     super && !deleted? && approved?
+  end
+
+  def disposable_email?
+    false
   end
 end
