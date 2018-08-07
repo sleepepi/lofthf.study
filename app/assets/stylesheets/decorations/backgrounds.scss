@@ -24,6 +24,10 @@
     }
 
     :focus {
+      border-color: lighten(map-get($theme, accent), 25%);
+      box-shadow: 0 0 0 0.2rem rgba(map-get($theme, accent), 0.25);
+      // border-color: lighten(map-get($theme, primary), 25%);
+      // box-shadow: 0 0 0 0.2rem rgba(map-get($theme, primary), 0.25);
       outline-color: $selection-bg !important;
     }
   }
