@@ -3,6 +3,11 @@
 Rails.application.routes.draw do
   root "external#landing"
 
+  get :admin, to: "admin#dashboard"
+  namespace :admin do
+    get :debug
+  end
+
   scope module: :external do
     get :contact
     get :version

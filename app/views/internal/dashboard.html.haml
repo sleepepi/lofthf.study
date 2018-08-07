@@ -5,7 +5,32 @@
 = render "internal/tabs"
 - content_for :sidebar, render("internal/sidebar")
 
-.dashboard-container
-  = render "forms/horizontal/show/generic", title: "Website name", content: ENV["website_name"]
-  = render "forms/horizontal/show/generic", title: "Website URL", content: ENV["website_url"]
-  = render "forms/horizontal/show/generic", title: "Emails enabled", content: simple_check(EMAILS_ENABLED)
+.dashboard-container.text-center
+  %h2.mb-5
+    Welcome to the
+    = ENV["website_name"]
+    website!
+
+
+  .jumbotron-custom-text
+    .mb-3
+      = icon("fas", "chart-area", class: "text-primary")
+      Detailed reports
+
+    .mb-3
+      = icon("fas", "file-alt", class: "text-primary")
+      Study documents
+
+    .mb-3
+      = icon("fas", "heartbeat", class: "text-primary")
+      And more!
+
+.jumbotron.jumbotron-custom-text.jumbotron-shadow
+  = icon("far", "comments")
+
+  = mail_to ActionMailer::Base.smtp_settings[:email], "Contact us"
+  with any questions.
+
+- if false
+  - content_for :footer do
+    .theme-deep-red-bg.text-center.p-5= image_tag "logos/loft-logo-v1-no-background.png", style: "max-width: 400px;width: 100%;height: auto;", class: "img-ignore-selection rounded"

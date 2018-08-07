@@ -1,9 +1,10 @@
 - @theme = "deep-red"
 
-.page-box.last-box{ class: "theme-#{@theme}-focus-bg" }
-  .text-center.p-5.mb-5
-    = image_tag "logos/loft-logo-v1-no-background.png", style: "max-width: 800px;width: 100%;height: auto;", class: "img-ignore-selection rounded"
+.page-box.last-box.d-flex.align-items-center{ class: "theme-#{@theme}-focus-bg" }
+  .container
+    .text-center.px-5.mb-5
+      = image_tag "logos/loft-logo-v1-no-background.png", style: "max-width: 400px;width: 100%;height: auto;", class: "img-ignore-selection rounded"
 
-  .landing-study-title
-    The Impact of Low Flow Oxygen Therapy on Hospital Admissions and Mortality
-    in Patients with Heart Failure and Central Sleep Apnea
+    .landing-study-title
+      The Impact of Low Flow Oxygen Therapy on Hospital Admissions and Mortality
+      in Patients with Heart Failure and Central Sleep Apnea

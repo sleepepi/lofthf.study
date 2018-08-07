@@ -16,11 +16,11 @@
           = link_to settings_path, class: "dropdown-item" do
             Settings
 
+        .dropdown-divider
+        - if current_user.admin?
+          = link_to admin_path, class: "dropdown-item" do
+            Admin
           .dropdown-divider
-          - if current_user.admin?
-            = link_to admin_path, class: "dropdown-item" do
-              Admin
-            .dropdown-divider
         = link_to destroy_user_session_path, method: :delete, class: "dropdown-item" do
           Sign out
 
@@ -40,12 +40,12 @@
     - if current_page?(settings_path)
       %span.sr-only (current)
 
-  - if current_user.admin?
-    %li.nav-item.d-lg-none{ class: current_page?(admin_path) ? "active" : nil }
-      = link_to admin_path, class: "nav-link" do
-        Admin
-      - if current_page?(admin_path)
-        %span.sr-only (current)
+- if current_user.admin?
+  %li.nav-item.d-lg-none{ class: current_page?(admin_path) ? "active" : nil }
+    = link_to admin_path, class: "nav-link" do
+      Admin
+    - if current_page?(admin_path)
+      %span.sr-only (current)
 
 %li.nav-item.d-lg-none
   = link_to destroy_user_session_path, method: :delete, class: "nav-link" do

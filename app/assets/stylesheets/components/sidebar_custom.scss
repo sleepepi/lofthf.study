@@ -62,7 +62,7 @@
       a:hover,
       a:focus {
         background-color: map-get($theme, p400);
-        border-color: map-get($theme, header-border); // $p200-orange
+        border-color: map-get($theme, header-border);
         color: map-get($theme, brand-white);
 
         > .badge-sidebar {

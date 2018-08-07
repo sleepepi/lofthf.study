@@ -27,4 +27,9 @@ class ApplicationController < ActionController::Base
   def devise_login?
     params[:controller] == "sessions" && params[:action] == "create"
   end
+
+  def check_admin!
+    return if current_user&.admin?
+    redirect_to root_path
+  end
 end

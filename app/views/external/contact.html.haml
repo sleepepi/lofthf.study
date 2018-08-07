@@ -6,16 +6,16 @@
 .dashboard-container
   .row
     .col-md-6
-      .section-container
-        .section-title
+      .contact-container
+        .contact-title
           via email
-        .section-body
-          %strong= mail_to ENV["support_email"], ENV["support_email"], class: "text-dark"
+        .contact-body
+          %strong= mail_to ActionMailer::Base.smtp_settings[:email], ActionMailer::Base.smtp_settings[:email], class: "text-dark"
 
-      .section-container
-        .section-title
+      .contact-container
+        .contact-title
           our address
-        .section-body
+        .contact-body
           %strong Brigham Health
           %br
           %strong Division of Sleep and Circadian Disorders

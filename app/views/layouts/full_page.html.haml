@@ -7,7 +7,7 @@
     = render "layouts/meta/general"
     -# Don't cache any pages
     %meta{ name: "turbolinks-cache-control", content: "no-cache" }
-    %title= [@title, "LOFT-HF"].compact.join(" - ").html_safe
+    %title= [@title, ENV["website_name"]].compact.join(" - ").html_safe
     = favicon_link_tag
     = csrf_meta_tags
     = csp_meta_tag
