@@ -33,6 +33,13 @@ class User < ApplicationRecord
     %w(full_name email username)
   end
 
+  include PgSearch
+  multisearchable against: [:full_name, :email, :username]
+  # pg_search_scope :search_for, against: [:full_name, :email, :username],
+  #                              using: {
+  #                                tsearch: { prefix: true, any_word: true }
+  #                              }
+
   # Validations
   validates :full_name, presence: true
   validates :full_name, format: { with: /\A.+\s.+\Z/, message: "must include first and last name" }

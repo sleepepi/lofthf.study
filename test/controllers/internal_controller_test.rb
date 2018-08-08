@@ -14,6 +14,18 @@ class InternalControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "should get directory" do
+    login(@viewer)
+    get directory_url
+    assert_response :success
+  end
+
+  test "should get folder" do
+    login(@viewer)
+    get folder_url
+    assert_response :success
+  end
+
   test "should get reports" do
     login(@viewer)
     get reports_url
@@ -29,6 +41,12 @@ class InternalControllerTest < ActionDispatch::IntegrationTest
   test "should get report card" do
     login(@viewer)
     get report_card_url
+    assert_response :success
+  end
+
+  test "should get search" do
+    login(@viewer)
+    get search_url
     assert_response :success
   end
 end

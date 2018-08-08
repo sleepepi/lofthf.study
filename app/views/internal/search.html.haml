@@ -1,0 +1,66 @@
+- @title = "Search"
+
+- @theme = "default"
+= render "internal/tabs"
+- @container = "container-fluid"
+
+.page-box.p-0.last-box.d-flex.flex-column.justify-content-between
+  %div
+    .header-container{ class: content_for?(:tabs) ? "header-container-no-border" : nil }
+      .container-fluid
+        %h1.page-heading
+          = @title
+    .header-tabs
+      .container-fluid
+        = yield :tabs
+
+    .row.no-gutters.flex-md-nowrap.theme-custom-spacing
+      %main.col.p-3.remove-last-margin{ role: "main" }
+        .container
+          = form_with url: search_path, method: :get, local: true, id: "search-form", class: "my-3", skip_enforcing_utf8: true do |form|
+            .input-group
+              = form.text_field :search, value: params[:search], class: "form-control form-control-lg", placeholder: "Start your search...", autocomplete: "off", autofocus: params[:search].blank?
+              .input-group-append
+                = link_to "#", class: "btn btn-lg btn-primary", data: { object: "submit-and-disable", target: "#search-form" } do
+                  %i.fa.fa-search
+
+          - if @search_documents.present?
+            - @search_documents.each do |document|
+              .dashboard-container.dashboard-container-border-accent
+                - case document.searchable.class.to_s
+                - when "User"
+                  .d-flex.align-items-center
+                    .d-inline-block.mr-1.text-primary-muted.pr-3= icon("far", "user", class: "fa-3x")
+                    .d-inline{ style: "font-weight: 200;" }
+                      .text-dark= document.searchable.full_name
+                      .text-muted
+                        = document.searchable.email
+                - else
+                  .d-inline-block.mr-1= icon("far", "file-alt")
+                  .d-inline.text-muted{ style: "font-weight: 200;" } File
+          - elsif params[:search].present?
+            .mt-5.mb-4.text-center{ style: "font-weight: 300;font-size: 1.25rem;" }
+              No results returned.
+              = link_to "Start over.", search_path
+          - else
+            .mt-5.mb-4.text-center.text-primary-muted{ style: "font-weight: 300;font-size: 1.25rem;" } Search for files and users.
+
+
+  .py-5.footer-custom-bg
+    .container
+      .lead.text-center.mb-5
+        = icon("far", "comments")
+
+        = mail_to ActionMailer::Base.smtp_settings[:email], "Contact us"
+        with any questions.
+
+        - if false
+          Have another question?
+
+          = link_to contact_path do
+            %span.nowrap
+              Contact us
+              %i.fa.fa-caret-right
+
+        .text-center
+          .text-center.pt-5= image_tag "logos/loft-logo-v1.png", style: "max-width: 400px;width: 100%;height: auto;", class: "img-ignore-selection rounded"

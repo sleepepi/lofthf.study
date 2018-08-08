@@ -17,6 +17,7 @@ gem "font-awesome-sass",       "~> 5.2.0"
 gem "haml",                    "~> 5.0.4"
 gem "jquery-rails",            "~> 4.3.3"
 gem "kaminari",                "~> 1.1.1"
+gem "pg_search",               "~> 2.1.2"
 
 # Rails defaults
 gem "bootsnap",                ">= 1.1.0", require: false
