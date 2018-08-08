@@ -8,6 +8,12 @@
   - Add dashboard
 - **Admin Changes**
   - Add admin dashboard
+  - Add user role management
+  - Admins are notified by email when a user registers a new account
+- **Registration Changes**
+  - Welcome emails are sent to new user registrations
+  - Users need to confirm their email
+  - Users are notified by email when their account is approved
 - **Base Web Framework**
   - Rails for the web framework
   - Amazon AWS for hosting and continuous deployment

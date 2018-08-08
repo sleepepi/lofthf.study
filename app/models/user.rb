@@ -7,13 +7,31 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :confirmable, :lockable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  # Callbacks
+  after_commit :new_registration_in_background!, on: :create
+
+  # Constants
+  ORDERS = {
+    "activity desc" => "(CASE WHEN (users.current_sign_in_at IS NULL) THEN users.created_at ELSE users.current_sign_in_at END) desc",
+    "activity" => "(CASE WHEN (users.current_sign_in_at IS NULL) THEN users.created_at ELSE users.current_sign_in_at END)",
+    "logins desc" => "users.sign_in_count desc",
+    "logins" => "users.sign_in_count"
+  }
+  DEFAULT_ORDER = "(CASE WHEN (users.current_sign_in_at IS NULL) THEN users.created_at ELSE users.current_sign_in_at END) desc"
+
   # Concerns
   include Deletable
+  include Forkable
   include Squishable
   squish :full_name
 
   include Strippable
   strip :username
+
+  include Searchable
+  def self.searchable_attributes
+    %w(full_name email username)
+  end
 
   # Validations
   validates :full_name, presence: true
@@ -29,12 +47,69 @@ class User < ApplicationRecord
 
   # Methods
 
+  def check_approval_email
+    return unless approved? && approval_sent_at.nil?
+    update(approval_sent_at: Time.zone.now)
+    send_approval_email_in_background!
+  end
+
+  def disposable_email?
+    false
+  end
+
   # Overriding Devise built-in active_for_authentication? method.
   def active_for_authentication?
     super && !deleted? && approved?
   end
 
-  def disposable_email?
-    false
+  # Override Devise built-in password reset notification email method
+  def send_reset_password_instructions
+    return if deleted?
+    super
+  end
+
+  # Override Devise built-in unlock instructions notification email method
+  def send_unlock_instructions
+    return if deleted?
+    super
+  end
+
+  def send_confirmation_instructions
+    return if disposable_email?
+    super
+  end
+
+  def send_on_create_confirmation_instructions
+    return if disposable_email?
+    send_welcome_email_in_background!
+  end
+
+  def send_welcome_email_in_background!
+    fork_process :send_welcome_email!
+  end
+
+  def new_registration_in_background!
+    fork_process :new_registration!
+  end
+
+  def send_approval_email_in_background!
+    fork_process :send_approval_email!
+  end
+
+  private
+
+  def send_welcome_email!
+    RegistrationMailer.welcome(self).deliver_now if EMAILS_ENABLED
+  end
+
+  def new_registration!
+    return unless EMAILS_ENABLED
+    User.current.where(admin: true).find_each do |admin|
+      RegistrationMailer.user_registered(admin, self).deliver_now
+    end
+  end
+
+  def send_approval_email!
+    RegistrationMailer.account_approved(self).deliver_now if EMAILS_ENABLED
   end
 end

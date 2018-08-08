@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get :admin, to: "admin#dashboard"
   namespace :admin do
     get :debug
+    resources :users
   end
 
   scope module: :external do

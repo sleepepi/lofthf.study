@@ -82,6 +82,13 @@ module EmailHelper
     )
   end
 
+  def regular_style
+    hash_to_css_string(
+      color: text_color,
+      word_break: "break-word"
+    )
+  end
+
   def muted_style
     hash_to_css_string(
       color: muted_color,
