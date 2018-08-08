@@ -1,4 +1,9 @@
 .header-tab {
+  border-top-left-radius: $border-radius;
+  border-top-right-radius: $border-radius;
+  display: inline-block;
+  padding: map-get($spacers, 2) map-get($spacers, 3);
+
   + .header-tab {
     margin-left: map-get($spacers, 1);
   }
@@ -29,6 +34,7 @@
         &:hover {
           background-color: $p300-grey;
           color: map-get($theme, brand-black);
+          text-decoration: none;
         }
       }
 
@@ -36,10 +42,10 @@
       .header-tab-active:hover {
         background-color: $p100-grey;
         @if map-get($theme, header-border) {
-          border-bottom: 2px solid $p100-grey !important;
-          border-left: 2px solid map-get($theme, header-border) !important;
-          border-right: 2px solid map-get($theme, header-border) !important;
-          border-top: 2px solid map-get($theme, header-border) !important;
+          border-bottom: 2px solid $p100-grey;
+          border-left: 2px solid map-get($theme, header-border);
+          border-right: 2px solid map-get($theme, header-border);
+          border-top: 2px solid map-get($theme, header-border);
         }
         color: map-get($theme, brand-black);
       }
@@ -49,7 +55,7 @@
         .header-tab-active:hover {
           background-color: $p50-grey;
           @if map-get($theme, header-border) {
-            border-bottom: 2px solid $p50-grey !important;
+            border-bottom: 2px solid $p50-grey;
           }
         }
       }

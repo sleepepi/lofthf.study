@@ -16,6 +16,9 @@ Rails.application.routes.draw do
 
   scope module: :internal do
     get :dashboard
+    get :reports
+    get :data_health, path: "data-health"
+    get :report_card, path: "report-card"
   end
 
   devise_for :users,

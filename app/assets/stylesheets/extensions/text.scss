@@ -8,6 +8,10 @@
       color: map-get($theme, primary) !important;
     }
 
+    .text-primary-muted {
+      color: map-get($theme, p300) !important;
+    }
+
     .text-white {
       color: map-get($theme, brand-white) !important;
     }

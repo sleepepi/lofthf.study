@@ -9,4 +9,12 @@ class InternalController < ApplicationController
   # # GET /dashboard
   # def dashboard
   # end
+
+  # # GET /reports
+  # def reports
+  # end
+
+  # # GET /data-health
+  # def data_health
+  # end
 end

@@ -1,11 +1,16 @@
 %li.nav-item.dropdown.d-none.d-lg-block
   .btn-group.nav-item
-    - if true
+    - if false
       = link_to "#", class: "nav-link", data: { toggle: "dropdown" }, aria: { haspopup: "true", expanded: "false" } do
         = icon("fas", "ellipsis-v")
     - else
       = link_to "#", class: "nav-link dropdown-toggle", data: { toggle: "dropdown" }, aria: { haspopup: "true", expanded: "false" } do
-        = profile_picture_tag(current_user, size: 20)
+        = current_user.username
+        - if false
+          - if current_user && current_user.staff_id.present?
+            %code= current_user.staff_id
+          = profile_picture_tag(current_user, size: 20)
+
 
     .dropdown-menu.dropdown-menu-right.dropdown-menu-custom
       .dropdown-menu-custom-inner
@@ -26,12 +31,6 @@
 
 %li.nav-item
   %hr
-
-%li.nav-item.d-lg-none{ class: current_page?(dashboard_path) ? "active" : nil }
-  = link_to dashboard_path, class: "nav-link" do
-    Dashboard
-  - if current_page?(dashboard_path)
-    %span.sr-only (current)
 
 - if false
   %li.nav-item.d-lg-none{ class: current_page?(settings_path) ? "active" : nil }

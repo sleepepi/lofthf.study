@@ -6,6 +6,9 @@
   - Add contact page
   - Add version page
   - Add dashboard
+  - Add randomization report
+  - Add data health page
+  - Add report card page
 - **Admin Changes**
   - Add admin dashboard
   - Add user role management

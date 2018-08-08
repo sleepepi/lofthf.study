@@ -1,11 +1,34 @@
 - content_for :tabs do
-  - current_page = params[:controller].in?(%w(internal))
-  = link_to dashboard_path, class: "link-unstyled d-inline-block px-3 pt-2 pb-2 rounded-top header-tab #{"border border-bottom-0 header-tab-active" if current_page}", data: { object: "#{"suppress-click" if current_page?(dashboard_path)}" } do
+  - current_page = params[:controller].in?(%w(internal)) && params[:action].in?(%w(dashboard))
+  = link_to dashboard_path, class: "header-tab #{"header-tab-active" if current_page}", data: { object: "#{"suppress-click" if current_page?(dashboard_path)}" } do
     = icon("fas", "home")
-    Dashboard
+    - if current_page
+      Dashboard
+    - else
+      .d-none.d-sm-inline Dashboard
+
+  - current_page = params[:controller].in?(%w(internal)) && params[:action].in?(%w(reports))
+  = link_to reports_path, class: "header-tab #{"header-tab-active" if current_page}", data: { object: "#{"suppress-click" if current_page?(reports_path)}" } do
+    = icon("fas", "chart-area")
+    - if current_page
+      Reports
+    - else
+      .d-none.d-sm-inline Reports
+
+  - current_page = params[:controller].in?(%w(internal)) && params[:action].in?(%w(data_health report_card))
+  = link_to data_health_path, class: "header-tab #{"header-tab-active" if current_page}", data: { object: "#{"suppress-click" if current_page?(data_health_path)}" } do
+    = icon("fas", "notes-medical")
+    - if current_page
+      Data Health
+    - else
+      .d-none.d-sm-inline Data Health
 
   - if false
     - current_page = params[:controller].in?(%w(settings))
-    = link_to settings_profile_path, class: "link-unstyled d-inline-block px-3 pt-2 pb-2 rounded-top header-tab #{"border border-bottom-0 header-tab-active" if current_page}", data: { object: "#{"suppress-click" if current_page?(settings_profile_path)}" } do
+    - settings_profile_path = dashboard_path # TODO: Remove (and implement settings_profile_path)
+    = link_to settings_profile_path, class: "header-tab #{"header-tab-active" if current_page}", data: { object: "#{"suppress-click" if current_page?(settings_profile_path)}" } do
       = icon("fas", "cog")
-      Settings
+      - if current_page
+        Settings
+      - else
+        .d-none.d-sm-inline Settings
