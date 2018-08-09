@@ -5,7 +5,7 @@ module LoftHF
     MAJOR = 1
     MINOR = 0
     TINY = 0
-    BUILD = "beta8" # "pre", "beta1", "beta2", "rc", "rc2", nil
+    BUILD = "beta9" # "pre", "beta1", "beta2", "rc", "rc2", nil
 
     STRING = [MAJOR, MINOR, TINY, BUILD].compact.join(".").freeze
   end
