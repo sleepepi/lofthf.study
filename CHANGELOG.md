@@ -7,6 +7,7 @@
   - Add version page
   - Add dashboard
   - Add directory
+  - Add document pages
   - Add randomization report
   - Add data health page
   - Add report card page
@@ -15,6 +16,9 @@
   - Add admin dashboard
   - Add user role management
   - Admins are notified by email when a user registers a new account
+- **Editor Changes**
+  - Editors can create folders and assign them to a category
+  - Editors can upload files to folders
 - **Registration Changes**
   - Welcome emails are sent to new user registrations
   - Users need to confirm their email

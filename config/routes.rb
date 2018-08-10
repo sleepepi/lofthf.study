@@ -14,10 +14,19 @@ Rails.application.routes.draw do
     get :version
   end
 
+  resources :folders, except: [:show, :edit], path: "docs" do
+    member do
+      post :attach_file, path: "attach-file"
+      post :attach_files, path: "attach-files"
+    end
+  end
+  get "docs/:category/:folder", to: "folders#show", as: :category_folder
+  get "docs/:category/:folder/edit", to: "folders#edit", as: :edit_category_folder
+  get "docs/:category/:folder/upload", to: "folders#upload", as: :upload_category_folder
+
   scope module: :internal do
     get :dashboard
     get :directory
-    get :folder
     get :reports
     get :data_health, path: "data-health"
     get :report_card, path: "report-card"

@@ -1,0 +1,53 @@
+- files = @folder.files
+- case params[:order]
+- when "size"
+  - files = files.sort_by(&:byte_size)
+- when "size desc"
+  - files = files.sort_by(&:byte_size).reverse
+- when "size"
+  - files = files.sort_by(&:byte_size)
+- when "size desc"
+  - files = files.sort_by(&:byte_size).reverse
+- when "oldest"
+  - files = files.sort_by(&:created_at)
+- when "latest"
+  - files = files.sort_by(&:created_at).reverse
+- when "name desc"
+  - files = files.sort_by(&:filename).reverse
+- else
+  - files = files.sort_by(&:filename)
+
+- if files.present?
+  .dashboard-container.dashboard-table{ class: current_user.editor? ? "mb-0" : nil }
+    %table.table.table-striped.table-borderless.table-hover.table-sticky
+      %col.d-none.d-sm-table-column{ width: "1px" }
+      %col.d-none.d-md-table-column
+      %col.d-none.d-sm-table-column
+      %col{ width: "1px" }
+      %thead
+        %tr
+          %th.d-none.d-sm-table-cell
+          %th= order_to "Name", primary: "name desc", secondary: "name"
+          %th.d-none.d-md-table-cell.text-center= order_to "Size", primary: "size desc", secondary: "size"
+          %th.d-none.d-sm-table-cell.text-center= order_to "Uploaded", primary: "latest", secondary: "oldest"
+      - files.each do |file|
+        %tr
+          %td.d-none.d-sm-table-cell
+            - case file.content_type
+            - when "application/pdf"
+              = icon("far", "file-pdf")
+            - when "image/gif", "image/jpeg", "image/png"
+              = icon("far", "file-image")
+            - when "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "application/msword"
+              = icon("far", "file-word")
+            - else
+              = icon("far", "file-alt")
+          %td
+            = link_to file.filename, file
+          %td.d-none.d-md-table-cell.text-center.nowrap.small= number_to_human_size file.blob.byte_size
+          %td.d-none.d-sm-table-cell.text-center.nowrap.small= file.created_at.strftime("%Y-%^b-%d")
+- else
+  .jumbotron.jumbotron-custom-text{ class: current_user.editor? ? "mb-0" : nil }
+    = icon("fas", "clone", class: "mr-1")
+    No files found.
+    = link_to "Start over", folders_path if params[:search].present?

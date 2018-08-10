@@ -1,0 +1,15 @@
+mops:
+  category: general
+  name: Manual of Procedures
+  slug: mops
+  description: The following files describe our procedures.
+  position: 0
+  archived: false
+
+crfs:
+  category: general
+  name: Case Report Forms
+  slug: crfs
+  description: Make sure you use the latest versions!
+  position: 1
+  archived: false

@@ -16,16 +16,16 @@ class InternalController < ApplicationController
     @users = scope_order(scope).page(params[:page]).per(20)
   end
 
-  # # GET /folder
-  # def folder
-  # end
-
   # # GET /reports
   # def reports
   # end
 
   # # GET /data-health
   # def data_health
+  # end
+
+  # # GET /report-card
+  # def report_card
   # end
 
   # GET /search

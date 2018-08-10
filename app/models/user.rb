@@ -40,6 +40,9 @@ class User < ApplicationRecord
   #                                tsearch: { prefix: true, any_word: true }
   #                              }
 
+  # Scopes
+  scope :editors, -> { where(editor: true).or(where(admin: true)) }
+
   # Validations
   validates :full_name, presence: true
   validates :full_name, format: { with: /\A.+\s.+\Z/, message: "must include first and last name" }
@@ -53,6 +56,11 @@ class User < ApplicationRecord
                        uniqueness: { case_sensitive: false }
 
   # Methods
+
+  # Overwrite default editor? method.
+  def editor?
+    self[:editor] || admin?
+  end
 
   def check_approval_email
     return unless approved? && approval_sent_at.nil?

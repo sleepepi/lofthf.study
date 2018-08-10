@@ -29,7 +29,21 @@ class ApplicationController < ActionController::Base
   end
 
   def check_admin!
-    return if current_user&.admin?
-    redirect_to root_path
+    return if current_user.admin?
+    redirect_to dashboard_path
+  end
+
+  def check_editor!
+    return if current_user.editor?
+    redirect_to dashboard_path
+  end
+
+  def empty_response_or_root_path(path = root_path)
+    respond_to do |format|
+      format.html { redirect_to path }
+      format.js { head :ok }
+      format.json { head :no_content }
+      format.pdf { redirect_to path }
+    end
   end
 end

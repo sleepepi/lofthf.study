@@ -22,13 +22,6 @@ class InternalTest < ApplicationSystemTestCase
     assert_selector "h1", text: "Directory"
   end
 
-  test "visit folder" do
-    visit_login(@viewer)
-    visit folder_url(title: "Manual of Procedures")
-    screenshot("visit-folder")
-    assert_selector "h1", text: "Folder"
-  end
-
   test "visit reports" do
     visit_login(@viewer)
     visit reports_url

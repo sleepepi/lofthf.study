@@ -32,7 +32,7 @@
           %td= link_to user.full_name, admin_user_path(user)
           %td.d-none.d-sm-table-cell
             - if user.confirmed?
-              = icon("fas", "check-circle", class: "text-success", data: { toggle: "tooltip", title: "Email confirmed", container: "body", placement: "top" })
+              = icon("fas", "check-circle", class: "text-primary", data: { toggle: "tooltip", title: "Email confirmed", container: "body", placement: "top" })
             - else
               = icon("fas", "question-circle", class: "text-muted", data: { toggle: "tooltip", title: "Unconfirmed email", container: "body", placement: "top" })
             = user.email

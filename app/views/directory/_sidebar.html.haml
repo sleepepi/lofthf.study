@@ -1,0 +1,13 @@
+.col-12.col-md-3.col-xl-2.sidebar-wrapper
+  .sidebar
+    #sidebar-nav-wrapper.sidebar-nav-wrapper.collapse
+      .pt-3.py-md-3.mx-3.my-0.ml-md-3.mb-md-3.mr-md-0
+        %ul.sidebar-menu.sidebar-menu-shadow
+          %li.sidebar-menu-header= render "sidebar/toggle", title: "Directory"
+          %li= link_to "Overview", directory_path, class: current_page?(directory_path) ? "active" : nil
+          %li.sidebar-menu-header Coordinating Centers
+          %li= link_to "Site A", directory_path(site: "a"), class: current_page?(directory_path(site: "a")) ? "active" : nil
+          %li= link_to "Site B", directory_path(site: "b"), class: current_page?(directory_path(site: "b")) ? "active" : nil
+          %li.sidebar-menu-header Recruiting Centers Centers
+          %li= link_to "Site D", directory_path(site: "d"), class: current_page?(directory_path(site: "d")) ? "active" : nil
+          %li= link_to "Site E", directory_path(site: "e"), class: current_page?(directory_path(site: "e")) ? "active" : nil

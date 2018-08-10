@@ -30,7 +30,7 @@ class Admin::UsersControllerTest < ActionDispatch::IntegrationTest
   test "should not get index as editor" do
     login(@editor)
     get admin_users_url
-    assert_redirected_to root_url
+    assert_redirected_to dashboard_url
   end
 
   test "should show user as admin" do
@@ -42,7 +42,7 @@ class Admin::UsersControllerTest < ActionDispatch::IntegrationTest
   test "should not show user as editor" do
     login(@editor)
     get admin_user_url(@user)
-    assert_redirected_to root_url
+    assert_redirected_to dashboard_url
   end
 
   test "should get edit as admin" do
@@ -54,7 +54,7 @@ class Admin::UsersControllerTest < ActionDispatch::IntegrationTest
   test "should not get edit as editor" do
     login(@editor)
     get edit_admin_user_url(@user)
-    assert_redirected_to root_url
+    assert_redirected_to dashboard_url
   end
 
   test "should update user as admin" do
@@ -78,7 +78,7 @@ class Admin::UsersControllerTest < ActionDispatch::IntegrationTest
   test "should not update user as editor" do
     login(@editor)
     patch admin_user_url(@user), params: { user: user_params }
-    assert_redirected_to root_url
+    assert_redirected_to dashboard_url
   end
 
   test "should destroy user as admin" do
@@ -94,6 +94,6 @@ class Admin::UsersControllerTest < ActionDispatch::IntegrationTest
     assert_difference("User.current.count", 0) do
       delete admin_user_url(@user)
     end
-    assert_redirected_to root_url
+    assert_redirected_to dashboard_url
   end
 end

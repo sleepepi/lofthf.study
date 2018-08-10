@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_08_221256) do
+ActiveRecord::Schema.define(version: 2018_08_09_173209) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,36 @@ ActiveRecord::Schema.define(version: 2018_08_08_221256) do
     t.string "checksum", null: false
     t.datetime "created_at", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.string "slug"
+    t.integer "position"
+    t.integer "folders_count", default: 0, null: false
+    t.boolean "archived", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["archived"], name: "index_categories_on_archived"
+    t.index ["folders_count"], name: "index_categories_on_folders_count"
+    t.index ["name"], name: "index_categories_on_name", unique: true
+    t.index ["position"], name: "index_categories_on_position"
+    t.index ["slug"], name: "index_categories_on_slug", unique: true
+  end
+
+  create_table "folders", force: :cascade do |t|
+    t.integer "category_id"
+    t.string "name"
+    t.string "slug"
+    t.text "description"
+    t.integer "position"
+    t.boolean "archived", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["archived"], name: "index_folders_on_archived"
+    t.index ["category_id", "name"], name: "index_folders_on_category_id_and_name", unique: true
+    t.index ["category_id", "slug"], name: "index_folders_on_category_id_and_slug", unique: true
+    t.index ["position"], name: "index_folders_on_position"
   end
 
   create_table "pg_search_documents", force: :cascade do |t|

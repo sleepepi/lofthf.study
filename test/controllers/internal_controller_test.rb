@@ -20,12 +20,6 @@ class InternalControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should get folder" do
-    login(@viewer)
-    get folder_url
-    assert_response :success
-  end
-
   test "should get reports" do
     login(@viewer)
     get reports_url
