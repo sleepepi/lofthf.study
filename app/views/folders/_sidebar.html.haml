@@ -8,7 +8,7 @@
           %li.sidebar-menu-header= render "sidebar/toggle", title: "Docs"
           %li= link_to "Overview", folders_path, class: current_page?(folders_path) ? "active" : nil
           - if @categories.present?
-            - @categories.each do |category|
+            - @categories.includes(:folders).each do |category|
               %li.sidebar-menu-header= category.name
               - category.folders.each do |folder|
                 %li= link_to folder.name, category_folder_path(category, folder), class: @folder&.id == folder.id ? "active" : nil

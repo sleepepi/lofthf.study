@@ -6,4 +6,5 @@
   =# render "forms/horizontal/check_box", form: form, object: user, key: :emails_enabled
   = render "forms/horizontal/check_box", form: form, object: user, key: :admin, help_text: "Admins can approve users and set user roles."
   = render "forms/horizontal/check_box", form: form, object: user, key: :editor, help_text: "Editors can setup the website."
+  = render "forms/horizontal/text_field", form: form, object: user, key: :keywords, help_text: "Add keywords to improve search results, for example add nicknames."
   = render "forms/horizontal/submit", form: form, object: user, cancel: admin_user_path(user)

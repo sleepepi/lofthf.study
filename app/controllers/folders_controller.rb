@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Allows documents to be viewed and added.
 class FoldersController < ApplicationController
   before_action :authenticate_user!
   before_action :check_editor!, only: [
@@ -82,12 +85,12 @@ class FoldersController < ApplicationController
   def find_category_and_folder_or_redirect
     @category = Category.find_by_param(params[:category])
     empty_response_or_root_path(folders_path) unless @category
-    @folder = @category.folders.find_by_param(params[:folder])
+    @folder = @category.folders.with_attached_files.find_by_param(params[:folder])
     empty_response_or_root_path(folders_path) unless @folder
   end
 
   def find_folder_or_redirect
-    @folder = Folder.find_by_param(params[:id])
+    @folder = Folder.with_attached_files.find_by_param(params[:id])
     empty_response_or_root_path(folders_path) unless @folder
   end
 

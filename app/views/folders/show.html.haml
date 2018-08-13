@@ -13,7 +13,7 @@
   = render "layouts/per_page_breadcrumbs", per_page: @folder.files.count, object_count: @folder.files.count
   %ol
     %li= link_to "docs", folders_path
-    %li.breadcrumb-muted= @folder.category.slug
+    %li.breadcrumb-muted= @category.slug
     %li.breadcrumb-muted= @folder.slug
     - if current_user.editor?
       %li

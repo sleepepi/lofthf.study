@@ -17,6 +17,16 @@ module Searchable
       where search_queries.join(" or "), *terms
     end
 
+    def self.search_any_order(args)
+      terms = args.to_s.split(/\s/).collect do |arg|
+        arg.to_s.downcase.gsub(/^| |$/, "%")
+      end
+      where(
+        (search_queries.collect { |s| [s] * terms.count }).flatten.join(" or "),
+        *(terms * search_queries.count)
+      )
+    end
+
     def self.search_queries
       searchable_attributes.collect do |searchable_attribute|
         "#{table_name}.#{searchable_attribute} ILIKE ?"

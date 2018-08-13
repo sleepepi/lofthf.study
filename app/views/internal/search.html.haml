@@ -35,6 +35,17 @@
                       .text-dark= document.searchable.full_name
                       .text-muted
                         = document.searchable.email
+                - when "ActiveStorage::Blob"
+                  - blob = document.searchable
+                  - attachment = ActiveStorage::Attachment.find_by(blob: blob)
+                  - folder = attachment.record
+                  .d-flex.align-items-center
+                    .d-inline-block.mr-1.text-primary-muted.pr-3= icon("far", "file-alt", class: "fa-3x")
+                    .d-inline{ style: "font-weight: 200;" }
+                      .text-dark
+                        = link_to blob.filename, category_folder_path(folder.category, folder, filename: blob.filename)
+                      .text-muted
+                        = folder.name
                 - else
                   .d-inline-block.mr-1= icon("far", "file-alt")
                   .d-inline.text-muted{ style: "font-weight: 200;" } File

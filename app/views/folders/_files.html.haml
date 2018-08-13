@@ -31,7 +31,7 @@
           %th.d-none.d-md-table-cell.text-center= order_to "Size", primary: "size desc", secondary: "size"
           %th.d-none.d-sm-table-cell.text-center= order_to "Uploaded", primary: "latest", secondary: "oldest"
       - files.each do |file|
-        %tr
+        %tr{ class: file.filename == params[:filename] ? "table-warning" : nil }
           %td.d-none.d-sm-table-cell
             - case file.content_type
             - when "application/pdf"
