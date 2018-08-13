@@ -9,7 +9,7 @@ gem "rails",                   "5.2.1"
 gem "pg",                      ">= 0.18", "< 2.0"
 
 # Gems used by project
-gem "autoprefixer-rails"
+gem "autoprefixer-rails",      "9.1.0"
 gem "aws-sdk-s3",                          require: false
 gem "bootstrap",               "~> 4.1.3"
 gem "devise",                  "~> 4.4.3"
