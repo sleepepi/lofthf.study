@@ -40,10 +40,11 @@
                             This email was sent to
                             = succeed "." do
                               %a{ href: "http://#{@email_to}", style: link_style, target: "_blank" }= @email_to
-                            %br
-                            You may
-                            = succeed "." do
-                              %a{ href: "#{ENV["website_url"]}/account", style: link_style, target: "_blank" } change your email preferences here
+                            - if false
+                              %br
+                              You may
+                              = succeed "." do
+                                %a{ href: "#{ENV["website_url"]}/account", style: link_style, target: "_blank" } change your email preferences here
                         %p{ style: "font-size: 12px;line-height: 20px;margin: 0 0 16px;margin-top: 16px;" }
                           %a{ href: ENV["website_url"], style: link_style, target: "_blank" }= ENV["website_name"]
                           \&nbsp;&bull;&nbsp;
