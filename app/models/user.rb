@@ -75,23 +75,23 @@ class User < ApplicationRecord
 
   # Override Devise built-in password reset notification email method
   def send_reset_password_instructions
-    return if deleted?
+    return if deleted? || !EMAILS_ENABLED
     super
   end
 
   # Override Devise built-in unlock instructions notification email method
   def send_unlock_instructions
-    return if deleted?
+    return if deleted? || !EMAILS_ENABLED
     super
   end
 
   def send_confirmation_instructions
-    return if disposable_email?
+    return if disposable_email? || !EMAILS_ENABLED
     super
   end
 
   def send_on_create_confirmation_instructions
-    return if disposable_email?
+    return if disposable_email? || !EMAILS_ENABLED
     send_welcome_email_in_background!
   end
 
