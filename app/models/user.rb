@@ -8,7 +8,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   # Callbacks
-  after_commit :new_registration_in_background!, on: :create
+  after_commit :new_registration!, on: :create
 
   # Constants
   ORDERS = {
@@ -21,7 +21,6 @@ class User < ApplicationRecord
 
   # Concerns
   include Deletable
-  include Forkable
   include Squishable
   squish :full_name
 
@@ -61,7 +60,7 @@ class User < ApplicationRecord
   def check_approval_email
     return unless approved? && approval_sent_at.nil?
     update(approval_sent_at: Time.zone.now)
-    send_approval_email_in_background!
+    send_approval_email!
   end
 
   def disposable_email?
@@ -75,52 +74,38 @@ class User < ApplicationRecord
 
   # Override Devise built-in password reset notification email method
   def send_reset_password_instructions
-    return if deleted? || !EMAILS_ENABLED
+    return unless EMAILS_ENABLED && !deleted?
     super
   end
 
   # Override Devise built-in unlock instructions notification email method
   def send_unlock_instructions
-    return if deleted? || !EMAILS_ENABLED
+    return unless EMAILS_ENABLED && !deleted?
     super
   end
 
   def send_confirmation_instructions
-    return if disposable_email? || !EMAILS_ENABLED
+    return unless EMAILS_ENABLED && !deleted? && !disposable_email?
     super
   end
 
   def send_on_create_confirmation_instructions
-    return if disposable_email? || !EMAILS_ENABLED
-    send_welcome_email_in_background!
+    return unless EMAILS_ENABLED && !deleted? && !disposable_email?
+    send_welcome_email!
   end
-
-  def send_welcome_email_in_background!
-    fork_process :send_welcome_email!
-  end
-
-  def new_registration_in_background!
-    fork_process :new_registration!
-  end
-
-  def send_approval_email_in_background!
-    fork_process :send_approval_email!
-  end
-
-  private
 
   def send_welcome_email!
-    RegistrationMailer.welcome(self).deliver_now if EMAILS_ENABLED
+    RegistrationMailer.welcome(self).deliver_later if EMAILS_ENABLED
   end
 
   def new_registration!
     return unless EMAILS_ENABLED
     User.current.where(admin: true).find_each do |admin|
-      RegistrationMailer.user_registered(admin, self).deliver_now
+      RegistrationMailer.user_registered(admin, self).deliver_later
     end
   end
 
   def send_approval_email!
-    RegistrationMailer.account_approved(self).deliver_now if EMAILS_ENABLED
+    RegistrationMailer.account_approved(self).deliver_later if EMAILS_ENABLED
   end
 end
