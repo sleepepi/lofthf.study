@@ -52,6 +52,10 @@ class User < ApplicationRecord
 
   # Methods
 
+  def email=(email)
+    super(email.try(:downcase))
+  end
+
   # Overwrite default editor? method.
   def editor?
     self[:editor] || admin?

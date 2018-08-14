@@ -8,7 +8,7 @@ class RegistrationsControllerTest < ActionDispatch::IntegrationTest
     {
       full_name: "Joe Smith",
       username: "SleepyDuck",
-      email: "new_user@example.com",
+      email: "NEW_USER@example.com",
       password: "password"
     }
   end
