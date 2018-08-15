@@ -5,28 +5,48 @@
 = render "internal/tabs"
 - content_for :sidebar, render("directory/sidebar")
 
+- if @key_contacts.present?
+  .subheading
+    Key Contacts
+
+  .key-contacts
+    - @key_contacts.each do |user|
+      .key-contact
+        .key-contact-icon= icon("far", "user", class: "fa-3x")
+        .key-contact-info
+          .key-contact-name
+            = user.full_name
+            .key-contact-role= user.role
+          .key-contact-email= user.email
+          .key-contact-phone= user.phone
+
 - if @users.present?
+  .subheading
+    Joined Recently
+
   .dashboard-container.dashboard-table
     %table.table.table-striped.table-borderless.table-hover.table-sticky
       %col
+      %col
+      %col.d-none.d-md-table-column
       %thead
         %tr
           %th Name
           %th Email
+          %th.d-none.d-md-table-cell Role
 
       - @users.each do |user|
         %tr
           %td= user.full_name
           %td= user.email
-
-  .center-horizontally= paginate @users, theme: "bootstrap"
+          %td.d-none.d-md-table-cell= user.role
 
   .jumbotron.jumbotron-custom-text.jumbotron-shadow
     = icon("far", "comments")
     = mail_to ActionMailer::Base.smtp_settings[:email], "Contact us"
     if your listed information is incorrect.
 
-- else
+- elsif false
   .jumbotron.jumbotron-custom-text
     = icon("fas", "clone", class: "mr-1")
     No users found.

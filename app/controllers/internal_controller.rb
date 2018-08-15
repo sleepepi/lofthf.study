@@ -12,8 +12,8 @@ class InternalController < ApplicationController
 
   # GET /directory
   def directory
-    scope = User.current.search(params[:search], match_start: false)
-    @users = scope_order(scope).page(params[:page]).per(20)
+    @users = User.current.order(id: :desc).limit(5)
+    @key_contacts = User.current.where(key_contact: true)
   end
 
   # # GET /reports
@@ -36,10 +36,10 @@ class InternalController < ApplicationController
 
   private
 
-  def scope_order(scope)
-    @order = params[:order]
-    scope.order(Arel.sql(User::ORDERS[params[:order]] || User::DEFAULT_ORDER))
-  end
+  # def scope_order(scope)
+  #   @order = params[:order]
+  #   scope.order(Arel.sql(User::ORDERS[params[:order]] || User::DEFAULT_ORDER))
+  # end
 
   def find_search_documents
     params[:search]&.squish!

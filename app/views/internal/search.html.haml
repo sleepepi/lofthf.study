@@ -27,19 +27,22 @@
 
           - if @search_documents.present?
             - @search_documents.each do |document|
-              .dashboard-container.dashboard-container-border-accent
-                - case document.searchable.class.to_s
-                - when "User"
-                  .d-flex.align-items-center
-                    .d-inline-block.mr-1.text-primary-muted.pr-3= icon("far", "user", class: "fa-3x")
-                    .d-inline{ style: "font-weight: 200;" }
-                      .text-dark= document.searchable.full_name
-                      .text-muted
-                        = document.searchable.email
-                - when "ActiveStorage::Blob"
-                  - blob = document.searchable
-                  - attachment = ActiveStorage::Attachment.find_by(blob: blob)
-                  - folder = attachment.record
+              - case document.searchable.class.to_s
+              - when "User"
+                - user = document.searchable
+                .key-contact
+                  .key-contact-icon= icon("far", "user", class: "fa-3x")
+                  .key-contact-info
+                    .key-contact-name
+                      = user.full_name
+                      .key-contact-role= user.role
+                    .key-contact-email= user.email
+                    .key-contact-phone= user.phone
+              - when "ActiveStorage::Blob"
+                - blob = document.searchable
+                - attachment = ActiveStorage::Attachment.find_by(blob: blob)
+                - folder = attachment.record
+                .dashboard-container.dashboard-container-border-accent.mb-3
                   .d-flex.align-items-center
                     .d-inline-block.mr-1.text-primary-muted.pr-3= icon("far", "file-alt", class: "fa-3x")
                     .d-inline{ style: "font-weight: 200;" }
@@ -47,7 +50,8 @@
                         = link_to blob.filename, category_folder_path(folder.category, folder, filename: blob.filename)
                       .text-muted
                         = folder.name
-                - else
+              - else
+                .dashboard-container.dashboard-container-border-accent.mb-3
                   .d-inline-block.mr-1= icon("far", "file-alt")
                   .d-inline.text-muted{ style: "font-weight: 200;" } File
           - elsif params[:search].present?

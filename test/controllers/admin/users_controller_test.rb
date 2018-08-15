@@ -17,7 +17,10 @@ class Admin::UsersControllerTest < ActionDispatch::IntegrationTest
       email: "email@example.com",
       approved: "1",
       admin: "1",
-      editor: "1"
+      editor: "1",
+      role: "Role",
+      key_contact: "0",
+      keywords: "Nickname"
     }
   end
 

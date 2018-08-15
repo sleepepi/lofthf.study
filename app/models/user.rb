@@ -33,7 +33,7 @@ class User < ApplicationRecord
   end
 
   include PgSearch
-  multisearchable against: [:full_name, :email, :username, :keywords]
+  multisearchable against: [:full_name, :email, :username, :keywords, :role, :phone]
 
   # Scopes
   scope :editors, -> { where(editor: true).or(where(admin: true)) }
