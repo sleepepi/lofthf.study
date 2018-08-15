@@ -77,7 +77,7 @@ class FoldersController < ApplicationController
   # DELETE /folders/1
   def destroy
     @folder.destroy
-    redirect_to folders_url, notice: "Folder was successfully deleted."
+    redirect_to folders_path, notice: "Folder was successfully deleted."
   end
 
   private

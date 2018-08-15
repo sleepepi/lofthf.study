@@ -2,7 +2,7 @@
 
 require "application_system_test_case"
 
-# Test navigating and creating folder.
+# Test navigating and creating folders.
 class FoldersTest < ApplicationSystemTestCase
   setup do
     @category = categories(:general)

@@ -50,10 +50,23 @@
                         = link_to blob.filename, category_folder_path(folder.category, folder, filename: blob.filename)
                       .text-muted
                         = folder.name
+              - when "Site"
+                - site = document.searchable
+                .dashboard-container.dashboard-container-border-accent.mb-3
+                  .d-flex.align-items-center
+                    .d-inline-block.mr-1.text-primary-muted.pr-3= icon("fas", "map-marker-alt", class: "fa-3x")
+                    .d-inline{ style: "font-weight: 200;" }
+                      .text-dark
+                        = link_to site.name, site
+                      .text-muted
+                        = succeed "," do
+                          = site.center_type_name
+                        = pluralize(site.users.count, "member")
               - else
                 .dashboard-container.dashboard-container-border-accent.mb-3
                   .d-inline-block.mr-1= icon("far", "file-alt")
                   .d-inline.text-muted{ style: "font-weight: 200;" } File
+            .center-horizontally= paginate @search_documents, theme: "bootstrap"
           - elsif params[:search].present?
             .mt-5.mb-4.text-center{ style: "font-weight: 300;font-size: 1.25rem;" }
               No results returned.

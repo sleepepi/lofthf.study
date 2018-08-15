@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_15_143517) do
+ActiveRecord::Schema.define(version: 2018_08_15_182521) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -75,6 +75,22 @@ ActiveRecord::Schema.define(version: 2018_08_15_143517) do
     t.index ["searchable_type", "searchable_id"], name: "index_pg_search_documents_on_searchable_type_and_searchable_id"
   end
 
+  create_table "sites", force: :cascade do |t|
+    t.string "name"
+    t.string "slug"
+    t.string "center_type"
+    t.boolean "archived", default: false, null: false
+    t.boolean "deleted", default: false, null: false
+    t.datetime "deleted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["archived"], name: "index_sites_on_archived"
+    t.index ["center_type"], name: "index_sites_on_center_type"
+    t.index ["deleted"], name: "index_sites_on_deleted"
+    t.index ["name"], name: "index_sites_on_name", unique: true
+    t.index ["slug"], name: "index_sites_on_slug", unique: true
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "username"
     t.string "full_name"
@@ -108,6 +124,7 @@ ActiveRecord::Schema.define(version: 2018_08_15_143517) do
     t.string "role"
     t.boolean "key_contact", default: false, null: false
     t.string "phone"
+    t.integer "site_id"
     t.index ["admin"], name: "index_users_on_admin"
     t.index ["approved"], name: "index_users_on_approved"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
@@ -115,6 +132,7 @@ ActiveRecord::Schema.define(version: 2018_08_15_143517) do
     t.index ["editor"], name: "index_users_on_editor"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["site_id"], name: "index_users_on_site_id"
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
     t.index ["username"], name: "index_users_on_username", unique: true
   end

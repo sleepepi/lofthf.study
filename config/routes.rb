@@ -33,6 +33,12 @@ Rails.application.routes.draw do
     get :search
   end
 
+  resources :sites
+
+  get :coordinating_centers, to: "sites#coordinating_centers", path: "coordinating-centers"
+  get :recruiting_centers, to: "sites#recruiting_centers", path: "recruiting-centers"
+
+
   devise_for :users,
              controllers: {
                confirmations: "confirmations",

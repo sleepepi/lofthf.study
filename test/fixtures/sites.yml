@@ -1,0 +1,9 @@
+one:
+  name: DCC
+  slug: dcc
+  center_type: coordinating
+
+two:
+  name: Hospital
+  slug: hospital
+  center_type: recruiting

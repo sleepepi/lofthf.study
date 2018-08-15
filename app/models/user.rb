@@ -50,6 +50,9 @@ class User < ApplicationRecord
                        allow_blank: true,
                        uniqueness: { case_sensitive: false }
 
+  # Relationships
+  belongs_to :site, optional: true
+
   # Methods
 
   def email=(email)

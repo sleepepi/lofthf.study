@@ -19,6 +19,7 @@
   = render "forms/horizontal/show/text", object: @user, key: :phone
   = render "forms/horizontal/show/text", object: @user, key: :role
   = render "forms/horizontal/show/check_box", object: @user, key: :key_contact
+  = render "forms/horizontal/show/generic", title: "Site", content: render("admin/users/site", user: @user)
   = render "forms/horizontal/show/generic", title: "Joined", content: @user.created_at&.strftime("%a, %B %-d, %Y at %-l:%M:%S %p")
   = render "forms/horizontal/show/generic", title: "Confirmation sent", content: @user.confirmation_sent_at&.strftime("%a, %B %-d, %Y at %-l:%M:%S %p")
   = render "forms/horizontal/show/generic", title: "Email confirmed", content: @user.confirmed_at&.strftime("%a, %B %-d, %Y at %-l:%M:%S %p")

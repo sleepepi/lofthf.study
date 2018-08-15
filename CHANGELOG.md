@@ -12,6 +12,7 @@
   - Add data health page
   - Add report card page
   - Add search page
+  - Add coordinating centers and recruiting centers pages
 - **Admin Changes**
   - Add admin dashboard
   - Add user role management
@@ -19,6 +20,7 @@
 - **Editor Changes**
   - Editors can create folders and assign them to a category
   - Editors can upload files to folders
+  - Editors can create sites and assign users as members
 - **Registration Changes**
   - Welcome emails are sent to new user registrations
   - Users need to confirm their email
