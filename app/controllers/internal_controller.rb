@@ -12,7 +12,7 @@ class InternalController < ApplicationController
 
   # GET /directory
   def directory
-    @users = User.current.order(id: :desc).limit(5)
+    @users = User.current.where(approved: true).order(id: :desc).limit(5)
     @key_contacts = User.current.where(key_contact: true)
   end
 
