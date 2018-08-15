@@ -22,7 +22,7 @@ class User < ApplicationRecord
   # Concerns
   include Deletable
   include Squishable
-  squish :full_name
+  squish :full_name, :keywords, :phone, :role
 
   include Strippable
   strip :username
@@ -33,7 +33,7 @@ class User < ApplicationRecord
   end
 
   include PgSearch
-  multisearchable against: [:full_name, :email, :username, :keywords, :role, :phone]
+  multisearchable against: [:full_name, :email, :username, :keywords, :phone, :role]
 
   # Scopes
   scope :editors, -> { where(editor: true).or(where(admin: true)) }
