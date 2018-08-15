@@ -25,8 +25,8 @@
           %th.d-none.d-sm-table-cell
           %th Name
           %th.d-none.d-lg-table-cell Folder
-          %th.d-none.d-md-table-cell Size
-          %th.d-none.d-sm-table-cell Uploaded
+          %th.d-none.d-md-table-cell.text-center Size
+          %th.d-none.d-sm-table-cell.text-center Uploaded
       - @blobs.each do |blob|
         - attachment = ActiveStorage::Attachment.find_by(blob: blob)
         - folder = attachment.record
