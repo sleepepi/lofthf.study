@@ -50,9 +50,16 @@
     }
 
     .link-no-underline {
+      $theme_link_color: map-get($theme, primary);
+      @if map-get($theme, link-color) {
+        $theme_link_color: map-get($theme, link-color);
+      }
+
+      color: $theme_link_color;
       text-decoration: none;
 
       &:hover {
+        color: darken($theme_link_color, 5%);
         text-decoration: none;
       }
     }
