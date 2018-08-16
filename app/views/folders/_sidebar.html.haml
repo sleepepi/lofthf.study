@@ -1,5 +1,4 @@
-- @categories = Category.all
-
+- categories = Category.sidebar
 .col-12.col-md-3.col-xl-2.sidebar-wrapper
   .sidebar
     #sidebar-nav-wrapper.sidebar-nav-wrapper.collapse.pt-3.py-md-3
@@ -7,11 +6,10 @@
         %ul.sidebar-menu.sidebar-menu-shadow
           %li.sidebar-menu-header= render "sidebar/toggle", title: "Docs"
           %li= link_to "Overview", folders_path, class: current_page?(folders_path) ? "active" : nil
-          - if @categories.present?
-            - @categories.includes(:folders).each do |category|
-              %li.sidebar-menu-header= category.name
-              - category.folders.each do |folder|
-                %li= link_to folder.name, category_folder_path(category, folder), class: @folder&.id == folder.id ? "active" : nil
+          - categories.includes(:folders).each do |category|
+            %li.sidebar-menu-header= category.name
+            - category.folders.each do |folder|
+              %li= link_to folder.name, category_folder_path(category, folder), class: @folder&.id == folder.id ? "active" : nil
 
       - if current_user.editor?
         .mx-3.my-0.ml-md-3.mb-md-3.mr-md-0
@@ -21,3 +19,7 @@
               = link_to new_folder_path, class: @folder&.new_record? ? "active" : nil do
                 = icon("fas", "folder-open")
                 Add folder
+            %li
+              = link_to reorder_categories_path, class: current_page?(reorder_categories_path) ? "active" : nil do
+                = icon("fas", "sort")
+                Edit categories

@@ -22,7 +22,7 @@
           %td.d-none.d-sm-table-cell
             = render "files/icon", file: blob
           %td
-            = link_to blob.filename, blob
+            = link_to blob.filename, rails_blob_path(blob)
             .d-block.d-lg-none.small
               = folder.category.name
               = icon("fas", "caret-right")

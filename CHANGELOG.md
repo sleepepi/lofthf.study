@@ -21,6 +21,7 @@
   - Editors can create folders and assign them to a category
   - Editors can upload files to folders
   - Editors can create sites and assign users as members
+  - Editors can edit and reorder categories
 - **Registration Changes**
   - Welcome emails are sent to new user registrations
   - Users need to confirm their email

@@ -22,4 +22,7 @@
 #= require popper
 #= require bootstrap
 #
+# For Sortable
+#= require jquery-ui/widgets/sortable
+#
 #= require_tree .

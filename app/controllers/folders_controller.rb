@@ -19,9 +19,7 @@ class FoldersController < ApplicationController
 
   # GET /docs
   def index
-    @blobs = ActiveStorage::Blob.joins(:attachments).merge(
-      ActiveStorage::Attachment.where(record_type: "Folder")
-    ).order(created_at: :desc).limit(10)
+    @blobs = ActiveStorageBlob.latest_files
   end
 
   # # GET /docs/:category/:folder
@@ -88,9 +86,8 @@ class FoldersController < ApplicationController
 
   def find_category_and_folder_or_redirect
     @category = Category.find_by_param(params[:category])
-    empty_response_or_root_path(folders_path) unless @category
-    @folder = @category.folders.with_attached_files.find_by_param(params[:folder])
-    empty_response_or_root_path(folders_path) unless @folder
+    @folder = @category.folders.with_attached_files.find_by_param(params[:folder]) if @category
+    empty_response_or_root_path(folders_path) unless @category && @folder
   end
 
   def find_folder_or_redirect

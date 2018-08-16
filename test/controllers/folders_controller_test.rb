@@ -90,7 +90,7 @@ class FoldersControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should get edit as viewer" do
+  test "should not get edit as viewer" do
     login(@viewer)
     get edit_category_folder_url(@category, @folder)
     assert_redirected_to dashboard_url

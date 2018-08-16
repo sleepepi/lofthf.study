@@ -50,7 +50,6 @@ $(document)
     $.ajax(
       url: $this.data("upload-url")
       type: "POST"
-      beforeSend: (request) -> request.setRequestHeader("X-CSRF-Token", csrfToken())
       data: data         # The form with the file inputs.
       processData: false # Using FormData, no need to process data.
       contentType: false

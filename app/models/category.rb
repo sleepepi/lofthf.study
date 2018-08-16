@@ -8,7 +8,9 @@ class Category < ApplicationRecord
   squish :name
 
   # Scopes
-  scope :unarchived, -> { where(archived: false).order(Arel.sql("position nulls last")) }
+  scope :unarchived, -> { where(archived: false) }
+  scope :order_by_position, -> { order(Arel.sql("categories.position nulls last")) }
+  scope :sidebar, -> { where.not(folders_count: 0).unarchived.order_by_position }
 
   # Validations
   validates :name, presence: true,
@@ -19,5 +21,5 @@ class Category < ApplicationRecord
                    allow_nil: true
 
   # Relationships
-  has_many :folders, -> { order(Arel.sql("position nulls last")) }
+  has_many :folders, -> { order(Arel.sql("folders.position nulls last")) }, dependent: :destroy
 end

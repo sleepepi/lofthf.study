@@ -1,11 +1,11 @@
+@componentsReady = ->
+  csrfSetup()
+
 @extensionsReady = ->
   tooltipsReady()
 
-@componentsReady = ->
-  true
-
 @objectsReady = ->
-  true
+  categoriesSort()
 
 # These functions get called on initial page visit and on turbolink page changes
 @turbolinksReady = ->

@@ -9,6 +9,13 @@ Rails.application.routes.draw do
     resources :users
   end
 
+  resources :categories, only: [:edit, :update, :destroy] do
+    collection do
+      get :reorder
+      post :reorder, action: "update_order"
+    end
+  end
+
   scope module: :external do
     get :contact
     get :version
