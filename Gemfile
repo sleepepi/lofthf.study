@@ -12,7 +12,7 @@ gem "pg",                      ">= 0.18", "< 2.0"
 gem "autoprefixer-rails",      "9.1.0"
 gem "aws-sdk-s3",                          require: false
 gem "bootstrap",               "~> 4.1.3"
-gem "devise",                  "~> 4.4.3"
+gem "devise",                  "~> 4.5.0"
 gem "font-awesome-sass",       "~> 5.2.0"
 gem "haml",                    "~> 5.0.4"
 gem "jquery-rails",            "~> 4.3.3"
