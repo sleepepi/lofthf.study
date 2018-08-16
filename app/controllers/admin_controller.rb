@@ -11,9 +11,7 @@ class AdminController < ApplicationController
   # def dashboard
   # end
 
-  # GET /admin/debug
-  def debug
-    AdminJob.perform_later
-    ActionCable.server.broadcast("files_channel", files_count: ActiveStorage::Blob.count)
-  end
+  # # GET /admin/debug
+  # def debug
+  # end
 end

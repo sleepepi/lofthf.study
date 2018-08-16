@@ -6,8 +6,4 @@ class FilesChannel < ApplicationCable::Channel
   def unsubscribed
     # Any cleanup needed when channel is unsubscribed
   end
-
-  def receive(data)
-    ActionCable.server.broadcast("files_channel", data)
-  end
 end

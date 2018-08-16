@@ -19,7 +19,9 @@ class FoldersController < ApplicationController
 
   # GET /docs
   def index
-    # @folders = Folder.all
+    @blobs = ActiveStorage::Blob.joins(:attachments).merge(
+      ActiveStorage::Attachment.where(record_type: "Folder")
+    ).order(created_at: :desc).limit(10)
   end
 
   # # GET /docs/:category/:folder
@@ -62,6 +64,7 @@ class FoldersController < ApplicationController
   def attach_file
     if params[:file].present?
       @folder.files.attach(params[:file])
+      FilesJob.perform_later
       redirect_to category_folder_path(@folder.category, @folder)
     else
       redirect_to upload_category_folder_path(@folder.category, @folder), notice: "Choose a file to upload."
@@ -71,6 +74,7 @@ class FoldersController < ApplicationController
   # POST /folders/1/attach-files
   def attach_files
     @folder.files.attach(params[:files])
+    FilesJob.perform_later
     render :show
   end
 
