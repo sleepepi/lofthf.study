@@ -22,11 +22,11 @@ class InternalTest < ApplicationSystemTestCase
     assert_selector "h1", text: "Directory"
   end
 
-  test "visit reports" do
+  test "visit randomizations" do
     visit_login(@viewer)
-    visit reports_url
-    screenshot("visit-reports")
-    assert_selector "h1", text: "Reports"
+    visit randomizations_url
+    screenshot("visit-randomizations")
+    assert_selector "h1", text: "Randomizations"
   end
 
   test "visit data health" do

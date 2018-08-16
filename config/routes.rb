@@ -27,7 +27,7 @@ Rails.application.routes.draw do
   scope module: :internal do
     get :dashboard
     get :directory
-    get :reports
+    get :randomizations
     get :data_health, path: "data-health"
     get :report_card, path: "report-card"
     get :search
