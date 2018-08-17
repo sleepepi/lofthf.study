@@ -10,18 +10,23 @@
     %li= link_to "docs", folders_path
     %li.breadcrumb-muted reorder categories
 
-%div{ data: { object: "categories-sortable", path: reorder_categories_path(format: "js") } }
-  - @categories.each do |category|
-    .category-box{ data: { category_id: category.id } }
-      .float-right
-        - if category.folders_count.zero?
-          %span.badge.badge-light 0 folders
-        - elsif category.archived?
-          %span.badge.badge-light archived
-        = link_to icon("fas", "pencil-alt"), edit_category_path(category)
-        = link_to icon("fas", "trash"), category, method: :delete, data: { confirm: "Delete #{category.name} and ALL folders and files?" }
-      - if category.folders_count.zero? || category.archived?
-        = icon("far", "folder", class: "text-muted")
-      - else
-        = icon("fas", "folder-open", class: "text-primary-muted")
-      %span{ style: "font-variant: small-caps;" }= category.name
+- if @categories.present?
+  %div{ data: { object: "categories-sortable", path: reorder_categories_path(format: "js") } }
+    - @categories.each do |category|
+      .category-box{ data: { category_id: category.id } }
+        .float-right
+          - if category.folders_count.zero?
+            %span.badge.badge-light 0 folders
+          - elsif category.archived?
+            %span.badge.badge-light archived
+          = link_to icon("fas", "pencil-alt"), edit_category_path(category)
+          = link_to icon("fas", "trash"), category, method: :delete, data: { confirm: "Delete #{category.name} and ALL folders and files?" }
+        - if category.folders_count.zero? || category.archived?
+          = icon("far", "folder", class: "text-muted")
+        - else
+          = icon("fas", "folder-open", class: "text-primary-muted")
+        %span{ style: "font-variant: small-caps;" }= category.name
+- else
+  .jumbotron.jumbotron-custom-text
+    = icon("fas", "clone", class: "mr-1")
+    No categories found.
