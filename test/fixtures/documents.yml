@@ -1,0 +1,15 @@
+one:
+  folder: mops
+  file: blank.doc
+  filename: blank.doc
+  # byte_size: 0
+  # download_count: 0
+  featured: false
+
+two:
+  folder: mops
+  file: blank.txt
+  filename: blank.txt
+  # byte_size: 0
+  # download_count: 0
+  featured: false

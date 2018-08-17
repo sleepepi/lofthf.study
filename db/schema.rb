@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_15_182521) do
+ActiveRecord::Schema.define(version: 2018_08_17_182235) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,6 +51,23 @@ ActiveRecord::Schema.define(version: 2018_08_15_182521) do
     t.index ["slug"], name: "index_categories_on_slug", unique: true
   end
 
+  create_table "documents", force: :cascade do |t|
+    t.integer "folder_id"
+    t.string "file"
+    t.string "filename"
+    t.string "content_type"
+    t.bigint "byte_size", default: 0, null: false
+    t.integer "download_count", default: 0, null: false
+    t.boolean "featured", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["byte_size"], name: "index_documents_on_byte_size"
+    t.index ["content_type"], name: "index_documents_on_content_type"
+    t.index ["download_count"], name: "index_documents_on_download_count"
+    t.index ["featured"], name: "index_documents_on_featured"
+    t.index ["folder_id", "filename"], name: "index_documents_on_folder_id_and_filename", unique: true
+  end
+
   create_table "folders", force: :cascade do |t|
     t.integer "category_id"
     t.string "name"
@@ -60,6 +77,7 @@ ActiveRecord::Schema.define(version: 2018_08_15_182521) do
     t.boolean "archived", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "documents_count", default: 0, null: false
     t.index ["archived"], name: "index_folders_on_archived"
     t.index ["category_id", "name"], name: "index_folders_on_category_id_and_name", unique: true
     t.index ["category_id", "slug"], name: "index_folders_on_category_id_and_slug", unique: true

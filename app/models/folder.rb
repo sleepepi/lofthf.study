@@ -9,13 +9,24 @@ class Folder < ApplicationRecord
 
   # Validations
   validates :name, presence: true,
-                   uniqueness: { case_sensitive: false }
+                   uniqueness: { case_sensitive: false, scope: [:category_id] }
   validates :slug, format: { with: /\A[a-z][a-z0-9\-]*\Z/ },
                    exclusion: { in: %w(new edit create update destroy) },
-                   uniqueness: true,
+                   uniqueness: { case_sensitive: false, scope: [:category_id] },
                    allow_nil: true
 
   # Relationships
   belongs_to :category, counter_cache: true
-  has_many_attached :files
+  has_many :documents, dependent: :destroy
+
+  # Methods
+
+  def attach_file!(file)
+    documents.create(
+      file: file,
+      byte_size: file.size,
+      filename: file.original_filename,
+      content_type: Document.content_type(file.original_filename)
+    )
+  end
 end

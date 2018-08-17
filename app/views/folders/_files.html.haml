@@ -1,43 +1,30 @@
-- files = @folder.files
-- case params[:order]
-- when "size"
-  - files = files.sort_by(&:byte_size)
-- when "size desc"
-  - files = files.sort_by(&:byte_size).reverse
-- when "size"
-  - files = files.sort_by(&:byte_size)
-- when "size desc"
-  - files = files.sort_by(&:byte_size).reverse
-- when "oldest"
-  - files = files.sort_by(&:created_at)
-- when "latest"
-  - files = files.sort_by(&:created_at).reverse
-- when "name desc"
-  - files = files.sort_by(&:filename).reverse
-- else
-  - files = files.sort_by(&:filename)
-
-- if files.present?
+- if documents.present?
   .dashboard-container.dashboard-table{ class: current_user.editor? ? "mb-0" : nil }
     %table.table.table-striped.table-borderless.table-hover.table-sticky
       %col.d-none.d-sm-table-column{ width: "1px" }
+      %col
       %col.d-none.d-md-table-column
       %col.d-none.d-sm-table-column
-      %col{ width: "1px" }
+      - if current_user.editor?
+        %col{ width: "1px" }
       %thead
         %tr
           %th.d-none.d-sm-table-cell
           %th= order_to "Name", primary: "name desc", secondary: "name"
           %th.d-none.d-md-table-cell.text-center= order_to "Size", primary: "size desc", secondary: "size"
           %th.d-none.d-sm-table-cell.text-center= order_to "Uploaded", primary: "latest", secondary: "oldest"
-      - files.each do |file|
-        %tr{ class: file.filename == params[:filename] ? "table-warning" : nil }
+          - if current_user.editor?
+            %th.text-center Actions
+      - documents.includes(folder: :category).each do |document|
+        %tr{ class: document.filename == params[:filename] ? "table-warning" : nil }
           %td.d-none.d-sm-table-cell
-            = render "files/icon", file: file
+            = render "files/icon", document: document
           %td
-            = link_to file.filename, file
-          %td.d-none.d-md-table-cell.text-center.nowrap.small= number_to_human_size file.blob.byte_size
-          %td.d-none.d-sm-table-cell.text-center.nowrap.small= file.created_at.strftime("%Y-%^b-%d")
+            = link_to document.filename, document_download_link(document)
+          %td.d-none.d-md-table-cell.text-center.nowrap.small= number_to_human_size document.byte_size
+          %td.d-none.d-sm-table-cell.text-center.nowrap.small= document.created_at.strftime("%Y-%^b-%d")
+          - if current_user.editor?
+            %td.text-center= render "layouts/edit_delete_dropdown", edit_url: edit_document_path(document), delete_url: document, delete_confirmation: "Delete #{document.filename}?"
 - else
   .jumbotron.jumbotron-custom-text{ class: current_user.editor? ? "mb-0" : nil }
     = icon("fas", "clone", class: "mr-1")

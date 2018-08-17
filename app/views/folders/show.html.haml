@@ -10,7 +10,7 @@
   = @menu_title
 = render "internal/tabs"
 - content_for :breadcrumbs do
-  = render "layouts/per_page_breadcrumbs", per_page: @folder.files.count, object_count: @folder.files.count
+  = render "layouts/per_page_breadcrumbs", per_page: 20, object_count: @documents.total_count
   %ol
     %li= link_to "docs", folders_path
     %li.breadcrumb-muted= @category.slug
@@ -29,7 +29,7 @@
   #folder-upload.folder-upload{ data: { object: "folder-dropfile", upload_url: attach_files_folder_url(@folder, format: "js", authenticity_token: true), fallback_url: upload_category_folder_path(@category, @folder) } }
     #folder-upload-bar.folder-upload-bar
 
-    #folder-files= render "folders/files", folder: @folder
+    #folder-files= render "folders/files", folder: @folder, documents: @documents
 
     .drag-files-messages.bg-primary.text-white.text-center.p-3
       Drag files here to upload or
@@ -37,4 +37,4 @@
       to upload documents.
 
 - else
-  = render "folders/files", folder: @folder
+  = render "folders/files", folder: @folder, documents: @documents

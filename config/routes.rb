@@ -16,6 +16,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :documents, except: [:index, :show, :new, :create]
+
   scope module: :external do
     get :contact
     get :version
@@ -30,6 +32,7 @@ Rails.application.routes.draw do
   get "docs/:category/:folder", to: "folders#show", as: :category_folder
   get "docs/:category/:folder/edit", to: "folders#edit", as: :edit_category_folder
   get "docs/:category/:folder/upload", to: "folders#upload", as: :upload_category_folder
+  get "docs/:category/:folder/*filename", to: "documents#download", as: :download_document, format: false
 
   scope module: :internal do
     get :dashboard

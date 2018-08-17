@@ -19,12 +19,13 @@ class FoldersController < ApplicationController
 
   # GET /docs
   def index
-    @blobs = ActiveStorageBlob.latest_files
+    @documents = Document.latest_files
   end
 
-  # # GET /docs/:category/:folder
-  # def show
-  # end
+  # GET /docs/:category/:folder
+  def show
+    @documents = docs_scope_order(@folder.documents).page(params[:page]).per(20)
+  end
 
   # GET /docs/new
   def new
@@ -61,9 +62,9 @@ class FoldersController < ApplicationController
   # POST /folders/1/attach-file
   def attach_file
     if params[:file].present?
-      @folder.files.attach(params[:file])
+      @folder.attach_file!(params[:file])
       FilesJob.perform_later
-      redirect_to category_folder_path(@folder.category, @folder)
+      redirect_to category_folder_path(@folder.category, @folder, order: "latest")
     else
       redirect_to upload_category_folder_path(@folder.category, @folder), notice: "Choose a file to upload."
     end
@@ -71,8 +72,12 @@ class FoldersController < ApplicationController
 
   # POST /folders/1/attach-files
   def attach_files
-    @folder.files.attach(params[:files])
+    params[:files].each do |file|
+      @folder.attach_file!(file)
+    end
     FilesJob.perform_later
+    params[:order] = "latest"
+    @documents = docs_scope_order(@folder.documents).page(params[:page]).per(20)
     render :show
   end
 
@@ -86,12 +91,12 @@ class FoldersController < ApplicationController
 
   def find_category_and_folder_or_redirect
     @category = Category.find_by_param(params[:category])
-    @folder = @category.folders.with_attached_files.find_by_param(params[:folder]) if @category
+    @folder = @category.folders.find_by_param(params[:folder]) if @category
     empty_response_or_root_path(folders_path) unless @category && @folder
   end
 
   def find_folder_or_redirect
-    @folder = Folder.with_attached_files.find_by_param(params[:id])
+    @folder = Folder.find_by_param(params[:id])
     empty_response_or_root_path(folders_path) unless @folder
   end
 
@@ -105,5 +110,10 @@ class FoldersController < ApplicationController
     params.require(:folder).permit(
       :category_id, :name, :slug, :description, :archived
     )
+  end
+
+  def docs_scope_order(scope)
+    @order = params[:order]
+    scope.order(Arel.sql(Document::ORDERS[params[:order]] || Document::DEFAULT_ORDER))
   end
 end

@@ -133,17 +133,17 @@ class FoldersControllerTest < ActionDispatch::IntegrationTest
 
   test "should attach file as editor" do
     login(@editor)
-    assert_difference("Folder.find_by(slug: \"mops\").files.count", 1) do
+    assert_difference("Document.count", 1) do
       post attach_file_folder_url(@folder), params: {
         file: fixture_file_upload(file_fixture("rails.png"))
       }
     end
-    assert_redirected_to category_folder_url(@category, @folder)
+    assert_redirected_to category_folder_url(@category, @folder, order: "latest")
   end
 
   test "should not attach empty file as editor" do
     login(@editor)
-    assert_difference("Folder.find_by(slug: \"mops\").files.count", 0) do
+    assert_difference("Document.count", 0) do
       post attach_file_folder_url(@folder), params: { file: "" }
     end
     assert_redirected_to upload_category_folder_url(@category, @folder)
@@ -151,7 +151,20 @@ class FoldersControllerTest < ActionDispatch::IntegrationTest
 
   test "should attach files as editor" do
     login(@editor)
-    assert_difference("Folder.find_by(slug: \"mops\").files.count", 2) do
+    assert_difference("Document.count", 2) do
+      post attach_files_folder_url(@folder, format: "js"), params: {
+        files: [
+          fixture_file_upload(file_fixture("blank.pdf")),
+          fixture_file_upload(file_fixture("rails.png"))
+        ]
+      }
+    end
+    assert_response :success
+  end
+
+  test "should attach duplicate files only once as editor" do
+    login(@editor)
+    assert_difference("Document.count", 1) do
       post attach_files_folder_url(@folder, format: "js"), params: {
         files: [
           fixture_file_upload(file_fixture("rails.png")),

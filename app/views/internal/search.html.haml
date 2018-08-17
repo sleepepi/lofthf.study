@@ -38,18 +38,21 @@
                       .key-contact-role= user.role
                     .key-contact-email= user.email
                     .key-contact-phone= user.phone
-              - when "ActiveStorage::Blob"
-                - blob = document.searchable
-                - attachment = ActiveStorage::Attachment.find_by(blob: blob)
-                - folder = attachment.record
+              - when "Document"
+                - document = document.searchable
                 .dashboard-container.dashboard-container-border-accent.mb-3
                   .d-flex.align-items-center
                     .d-inline-block.mr-1.text-primary-muted.pr-3= icon("far", "file-alt", class: "fa-3x")
                     .d-inline{ style: "font-weight: 200;" }
                       .text-dark
-                        = link_to blob.filename, category_folder_path(folder.category, folder, filename: blob.filename)
+                        = link_to document.filename, document_download_link(document)
                       .text-muted
-                        = folder.name
+                        = link_to document.folder.category.name, category_folder_path(document.folder.category, document.folder), class: "link-blend-muted"
+                        = icon("fas", "caret-right")
+                        = link_to document.folder.name, category_folder_path(document.folder.category, document.folder), class: "link-blend-muted"
+                    - if document.featured?
+                      .ml-auto.d-none.d-sm-block
+                        .d-inline-block.text-primary-muted= icon("fas", "star", class: "fa-3x", style: "color: #fbc02d;", data: { toggle: "tooltip", title: "Featured", container: "body", placement: "left" })
               - when "Site"
                 - site = document.searchable
                 .dashboard-container.dashboard-container-border-accent.mb-3
@@ -63,9 +66,15 @@
                           = site.center_type_name
                         = pluralize(site.users.count, "member")
               - else
-                .dashboard-container.dashboard-container-border-accent.mb-3
-                  .d-inline-block.mr-1= icon("far", "file-alt")
-                  .d-inline.text-muted{ style: "font-weight: 200;" } File
+                - if Rails.env.development?
+                  .dashboard-container.dashboard-container-border-accent.mb-3
+                    .d-flex.align-items-center
+                      .d-inline-block.mr-1.text-muted.pr-3= icon("far", "question-circle", class: "fa-3x")
+                      .d-inline{ style: "font-weight: 200;" }
+                        .text-dark
+                          = document.searchable.class.to_s
+                        .text-muted
+                          = "id: #{document.id}"
             .center-horizontally= paginate @search_documents, theme: "bootstrap"
           - elsif params[:search].present?
             .mt-5.mb-4.text-center{ style: "font-weight: 300;font-size: 1.25rem;" }

@@ -1,4 +1,4 @@
-- if blobs.present?
+- if documents.present?
   .subheading Latest Uploads
 
   .dashboard-container.dashboard-table
@@ -15,24 +15,24 @@
           %th.d-none.d-lg-table-cell Folder
           %th.d-none.d-md-table-cell.text-center Size
           %th.d-none.d-sm-table-cell.text-center Uploaded
-      - blobs.each do |blob|
-        - attachment = ActiveStorage::Attachment.find_by(blob: blob)
-        - folder = attachment.record
+      - documents.includes(folder: :category).each do |document|
+        - folder = document.folder
+        - category = folder.category
         %tr
           %td.d-none.d-sm-table-cell
-            = render "files/icon", file: blob
+            = render "files/icon", document: document
           %td
-            = link_to blob.filename, rails_blob_path(blob)
+            = link_to document.filename, document_download_link(document)
             .d-block.d-lg-none.small
-              = folder.category.name
+              = category.name
               = icon("fas", "caret-right")
-              = link_to folder.name, category_folder_path(folder.category, folder)
+              = link_to folder.name, category_folder_path(category, folder)
           %td.d-none.d-lg-table-cell.small
-            = folder.category.name
+            = category.name
             = icon("fas", "caret-right")
-            = link_to folder.name, category_folder_path(folder.category, folder)
-          %td.d-none.d-md-table-cell.text-center.nowrap.small= number_to_human_size blob.byte_size
-          %td.d-none.d-sm-table-cell.text-center.nowrap.small= blob.created_at.strftime("%Y-%^b-%d")
+            = link_to folder.name, category_folder_path(category, folder)
+          %td.d-none.d-md-table-cell.text-center.nowrap.small= number_to_human_size document.byte_size
+          %td.d-none.d-sm-table-cell.text-center.nowrap.small= document.created_at.strftime("%Y-%^b-%d")
 
   .jumbotron.jumbotron-custom-text.jumbotron-shadow
     = icon("fas", "search")
