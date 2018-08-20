@@ -14,18 +14,19 @@
     = link_to "confirm your account", "#{ENV["website_url"]}/confirmation?confirmation_token=#{@user.confirmation_token}", style: link_style
     to get started.
 
-%ul{ style: p_style }
-  %li
-    %span{ style: emphasis_style } Read
-    current study documents and updated protocols.
-  %li
-    %span{ style: emphasis_style } Find
-    contact information for all staff members.
-  %li
-    %span{ style: emphasis_style } Explore
-    reports showing the overall progress of
-    = succeed "." do
-      = ENV["website_name"]
+%div{ style: p_style }
+  %ul
+    %li
+      %span{ style: emphasis_style } Read
+      current study documents and updated protocols.
+    %li
+      %span{ style: emphasis_style } Find
+      contact information for all staff members.
+    %li
+      %span{ style: emphasis_style } Explore
+      reports showing the overall progress of
+      = succeed "." do
+        = ENV["website_name"]
 
 %p{ style: p_style }
   Email us at
