@@ -1,4 +1,4 @@
-## 1.0.0
+## 1.0.0 (August 21, 2018)
 
 ### Enhancements
 - **General Changes**
