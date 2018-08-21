@@ -5,24 +5,90 @@
 = render "internal/tabs"
 - content_for :sidebar, render("internal/sidebar")
 
-.dashboard-container.text-center
-  %h2.mb-5
-    Welcome to the
-    = ENV["website_name"]
-    website!
-
-  .jumbotron-custom-text
+.d-flex.flex-column.flex-sm-row.justify-content-between
+  .dashboard-container.flex-fill
     .mb-3
-      = icon("fas", "chart-area", class: "text-primary")
-      Detailed reports
-
-    .mb-3
+      %strong
+        Welcome to the
+        = ENV["website_name"]
+        website!
+    %p
+      Quickly find
       = icon("fas", "file-alt", class: "text-primary")
-      Study documents
+      = link_to "documents", folders_path
+      and
+      = succeed "." do
+        = icon("fas", "user-circle", class: "text-primary")
+        = link_to "contact info", directory_path
 
-    .mb-3
-      = icon("fas", "heartbeat", class: "text-primary")
-      And more!
+    - if false
+      .mt-4.text-center= image_tag "logos/loft-logo-v1-no-background.png", style: "width: auto;max-height: 140px;", class: "bg-primary p-3 img-ignore-selection rounded"
+
+  - if @featured_documents.present? || @top_documents.present?
+    .dashboard-container.ml-0.ml-sm-3.flex-fill
+      - if @featured_documents.present?
+        %div.mb-3
+          %strong Featured docs
+        %div.ml-3.mb-4
+          - @featured_documents.each do |document|
+            .small.mb-1
+              .float-right.pl-2
+                = icon("far", "folder-open")
+                = link_to document.folder.name, category_folder_path(document.folder.category, document.folder), class: "link-blend"
+
+              .nowrap.overflow-hidden
+                = render "files/icon", document: document
+                =# icon("far", "star", style: "color: #fbc02d;") if document.featured?
+                = link_to document.filename, document_download_link(document)
+
+      - if @top_documents.present?
+        %div.mb-3
+          %strong Top downloads
+        %div.ml-3
+          - @top_documents.each do |document|
+            .small.mb-1
+              .float-right.pl-2
+                = icon("far", "folder-open")
+                = link_to document.folder.name, category_folder_path(document.folder.category, document.folder), class: "link-blend"
+
+              .nowrap.overflow-hidden
+                = render "files/icon", document: document
+                =# icon("far", "star", style: "color: #fbc02d;") if document.featured?
+                = link_to document.filename, document_download_link(document)
+
+- if false
+  .jumbotron.jumbotron-custom-text.jumbotron-shadow-inset{ style: "position: relative;" }
+    %div.text-shadow{ style: "color: #c07277;position: absolute;left: 3rem;top: calc(50% - 1.5rem);" }= icon("fas", "dna", class: "fa-2x")
+    %div{ style: "position: relative;" }
+      Part of the
+      %strong= link_to "Slice", "https://tryslice.io"
+      data network.
+
+  .dashboard-container.text-center
+    %h2.mb-5
+      Welcome to the
+      = ENV["website_name"]
+      website!
+
+    .jumbotron-custom-text
+      .mb-3
+        = icon("fas", "chart-area", class: "text-primary")
+        Detailed reports
+
+      .mb-3
+        = icon("fas", "file-alt", class: "text-primary")
+        Study documents
+
+      .mb-3
+        = icon("fas", "heartbeat", class: "text-primary")
+        And more!
+
+  .jumbotron.jumbotron-white.jumbotron-custom-text.jumbotron-shadow
+    .display-3.d-flex.align-items-center.justify-content-center
+      .d-block{ style: "font-size: 1.5rem;" }= Time.zone.now.strftime("%a")
+      .d-block.mx-3= Time.zone.now.strftime("%-d")
+      .d-block{ style: "font-size: 1.5rem;" }= Time.zone.now.strftime("%-b")
+    = icon("far", "calendar-alt")
 
 .jumbotron.jumbotron-custom-text.jumbotron-shadow
   = icon("far", "comments")

@@ -6,9 +6,11 @@ class InternalController < ApplicationController
 
   layout "layouts/full_page_sidebar"
 
-  # # GET /dashboard
-  # def dashboard
-  # end
+  # GET /dashboard
+  def dashboard
+    @featured_documents = Document.featured_files.limit(10)
+    @top_documents = Document.top_files.limit(5)
+  end
 
   # GET /directory
   def directory
