@@ -10,19 +10,19 @@ class SitesController < ApplicationController
 
   # GET /sites
   def index
-    scope = Site.current.search(params[:search], match_start: false)
+    scope = Site.current.search_any_order(params[:search])
     @sites = scope_order(scope).page(params[:page]).per(20)
   end
 
   # GET /recruiting-centers
   def recruiting_centers
-    scope = Site.current.where(center_type: "recruiting").search(params[:search], match_start: false)
+    scope = Site.current.where(center_type: "recruiting").search_any_order(params[:search])
     @sites = scope_order(scope).page(params[:page]).per(20)
   end
 
   # GET /coordinating-centers
   def coordinating_centers
-    scope = Site.current.where(center_type: "coordinating").search(params[:search], match_start: false)
+    scope = Site.current.where(center_type: "coordinating").search_any_order(params[:search])
     @sites = scope_order(scope).page(params[:page]).per(20)
   end
 

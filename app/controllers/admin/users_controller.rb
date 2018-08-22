@@ -10,7 +10,7 @@ class Admin::UsersController < ApplicationController
 
   # GET /admin/users
   def index
-    scope = User.current.search(params[:search], match_start: false)
+    scope = User.current.search_any_order(params[:search])
     @users = scope_order(scope).page(params[:page]).per(40)
   end
 

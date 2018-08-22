@@ -1,5 +1,9 @@
 ## 2.0.0
 
+### Enhancements
+- **Search Changes**
+  - Search now returns more specific results as more search terms are added
+
 ## 1.0.0 (August 21, 2018)
 
 ### Enhancements
