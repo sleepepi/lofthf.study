@@ -23,7 +23,7 @@
               = form.text_field :search, value: params[:search], class: "form-control form-control-lg", placeholder: "Start your search...", autocomplete: "off", autofocus: params[:search].blank?
               .input-group-append
                 = link_to "#", class: "btn btn-lg btn-primary", data: { object: "submit-and-disable", target: "#search-form" } do
-                  %i.fa.fa-search
+                  = icon("fas", "search")
 
           - if @search_documents.present?
             - @search_documents.each do |document|
@@ -91,14 +91,6 @@
 
         = mail_to ActionMailer::Base.smtp_settings[:email], "Contact us"
         with any questions.
-
-        - if false
-          Have another question?
-
-          = link_to contact_path do
-            %span.nowrap
-              Contact us
-              %i.fa.fa-caret-right
 
         .text-center
           .text-center.pt-5= image_tag "logos/loft-logo-v1.png", style: "max-width: 400px;width: 100%;height: auto;", class: "img-ignore-selection rounded"
