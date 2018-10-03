@@ -9,7 +9,7 @@ class ApplicationMailer < ActionMailer::Base
   protected
 
   def setup_email
-    location = "app/assets/images/logos/loft-logo-v1-no-background.png"
+    location = "app/assets/images/logos/loft-v2-logo-no-background.png"
     attachments.inline["loft-hf-logo.png"] = File.read(location)
   rescue
     nil

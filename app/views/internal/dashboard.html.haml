@@ -21,9 +21,6 @@
         = icon("fas", "user-circle", class: "text-primary")
         = link_to "contact info", directory_path
 
-    - if false
-      .mt-4.text-center= image_tag "logos/loft-logo-v1-no-background.png", style: "width: auto;max-height: 140px;", class: "bg-primary p-3 img-ignore-selection rounded"
-
   - if @featured_documents.present? || @top_documents.present?
     .dashboard-container.ml-0.ml-sm-3.flex-fill
       - if @featured_documents.present?
@@ -98,4 +95,4 @@
 
 - if false
   - content_for :footer do
-    .theme-deep-red-bg.text-center.p-5= image_tag "logos/loft-logo-v1-no-background.png", style: "max-width: 400px;width: 100%;height: auto;", class: "img-ignore-selection rounded"
+    .theme-deep-red-bg.text-center.p-5= image_tag "logos/loft-v2-logo-no-background.png", style: "max-width: 400px;width: 100%;height: auto;", class: "img-ignore-selection rounded"

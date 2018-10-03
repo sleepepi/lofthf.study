@@ -1,6 +1,8 @@
 ## 2.0.0
 
 ### Enhancements
+- **General Changes**
+  - Update LOFT-HF logo
 - **Search Changes**
   - Search now returns more specific results as more search terms are added
 
