@@ -6,6 +6,8 @@
   - Internal pages and file links now friendly forward after sign in
 - **Admin Changes**
   - Simplify folder archiving and management for admins
+- **Profile Changes**
+  - Users can now edit their profile and account settings
 - **Search Changes**
   - Search now returns more specific results as more search terms are added
 

@@ -10,6 +10,9 @@ class User < ApplicationRecord
   # Callbacks
   after_commit :new_registration!, on: :create
 
+  # Uploaders
+  mount_uploader :profile_picture, ResizableImageUploader
+
   # Constants
   ORDERS = {
     "activity desc" => "(CASE WHEN (users.current_sign_in_at IS NULL) THEN users.created_at ELSE users.current_sign_in_at END) desc",
@@ -54,6 +57,9 @@ class User < ApplicationRecord
   belongs_to :site, optional: true
 
   # Methods
+  def incomplete_profile?
+    role.blank? || phone.blank? || self[:profile_picture].blank?
+  end
 
   def email=(email)
     super(email.try(:downcase))

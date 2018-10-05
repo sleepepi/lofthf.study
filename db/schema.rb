@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_17_182235) do
+ActiveRecord::Schema.define(version: 2018_10_05_190050) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -143,6 +143,7 @@ ActiveRecord::Schema.define(version: 2018_08_17_182235) do
     t.boolean "key_contact", default: false, null: false
     t.string "phone"
     t.integer "site_id"
+    t.string "profile_picture"
     t.index ["admin"], name: "index_users_on_admin"
     t.index ["approved"], name: "index_users_on_approved"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true

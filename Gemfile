@@ -20,6 +20,7 @@ gem "haml",                    "~> 5.0.4"
 gem "jquery-rails",            "~> 4.3.3"
 gem "jquery-ui-rails",         "~> 6.0.1"
 gem "kaminari",                "~> 1.1.1"
+gem "mini_magick",             "~> 4.8.0"
 gem "pg_search",               "~> 2.1.2"
 
 # Rails defaults

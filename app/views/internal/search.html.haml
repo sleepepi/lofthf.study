@@ -30,14 +30,7 @@
               - case document.searchable.class.to_s
               - when "User"
                 - user = document.searchable
-                .key-contact
-                  .key-contact-icon= icon("far", "user", class: "fa-3x")
-                  .key-contact-info
-                    .key-contact-name
-                      = user.full_name
-                      .key-contact-role= user.role
-                    .key-contact-email= user.email
-                    .key-contact-phone= user.phone
+                = render "directory/contact", user: user
               - when "Document"
                 - document = document.searchable
                 .dashboard-container.dashboard-container-border-accent.mb-3

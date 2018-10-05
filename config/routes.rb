@@ -44,6 +44,31 @@ Rails.application.routes.draw do
     get :search
   end
 
+  resources :profiles, only: [] do
+    member do
+      get :picture
+    end
+  end
+
+
+  get :settings, to: redirect("settings/profile")
+  namespace :settings do
+    get :profile
+    patch :update_profile, path: "profile"
+    patch :complete_profile, path: "complete-profile"
+    get :profile_picture, path: "profile/picture", to: redirect("settings/profile")
+    patch :update_profile_picture, path: "profile/picture"
+
+    get :account
+    patch :update_account, path: "account"
+    get :password, to: redirect("settings/account")
+    patch :update_password, path: "password"
+    delete :destroy, path: "account", as: "delete_account"
+
+    get :email
+    patch :update_email, path: "email"
+  end
+
   resources :sites
 
   get :coordinating_centers, to: "sites#coordinating_centers", path: "coordinating-centers"

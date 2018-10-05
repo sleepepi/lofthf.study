@@ -11,40 +11,21 @@
 
   .key-contacts
     - @key_contacts.each do |user|
-      .key-contact
-        .key-contact-icon= icon("far", "user", class: "fa-3x")
-        .key-contact-info
-          .key-contact-name
-            = user.full_name
-            .key-contact-role= user.role
-          .key-contact-email= user.email
-          .key-contact-phone= user.phone
+      = render "directory/contact", user: user
 
 - if @users.present?
   .subheading
     Joined Recently
 
-  .dashboard-container.dashboard-table
-    %table.table.table-striped.table-borderless.table-hover.table-sticky
-      %col
-      %col
-      %col.d-none.d-md-table-column
-      %thead
-        %tr
-          %th Name
-          %th Email
-          %th.d-none.d-md-table-cell Role
-
-      - @users.each do |user|
-        %tr
-          %td= user.full_name
-          %td= user.email
-          %td.d-none.d-md-table-cell= user.role
+  .key-contacts
+    - @users.each do |user|
+      = render "directory/contact", user: user
 
   .jumbotron.jumbotron-custom-text.jumbotron-shadow
-    = icon("far", "comments")
-    = mail_to ActionMailer::Base.smtp_settings[:email], "Contact us"
-    if your listed information is incorrect.
+    = icon("fas", "info-circle")
+    Update your profile in
+    = succeed "." do
+      = link_to "settings", settings_path
 
 - elsif false
   .jumbotron.jumbotron-custom-text

@@ -23,6 +23,14 @@
     - else
       .d-none.d-sm-inline Docs
 
+  - current_page = params[:controller].in?(%w(settings))
+  = link_to settings_path, class: "header-tab #{"header-tab-active" if current_page}", data: { object: "#{"suppress-click" if current_page?(settings_path)}" } do
+    = icon("fas", "cog")
+    - if current_page
+      Settings
+    - else
+      .d-none.d-sm-inline Settings
+
   - if false
     - current_page = params[:controller].in?(%w(internal)) && params[:action].in?(%w(reports))
     = link_to reports_path, class: "header-tab #{"header-tab-active" if current_page}", data: { object: "#{"suppress-click" if current_page?(reports_path)}" } do

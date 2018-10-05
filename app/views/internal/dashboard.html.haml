@@ -5,6 +5,13 @@
 = render "internal/tabs"
 - content_for :sidebar, render("internal/sidebar")
 
+.d-flex.flex-column.flex-sm-row.justify-content-around
+  - if current_user.incomplete_profile?
+    .dashboard-container.dashboard-container-border-accent{ style: "border-top: 1px solid #ccc;border-right: 1px solid #ccc;border-bottom: 1px solid #ccc;background-color: #f7eaed;width: 600px;max-width: 100%;" }
+      .mb-3
+        %strong Complete your profile
+      = render "directory/profile_form", user: current_user
+
 .d-flex.flex-column.flex-sm-row.justify-content-between
   .dashboard-container.flex-fill
     .mb-3
