@@ -13,3 +13,11 @@ crfs:
   description: Make sure you use the latest versions!
   position: 1
   archived: false
+
+samples:
+  category: examples
+  name: Sample Files
+  slug: samples
+  description: Empty example files
+  position: 0
+  archived: false

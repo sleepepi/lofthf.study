@@ -2,7 +2,7 @@
 
 # Allows documents to be downloaded.
 class DocumentsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:download]
   before_action :check_editor!, only: [:new, :create, :edit, :update, :destroy]
   before_action :find_category_folder_document_or_redirect, only: [:download]
   before_action :find_document_or_redirect, only: [
@@ -22,12 +22,16 @@ class DocumentsController < ApplicationController
 
   # GET /docs/:category/:folder/:filename
   def download
-    params[:disposition] ||= "attachment" # "inline"
-    @document.increment! :download_count
-    if Rails.env.production?
-      redirect_to @document.file.url(query: { "response-content-disposition" => params[:disposition] })
+    if current_user
+      params[:disposition] ||= "attachment" # "inline"
+      @document.increment! :download_count
+      if Rails.env.production?
+        redirect_to @document.file.url(query: { "response-content-disposition" => params[:disposition] })
+      else
+        send_file_if_present @document.file, disposition: params[:disposition]
+      end
     else
-      send_file_if_present @document.file, disposition: params[:disposition]
+      redirect_to category_folder_path(@document.folder.category, @document.folder, file: @document.filename, page: @document.page)
     end
   end
 
@@ -64,7 +68,7 @@ class DocumentsController < ApplicationController
     @category = @document.folder.category
     @folder = @document.folder
     @document.destroy
-    redirect_to category_folder_path(@category, @folder), notice: 'Document was successfully deleted.'
+    redirect_to category_folder_path(@category, @folder), notice: "Document was successfully deleted."
   end
 
   private
@@ -78,7 +82,15 @@ class DocumentsController < ApplicationController
     @category = Category.find_by_param(params[:category])
     @folder = @category.folders.find_by_param(params[:folder]) if @category
     @document = @folder.documents.find_by(filename: params[:filename]) if @folder
-    empty_response_or_root_path(folders_path) unless @category && @folder && @document
+    unless @category && @folder && @document
+      if @category && @folder
+        empty_response_or_root_path(category_folder_path(@category, @folder))
+      # elsif @category
+      #   empty_response_or_root_path(category_path(@category))
+      else
+        empty_response_or_root_path(folders_path)
+      end
+    end
   end
 
   def document_params

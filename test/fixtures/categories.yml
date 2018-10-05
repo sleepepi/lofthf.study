@@ -9,3 +9,9 @@ meeting_minutes:
   slug: meeting-minutes
   position: 1
   archived: false
+
+examples:
+  name: Example Files
+  slug: examples
+  position: 2
+  archived: false

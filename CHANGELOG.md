@@ -3,6 +3,7 @@
 ### Enhancements
 - **General Changes**
   - Update LOFT-HF logo
+  - Internal pages and file links now friendly forward after sign in
 - **Search Changes**
   - Search now returns more specific results as more search terms are added
 

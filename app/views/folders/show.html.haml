@@ -10,7 +10,7 @@
   = @menu_title
 = render "internal/tabs"
 - content_for :breadcrumbs do
-  = render "layouts/per_page_breadcrumbs", per_page: 20, object_count: @documents.total_count
+  = render "layouts/per_page_breadcrumbs", per_page: Folder::DOCS_PER_PAGE, object_count: @documents.total_count
   %ol
     %li= link_to "docs", folders_path
     %li.breadcrumb-muted= @category.slug
@@ -26,7 +26,7 @@
     .text-muted{ style: "font-weight: 200;" }= simple_format @folder.description
 
 - if current_user.editor?
-  #folder-upload.folder-upload{ data: { object: "folder-dropfile", upload_url: attach_files_folder_url(@folder, format: "js", authenticity_token: true), fallback_url: upload_category_folder_path(@category, @folder) } }
+  #folder-upload.folder-upload.mb-4{ data: { object: "folder-dropfile", upload_url: attach_files_folder_url(@folder, format: "js", authenticity_token: true), fallback_url: upload_category_folder_path(@category, @folder) } }
     #folder-upload-bar.folder-upload-bar
 
     #folder-files= render "folders/files", folder: @folder, documents: @documents
@@ -36,5 +36,7 @@
       %strong= link_to "click here", upload_category_folder_path(@category, @folder), class: "text-dark"
       to upload documents.
 
+  .center-horizontally= paginate @documents, theme: "bootstrap"
 - else
-  = render "folders/files", folder: @folder, documents: @documents
+  .mb-4= render "folders/files", folder: @folder, documents: @documents
+  .center-horizontally= paginate @documents, theme: "bootstrap"

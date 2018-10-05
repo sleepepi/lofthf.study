@@ -47,4 +47,11 @@ class Document < ApplicationRecord
   def self.content_type(filename)
     MIME::Types.type_for(filename).first.content_type
   end
+
+  def page
+    index = folder.documents.order(Arel.sql("LOWER(documents.filename)")).pluck(:id).index(id)
+    page = index / Folder::DOCS_PER_PAGE + 1 if index
+    page = nil if page == 1
+    page
+  end
 end

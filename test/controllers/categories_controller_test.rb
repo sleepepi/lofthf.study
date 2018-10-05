@@ -76,4 +76,10 @@ class CategoriesControllerTest < ActionDispatch::IntegrationTest
     end
     assert_redirected_to dashboard_url
   end
+
+  test "should redirect to docs root for docs category" do
+    login(@viewer)
+    get docs_category_url(@category)
+    assert_redirected_to folders_url
+  end
 end

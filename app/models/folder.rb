@@ -2,6 +2,9 @@
 
 # Tracks files uploaded to the folder.
 class Folder < ApplicationRecord
+  # Constants
+  DOCS_PER_PAGE = 20
+
   # Concerns
   include Sluggable
   include Squishable

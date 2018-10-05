@@ -33,6 +33,7 @@ Rails.application.routes.draw do
   get "docs/:category/:folder/edit", to: "folders#edit", as: :edit_category_folder
   get "docs/:category/:folder/upload", to: "folders#upload", as: :upload_category_folder
   get "docs/:category/:folder/*filename", to: "documents#download", as: :download_document, format: false
+  get "docs/:category", to: redirect("docs"), as: :docs_category
 
   scope module: :internal do
     get :dashboard

@@ -22,7 +22,7 @@ when "development"
   end
 else # when "test"
   CarrierWave.configure do |config|
-    config.root = Rails.root.join("tmp", "storage", "carrierwave")
+    config.root = Rails.root.join("test", "storage", "carrierwave")
     config.enable_processing = false
   end
 end

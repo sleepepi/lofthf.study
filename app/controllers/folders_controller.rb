@@ -24,7 +24,7 @@ class FoldersController < ApplicationController
 
   # GET /docs/:category/:folder
   def show
-    @documents = docs_scope_order(@folder.documents).page(params[:page]).per(20)
+    @documents = docs_scope_order(@folder.documents).page(params[:page]).per(Folder::DOCS_PER_PAGE)
   end
 
   # GET /docs/new
@@ -77,7 +77,7 @@ class FoldersController < ApplicationController
     end
     FilesJob.perform_later
     params[:order] = "latest"
-    @documents = docs_scope_order(@folder.documents).page(params[:page]).per(20)
+    @documents = docs_scope_order(@folder.documents).page(params[:page]).per(Folder::DOCS_PER_PAGE)
     render :show
   end
 
