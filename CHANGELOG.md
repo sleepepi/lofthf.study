@@ -10,6 +10,8 @@
   - Users can now edit their profile and account settings
 - **Search Changes**
   - Search now returns more specific results as more search terms are added
+- **Gem Changes**
+  - Update to font-awesome-sass 5.3.1
 
 ### Bug Fix
 - Fix issue with uploading a file to a folder that shares the same name as
