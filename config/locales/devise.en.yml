@@ -18,15 +18,15 @@ en:
       unconfirmed: "You have to <a href=\"confirmation/new\">confirm your email address</a> before continuing."
     mailer:
       confirmation_instructions:
-        subject: "Confirmation instructions"
+        subject: "Confirm your LOFT-HF email address"
       reset_password_instructions:
-        subject: "Reset password instructions"
+        subject: "Reset password for your LOFT-HF account"
       unlock_instructions:
-        subject: "Unlock instructions"
+        subject: "Unlock your LOFT-HF account"
       email_changed:
-        subject: "Email Changed"
+        subject: "Your LOFT-HF email changed"
       password_change:
-        subject: "Password Changed"
+        subject: "Your LOFT-HF password changed"
     omniauth_callbacks:
       failure: "Could not authenticate you from %{kind} because \"%{reason}\"."
       success: "Successfully authenticated from %{kind} account."
