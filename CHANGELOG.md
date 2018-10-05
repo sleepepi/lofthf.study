@@ -1,5 +1,9 @@
 ## 2.0.1
 
+### Bug Fix
+- Fix a crash caused by friendly forwarding that could occur when signing in or
+  signing out
+
 ## 2.0.0 (October 5, 2018)
 
 ### Enhancements

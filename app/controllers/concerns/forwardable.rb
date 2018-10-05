@@ -10,12 +10,10 @@ module Forwardable
 
   def after_sign_in_path_for(resource)
     session[:previous_internal_url] || session[:previous_external_url] || dashboard_path
-    clear_location_in_session
   end
 
   def after_sign_out_path_for(resource_or_scope)
     session[:previous_external_url] || root_path
-    clear_location_in_session
   end
 
   private
