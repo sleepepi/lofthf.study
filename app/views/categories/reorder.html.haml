@@ -1,4 +1,4 @@
-- @title = "Reorder Categories"
+- @title = "Edit Folders"
 
 - @theme = "default"
 - content_for :header, @title
@@ -8,7 +8,7 @@
 - content_for :breadcrumbs do
   %ol
     %li= link_to "docs", folders_path
-    %li.breadcrumb-muted reorder categories
+    %li.breadcrumb-muted edit folders
 
 - if @categories.present?
   %div{ data: { object: "categories-sortable", path: reorder_categories_path(format: "js") } }
@@ -26,7 +26,21 @@
         - else
           = icon("fas", "folder-open", class: "text-primary-muted")
         %span{ style: "font-variant: small-caps;" }= category.name
+        %div.pl-4
+          - category.folders.each do |folder|
+            %div.small
+              - if category.archived? || folder.archived?
+                = icon("far", "folder", class: "text-muted")
+              - else
+                = icon("fas", "folder-open", class: "text-primary-muted")
+              = folder.name
+              = link_to icon("fas", "pencil-alt"), edit_category_folder_path(category, folder), class: "text-muted"
+              = link_to icon("fas", "trash"), folder_path(folder.id), method: :delete, data: { confirm: "Delete #{folder.name} and ALL files?"}, class: "text-primary-muted"
+          %div.small
+            = link_to new_folder_path(category: category) do
+              = icon("fas", "folder-open")
+              Add folder
 - else
   .jumbotron.jumbotron-custom-text
     = icon("fas", "clone", class: "mr-1")
-    No categories found.
+    No folders found.

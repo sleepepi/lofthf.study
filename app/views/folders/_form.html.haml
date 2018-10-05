@@ -11,4 +11,4 @@
   = render "forms/horizontal/slug_field", form: form, object: folder, key: :slug
   = render "forms/horizontal/text_area", form: form, object: folder, key: :description
   = render "forms/horizontal/check_box", form: form, object: folder, key: :archived
-  = render "forms/horizontal/submit", form: form, object: folder, cancel: folder.new_record? ? folders_path : category_folder_path(folder.category, folder)
+  = render "forms/horizontal/submit", form: form, object: folder, cancel: folder.new_record? ? folders_path : reorder_categories_path

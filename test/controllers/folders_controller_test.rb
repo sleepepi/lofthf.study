@@ -100,7 +100,7 @@ class FoldersControllerTest < ActionDispatch::IntegrationTest
     login(@editor)
     patch folder_url(@folder.id), params: { folder: folder_params }
     @folder.reload
-    assert_redirected_to category_folder_url(@category, @folder)
+    assert_redirected_to reorder_categories_url
   end
 
   test "should not update folder as viewer" do
@@ -114,7 +114,7 @@ class FoldersControllerTest < ActionDispatch::IntegrationTest
     assert_difference("Folder.count", -1) do
       delete folder_url(@folder.id)
     end
-    assert_redirected_to folders_url
+    assert_redirected_to reorder_categories_url
   end
 
   test "should not destroy folder as viewer" do

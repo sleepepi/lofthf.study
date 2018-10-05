@@ -4,6 +4,8 @@
 - **General Changes**
   - Update LOFT-HF logo
   - Internal pages and file links now friendly forward after sign in
+- **Admin Changes**
+  - Simplify folder archiving and management for admins
 - **Search Changes**
   - Search now returns more specific results as more search terms are added
 

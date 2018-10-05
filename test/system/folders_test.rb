@@ -52,7 +52,7 @@ class FoldersTest < ApplicationSystemTestCase
     screenshot("update-a-folder")
     click_on "Update Folder"
     assert_text "Folder was successfully updated"
-    assert_selector "h1", text: "Updated Name"
+    assert_selector "h1", text: "Edit Folders"
     screenshot("update-a-folder")
   end
 

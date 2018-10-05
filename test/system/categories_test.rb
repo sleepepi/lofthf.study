@@ -12,7 +12,7 @@ class CategoriesTest < ApplicationSystemTestCase
   test "visit reorder categories" do
     visit_login(@editor)
     visit reorder_categories_url
-    assert_selector "h1", text: "Reorder Categories"
+    assert_selector "h1", text: "Edit Folders"
     screenshot("visit-reorder-categories")
   end
 
@@ -26,7 +26,7 @@ class CategoriesTest < ApplicationSystemTestCase
     screenshot("update-a-category")
     click_on "Update Category"
     assert_text "Category was successfully updated"
-    assert_selector "h1", text: "Reorder Categories"
+    assert_selector "h1", text: "Edit Folders"
     screenshot("update-a-category")
   end
 

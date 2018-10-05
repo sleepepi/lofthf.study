@@ -29,7 +29,8 @@ class FoldersController < ApplicationController
 
   # GET /docs/new
   def new
-    @folder = Folder.new
+    category = Category.find_by_param(params[:category])
+    @folder = Folder.new(category: category)
   end
 
   # # GET /docs/:category/:folder/edit
@@ -50,7 +51,7 @@ class FoldersController < ApplicationController
   def update
     if @folder.update(folder_params)
       FilesJob.perform_later
-      redirect_to category_folder_path(@folder.category, @folder), notice: "Folder was successfully updated."
+      redirect_to reorder_categories_path, notice: "Folder was successfully updated."
     else
       render :edit
     end
@@ -86,7 +87,7 @@ class FoldersController < ApplicationController
   def destroy
     @folder.destroy
     FilesJob.perform_later
-    redirect_to folders_path, notice: "Folder was successfully deleted."
+    redirect_to reorder_categories_path, notice: "Folder was successfully deleted."
   end
 
   private
