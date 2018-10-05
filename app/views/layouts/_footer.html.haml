@@ -13,8 +13,6 @@
             %small.px-2= link_to "Terms", terms_and_conditions_path
             %small.px-2= link_to "Privacy", privacy_policy_path
 
-        - if false
-          .col.text-right{ style: "margin-top: -14px;" }
-            = link_to "Questions?", search_path
-            &nbsp;
-            = image_tag "logos/bwh-logo.png", size: "48x56", alt: ""
+        .col.text-right
+          powered by
+          = link_to image_tag("logos/slice-v5-transparent-logo.png", size: "96x32", alt: "", style: "margin-top: -10px;"), "https://tryslice.io"
