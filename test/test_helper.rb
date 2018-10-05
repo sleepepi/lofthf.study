@@ -61,6 +61,11 @@ module ActionDispatch
   class IntegrationTest
     def remove_uploaded_files
       FileUtils.rm_rf(Rails.root.join("tmp", "storage"))
+      FileUtils.rm_rf(Rails.root.join("test", "storage", "carrierwave", "uploads"))
+      FileUtils.rm_rf(Rails.root.join("test", "storage", "carrierwave", "documents", "980190963"))
+      FileUtils.rm_rf(Rails.root.join("test", "storage", "carrierwave", "documents", "980190964"))
+      FileUtils.rm_rf(Rails.root.join("test", "storage", "carrierwave", "documents", "980190965"))
+      FileUtils.rm_rf(Rails.root.join("test", "storage", "carrierwave", "documents", "980190966"))
     end
 
     def after_teardown
