@@ -49,6 +49,7 @@ class FoldersController < ApplicationController
   # PATCH /folders/1
   def update
     if @folder.update(folder_params)
+      FilesJob.perform_later
       redirect_to category_folder_path(@folder.category, @folder), notice: "Folder was successfully updated."
     else
       render :edit
@@ -84,6 +85,7 @@ class FoldersController < ApplicationController
   # DELETE /folders/1
   def destroy
     @folder.destroy
+    FilesJob.perform_later
     redirect_to folders_path, notice: "Folder was successfully deleted."
   end
 
@@ -96,7 +98,7 @@ class FoldersController < ApplicationController
   end
 
   def find_folder_or_redirect
-    @folder = Folder.find_by_param(params[:id])
+    @folder = Folder.find_by(id: params[:id])
     empty_response_or_root_path(folders_path) unless @folder
   end
 

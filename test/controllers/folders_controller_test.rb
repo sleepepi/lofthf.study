@@ -98,21 +98,21 @@ class FoldersControllerTest < ActionDispatch::IntegrationTest
 
   test "should update folder as editor" do
     login(@editor)
-    patch folder_url(@folder), params: { folder: folder_params }
+    patch folder_url(@folder.id), params: { folder: folder_params }
     @folder.reload
     assert_redirected_to category_folder_url(@category, @folder)
   end
 
   test "should not update folder as viewer" do
     login(@viewer)
-    patch folder_url(@folder), params: { folder: folder_params }
+    patch folder_url(@folder.id), params: { folder: folder_params }
     assert_redirected_to dashboard_url
   end
 
   test "should destroy folder" do
     login(@editor)
     assert_difference("Folder.count", -1) do
-      delete folder_url(@folder)
+      delete folder_url(@folder.id)
     end
     assert_redirected_to folders_url
   end
@@ -120,7 +120,7 @@ class FoldersControllerTest < ActionDispatch::IntegrationTest
   test "should not destroy folder as viewer" do
     login(@viewer)
     assert_difference("Folder.count", 0) do
-      delete folder_url(@folder)
+      delete folder_url(@folder.id)
     end
     assert_redirected_to dashboard_url
   end
@@ -134,7 +134,7 @@ class FoldersControllerTest < ActionDispatch::IntegrationTest
   test "should attach file as editor" do
     login(@editor)
     assert_difference("Document.count", 1) do
-      post attach_file_folder_url(@folder), params: {
+      post attach_file_folder_url(@folder.id), params: {
         file: fixture_file_upload(file_fixture("rails.png"))
       }
     end
@@ -144,7 +144,7 @@ class FoldersControllerTest < ActionDispatch::IntegrationTest
   test "should not attach empty file as editor" do
     login(@editor)
     assert_difference("Document.count", 0) do
-      post attach_file_folder_url(@folder), params: { file: "" }
+      post attach_file_folder_url(@folder.id), params: { file: "" }
     end
     assert_redirected_to upload_category_folder_url(@category, @folder)
   end
@@ -152,7 +152,7 @@ class FoldersControllerTest < ActionDispatch::IntegrationTest
   test "should attach files as editor" do
     login(@editor)
     assert_difference("Document.count", 2) do
-      post attach_files_folder_url(@folder, format: "js"), params: {
+      post attach_files_folder_url(@folder.id, format: "js"), params: {
         files: [
           fixture_file_upload(file_fixture("blank.pdf")),
           fixture_file_upload(file_fixture("rails.png"))
@@ -165,7 +165,7 @@ class FoldersControllerTest < ActionDispatch::IntegrationTest
   test "should attach duplicate files only once as editor" do
     login(@editor)
     assert_difference("Document.count", 1) do
-      post attach_files_folder_url(@folder, format: "js"), params: {
+      post attach_files_folder_url(@folder.id, format: "js"), params: {
         files: [
           fixture_file_upload(file_fixture("rails.png")),
           fixture_file_upload(file_fixture("rails.png"))

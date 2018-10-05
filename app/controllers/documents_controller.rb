@@ -68,6 +68,7 @@ class DocumentsController < ApplicationController
     @category = @document.folder.category
     @folder = @document.folder
     @document.destroy
+    FilesJob.perform_later
     redirect_to category_folder_path(@category, @folder), notice: "Document was successfully deleted."
   end
 

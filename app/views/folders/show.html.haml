@@ -26,7 +26,7 @@
     .text-muted{ style: "font-weight: 200;" }= simple_format @folder.description
 
 - if current_user.editor?
-  #folder-upload.folder-upload.mb-4{ data: { object: "folder-dropfile", upload_url: attach_files_folder_url(@folder, format: "js", authenticity_token: true), fallback_url: upload_category_folder_path(@category, @folder) } }
+  #folder-upload.folder-upload.mb-4{ data: { object: "folder-dropfile", upload_url: attach_files_folder_url(@folder.id, format: "js", authenticity_token: true), fallback_url: upload_category_folder_path(@category, @folder) } }
     #folder-upload-bar.folder-upload-bar
 
     #folder-files= render "folders/files", folder: @folder, documents: @documents

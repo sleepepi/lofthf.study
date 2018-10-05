@@ -7,6 +7,10 @@
 - **Search Changes**
   - Search now returns more specific results as more search terms are added
 
+### Bug Fix
+- Fix issue with uploading a file to a folder that shares the same name as
+  another folder
+
 ## 1.0.0 (August 21, 2018)
 
 ### Enhancements

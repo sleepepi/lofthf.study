@@ -28,6 +28,7 @@ class CategoriesController < ApplicationController
   # PATCH /categories/1
   def update
     if @category.update(category_params)
+      FilesJob.perform_later
       redirect_to reorder_categories_path, notice: "Category was successfully updated."
     else
       render :edit
@@ -37,6 +38,7 @@ class CategoriesController < ApplicationController
   # DELETE /categories/1
   def destroy
     @category.destroy
+    FilesJob.perform_later
     redirect_to reorder_categories_path, notice: "Category was successfully deleted."
   end
 

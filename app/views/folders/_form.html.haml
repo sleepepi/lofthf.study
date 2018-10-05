@@ -1,4 +1,11 @@
-= form_with model: folder, local: true do |form|
+- if folder.new_record?
+  - url = folders_path
+  - method = :post
+- else
+  - url = folder_path(folder.id)
+  - method = :patch
+
+= form_with model: folder, url: url, method: method, local: true do |form|
   = render "forms/horizontal/text_field", form: form, object: folder, key: :category, value: folder.category&.name
   = render "forms/horizontal/text_field", form: form, object: folder, key: :name, slug: "slug"
   = render "forms/horizontal/slug_field", form: form, object: folder, key: :slug
