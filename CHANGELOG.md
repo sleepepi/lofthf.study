@@ -1,4 +1,4 @@
-## 2.0.2
+## 2.0.2 (October 9, 2018)
 
 ### Bug Fixes
 - Fix for friendly forwarding
