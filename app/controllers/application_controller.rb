@@ -5,21 +5,7 @@ class ApplicationController < ActionController::Base
   skip_before_action :verify_authenticity_token, if: :devise_login?
   before_action :configure_permitted_parameters, if: :devise_controller?
 
-  # Concerns
-  include Forwardable
-
   private
-
-  def internal_controllers
-    {
-      admin: [:dashboard],
-      categories: [:edit, :reorder],
-      documents: [:index, :show, :new, :edit],
-      folders: [:index, :show, :new, :edit],
-      internal: [],
-      sites: [:index, :show, :new, :edit, :recruiting_centers, :coordinating_centers]
-    }
-  end
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(
