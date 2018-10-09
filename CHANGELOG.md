@@ -1,7 +1,9 @@
 ## 2.0.2
 
-### Bug Fix
+### Bug Fixes
 - Fix for friendly forwarding
+- Dashboard "Complete your profile" section no longer asks for profile picture
+  if it has already been uploaded
 
 ## 2.0.1 (October 5, 2018)
 
