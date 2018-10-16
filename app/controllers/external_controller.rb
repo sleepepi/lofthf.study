@@ -11,6 +11,10 @@ class ExternalController < ApplicationController
   # def contact
   # end
 
+  # # GET /privacy-policy
+  # def privacy_policy
+  # end
+
   # GET /version
   # GET /version.json
   def version

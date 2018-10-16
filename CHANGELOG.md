@@ -1,5 +1,9 @@
 ## 3.0.0
 
+### Enhancements
+- **General Changes**
+  - Add updated Privacy Policy
+
 ## 2.0.2 (October 9, 2018)
 
 ### Bug Fixes

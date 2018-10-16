@@ -20,6 +20,7 @@ Rails.application.routes.draw do
 
   scope module: :external do
     get :contact
+    get :privacy_policy, path: "privacy-policy"
     get :version
   end
 
