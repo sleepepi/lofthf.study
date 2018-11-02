@@ -1,3 +1,5 @@
+## 4.0.0
+
 ## 3.0.0 (October 16, 2018)
 
 ### Enhancements
