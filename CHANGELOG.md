@@ -4,6 +4,7 @@
 - **General Changes**
   - Users are now forwarded to dashboard after login if no other internal URL
     was visited before login
+  - Updated overall randomization goal number
 - **Gem Changes**
   - Update to ruby 2.5.3
 
