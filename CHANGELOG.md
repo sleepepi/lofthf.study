@@ -5,6 +5,8 @@
   - Users are now forwarded to dashboard after login if no other internal URL
     was visited before login
   - Updated overall randomization goal number
+- **Document Changes**
+  - Increased the default maximum upload size for files to 100 MB
 - **Gem Changes**
   - Update to ruby 2.5.3
 
