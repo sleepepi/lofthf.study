@@ -38,6 +38,7 @@ Rails.application.routes.draw do
 
   scope module: :internal do
     get :dashboard
+    get :dashboard, as: :user_root
     get :directory
     get :randomizations
     get :data_health, path: "data-health"

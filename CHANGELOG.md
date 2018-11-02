@@ -1,6 +1,9 @@
 ## 4.0.0
 
 ### Enhancements
+- **General Changes**
+  - Users are now forwarded to dashboard after login if no other internal URL
+    was visited before login
 - **Gem Changes**
   - Update to ruby 2.5.3
 

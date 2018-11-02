@@ -9,6 +9,11 @@ class ForwardingTest < ActionDispatch::IntegrationTest
     @admin = users(:admin)
   end
 
+  test "should forward to dashboard after login" do
+    login(@regular)
+    assert_equal dashboard_path, path
+  end
+
   test "should friendly forward to directory" do
     get directory_url
     assert_redirected_to new_user_session_url
