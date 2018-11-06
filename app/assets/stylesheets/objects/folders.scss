@@ -101,3 +101,21 @@
   }
 }
 
+.folder-upload-error {
+  width: 100%;
+  padding: $spacer;
+  text-align: center;
+
+  &:empty {
+    display: none;
+  }
+}
+
+@each $name, $theme in $themes {
+  .theme-#{$name}-bg {
+    .folder-upload-error {
+      background-color: map-get($theme, accent);
+      color: map-get($theme, brand-white);
+    }
+  }
+}

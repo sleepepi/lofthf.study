@@ -7,6 +7,8 @@
   - Updated overall randomization goal number
 - **Document Changes**
   - Increased the default maximum upload size for files to 100 MB
+  - Uploading files now provides an error message if the files exceed the upload
+    limit
 - **Gem Changes**
   - Update to ruby 2.5.3
 

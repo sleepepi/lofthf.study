@@ -28,8 +28,9 @@
 - if current_user.editor?
   #folder-upload.folder-upload.mb-4{ data: { object: "folder-dropfile", upload_url: attach_files_folder_url(@folder.id, format: "js", authenticity_token: true), fallback_url: upload_category_folder_path(@category, @folder) } }
     #folder-upload-bar.folder-upload-bar
-
     #folder-files= render "folders/files", folder: @folder, documents: @documents
+
+    #folder-upload-error.folder-upload-error
 
     .drag-files-messages.bg-primary.text-white.text-center.p-3
       Drag files here to upload or
