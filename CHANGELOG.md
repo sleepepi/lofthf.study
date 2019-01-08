@@ -2,6 +2,7 @@
 
 - **Gem Changes**
   - Update to ruby 2.6.0
+  - Update to rails 5.2.2
 
 ## 4.0.0 (November 7, 2018)
 
