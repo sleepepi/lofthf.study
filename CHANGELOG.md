@@ -3,6 +3,7 @@
 - **Gem Changes**
   - Update to ruby 2.6.0
   - Update to rails 5.2.2
+  - Update to carrierwave 1.3.1
 
 ## 4.0.0 (November 7, 2018)
 
