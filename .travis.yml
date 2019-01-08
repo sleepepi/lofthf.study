@@ -1,10 +1,8 @@
-sudo: false
 language: ruby
 rvm:
-- 2.5.3
+- 2.6.0
 - ruby-head
 # gemfile: "gems.rb"
-before_install: gem install bundler --no-document # Fixes ruby 2.5.3 tests
 before_script:
 - cp config/.travis.database.yml config/database.yml
 - psql -c 'create database travis_test;' -U postgres
@@ -22,4 +20,4 @@ deploy:
   on:
     repo: sleepepi/lofthf.study
     branch: master
-    rvm: 2.5.3
+    rvm: 2.6.0
