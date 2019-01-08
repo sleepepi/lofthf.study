@@ -26,7 +26,6 @@
     padding: map-get($spacers, 1) 0;
   }
 
-
   @include media-breakpoint-up(sm) {
     padding: map-get($spacers, 4);
   }
