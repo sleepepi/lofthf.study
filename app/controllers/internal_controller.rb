@@ -36,6 +36,10 @@ class InternalController < ApplicationController
     render layout: "layouts/full_page"
   end
 
+  # # GET /pareto
+  # def pareto
+  # end
+
   private
 
   # def scope_order(scope)

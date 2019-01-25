@@ -2,6 +2,8 @@
 
 - **Admin Changes**
   - Account approval email now forwards to the account show page
+- **General Changes**
+  - Added example pareto chart
 - **Site Changes**
   - Coordinating centers now split into Clinical Coordinating Center and Data
     Coordinating Center

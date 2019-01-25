@@ -43,4 +43,10 @@ class InternalControllerTest < ActionDispatch::IntegrationTest
     get search_url
     assert_response :success
   end
+
+  test "should get pareto chart" do
+    login(@viewer)
+    get pareto_url
+    assert_response :success
+  end
 end

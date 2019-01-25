@@ -44,6 +44,7 @@ Rails.application.routes.draw do
     get :data_health, path: "data-health"
     get :report_card, path: "report-card"
     get :search
+    get :pareto
   end
 
   resources :profiles, only: [] do

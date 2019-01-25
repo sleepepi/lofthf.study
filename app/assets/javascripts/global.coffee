@@ -1,5 +1,6 @@
 @componentsReady = ->
   csrfSetup()
+  paretoCharts()
 
 @extensionsReady = ->
   tooltipsReady()

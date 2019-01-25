@@ -49,4 +49,12 @@ class InternalTest < ApplicationSystemTestCase
     screenshot("visit-search")
     assert_selector "h1", text: "Search"
   end
+
+  test "visit pareto chart" do
+    visit_login(@viewer)
+    visit pareto_url
+    sleep(1.0) # Allow time to animate chart
+    screenshot("visit-pareto-chart")
+    assert_selector "h1", text: "Pareto"
+  end
 end
