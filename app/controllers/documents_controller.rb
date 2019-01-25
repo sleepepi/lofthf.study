@@ -26,7 +26,7 @@ class DocumentsController < ApplicationController
       params[:disposition] ||= "attachment" # "inline"
       @document.increment! :download_count
       if Rails.env.production?
-        redirect_to @document.file.url(query: { "response-content-disposition" => params[:disposition] })
+        redirect_to @document.file.url(query: { "response-content-disposition" => params[:disposition] }), allow_other_host: true
       else
         send_file_if_present @document.file, disposition: params[:disposition]
       end
