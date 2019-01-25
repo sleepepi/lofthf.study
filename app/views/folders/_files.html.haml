@@ -26,7 +26,7 @@
           %td.d-none.d-sm-table-cell.text-center.nowrap
             %small= document.created_at.strftime("%Y-%^b-%d")
           - if current_user.editor?
-            %td.text-center= render "layouts/edit_delete_dropdown", edit_url: edit_document_path(document), delete_url: document, delete_confirmation: "Delete #{document.filename}?"
+            %td.text-center.nowrap= render "layouts/edit_delete_dropdown", edit_url: edit_document_path(document), delete_url: document, delete_confirmation: "Delete #{document.filename}?"
 - else
   .jumbotron.jumbotron-custom-text{ class: current_user.editor? ? "mb-0" : nil }
     = icon("fas", "clone", class: "mr-1")

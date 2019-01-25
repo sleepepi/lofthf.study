@@ -40,7 +40,7 @@
             %small= abbreviated_time(user.current_sign_in_at || user.created_at)
           %td.d-none.d-md-table-cell.text-center
             %small= user.sign_in_count
-          %td.text-center= render "layouts/edit_delete_dropdown", edit_url: edit_admin_user_path(user), delete_url: admin_user_path(user), delete_confirmation: "Delete #{user.full_name}?"
+          %td.text-center.nowrap= render "layouts/edit_delete_dropdown", edit_url: edit_admin_user_path(user), delete_url: admin_user_path(user), delete_confirmation: "Delete #{user.full_name}?"
 
   .center-horizontally= paginate @users, theme: "bootstrap"
 - else

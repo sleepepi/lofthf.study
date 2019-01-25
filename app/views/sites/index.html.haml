@@ -27,7 +27,7 @@
           %td= link_to site.name, site
           %td= site.center_type_name
           - if current_user.editor?
-            %td.text-center= render "layouts/edit_delete_dropdown", edit_url: edit_site_path(site), delete_url: site, delete_confirmation: "Delete #{site.name}?"
+            %td.text-center.nowrap= render "layouts/edit_delete_dropdown", edit_url: edit_site_path(site), delete_url: site, delete_confirmation: "Delete #{site.name}?"
 
   .center-horizontally= paginate @sites, theme: "bootstrap"
 - else
