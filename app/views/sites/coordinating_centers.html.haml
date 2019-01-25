@@ -13,16 +13,19 @@
   .dashboard-container.dashboard-table
     %table.table.table-striped.table-borderless.table-hover.table-sticky
       %col
+      %col
       - if current_user.editor?
         %col{ width: "1px" }
       %thead
         %tr
           %th= order_to "Name", primary: "name"
+          %th
           - if current_user.editor?
             %th.text-center Actions
       - @sites.each do |site|
         %tr
           %td= link_to site.name, site
+          %td= site.center_type_name
           - if current_user.editor?
             %td.text-center.nowrap= render "layouts/edit_delete_dropdown", edit_url: edit_site_path(site), delete_url: site, delete_confirmation: "Delete #{site.name}?"
   .center-horizontally= paginate @sites, theme: "bootstrap"

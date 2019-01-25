@@ -4,14 +4,15 @@
 class Site < ApplicationRecord
   # Constants
   CENTER_TYPES = [
-    ["Coordinating Center", "coordinating"],
+    ["Clinical Coordinating Center", "clinical"],
+    ["Data Coordinating Center", "data"],
     ["Recruiting Center", "recruiting"]
   ]
   ORDERS = {
     "name" => "sites.name",
     "name desc" => "sites.name desc",
     "center" => "sites.center_type",
-    "center desc" => "sites.center_type desc",
+    "center desc" => "sites.center_type desc"
   }
   DEFAULT_ORDER = "sites.name"
 

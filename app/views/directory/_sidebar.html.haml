@@ -6,7 +6,7 @@
           %li.sidebar-menu-header= render "sidebar/toggle", title: "Directory"
           %li= link_to "Overview", directory_path, class: current_page?(directory_path) ? "active" : nil
           %li.sidebar-menu-header Centers
-          %li= link_to "Coordinating", coordinating_centers_path, class: current_page?(coordinating_centers_path) || @site&.center_type == "coordinating" ? "active" : nil
+          %li= link_to "Coordinating", coordinating_centers_path, class: current_page?(coordinating_centers_path) || @site&.center_type.in?(%w(data clinical)) ? "active" : nil
           %li= link_to "Recruiting", recruiting_centers_path, class: current_page?(recruiting_centers_path) || @site&.center_type == "recruiting" ? "active" : nil
       - if current_user.editor?
         .mx-3.my-0.ml-md-3.mb-md-3.mr-md-0

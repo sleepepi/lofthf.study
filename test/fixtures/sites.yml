@@ -1,7 +1,12 @@
-one:
+ccc:
+  name: CCC
+  slug: ccc
+  center_type: clinical
+
+dcc:
   name: DCC
   slug: dcc
-  center_type: coordinating
+  center_type: data
 
 two:
   name: Hospital

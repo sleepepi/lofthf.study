@@ -79,10 +79,10 @@ class ForwardingTest < ActionDispatch::IntegrationTest
   end
 
   test "should friendly forward to site show page" do
-    get site_url(sites(:one))
+    get site_url(sites(:ccc))
     assert_redirected_to new_user_session_url
     login(@regular)
-    assert_equal site_path(sites(:one)), path
+    assert_equal site_path(sites(:ccc)), path
   end
 
   test "should friendly forward to folder" do

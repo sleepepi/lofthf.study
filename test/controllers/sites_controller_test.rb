@@ -5,7 +5,7 @@ require "test_helper"
 # Tests to assure users can view sites and editors can manage sites.
 class SitesControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @site = sites(:one)
+    @site = sites(:ccc)
     @editor = users(:editor)
     @viewer = users(:viewer)
   end

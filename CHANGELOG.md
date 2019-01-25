@@ -2,6 +2,9 @@
 
 - **Admin Changes**
   - Account approval email now forwards to the account show page
+- **Site Changes**
+  - Coordinating centers now split into Clinical Coordinating Center and Data
+    Coordinating Center
 - **Gem Changes**
   - Update to ruby 2.6.0
   - Update to rails 6.0.0.beta1

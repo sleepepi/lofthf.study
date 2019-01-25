@@ -5,7 +5,7 @@ require "application_system_test_case"
 # Test navigating and creating sites.
 class SitesTest < ApplicationSystemTestCase
   setup do
-    @site = sites(:one)
+    @site = sites(:ccc)
     @editor = users(:editor)
     @viewer = users(:viewer)
   end
@@ -20,7 +20,7 @@ class SitesTest < ApplicationSystemTestCase
   test "visit site" do
     visit_login(@viewer)
     visit site_url(@site)
-    assert_selector "h1", text: "DCC"
+    assert_selector "h1", text: "CCC"
     screenshot("visit-site")
   end
 
@@ -46,7 +46,7 @@ class SitesTest < ApplicationSystemTestCase
     find("i[class='fas fa-cogs']").click
     fill_in "site[name]", with: "Updated Name"
     fill_in "site[slug]", with: "updated-name"
-    select "Coordinating Center", from: "site[center_type]"
+    select "Clinical Coordinating Center", from: "site[center_type]"
     screenshot("update-a-site")
     click_on "Update Site"
     assert_text "Site was successfully updated"

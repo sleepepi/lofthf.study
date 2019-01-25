@@ -22,7 +22,7 @@ class SitesController < ApplicationController
 
   # GET /coordinating-centers
   def coordinating_centers
-    scope = Site.current.where(center_type: "coordinating").search_any_order(params[:search])
+    scope = Site.current.where(center_type: %w(data clinical)).search_any_order(params[:search])
     @sites = scope_order(scope).page(params[:page]).per(20)
   end
 
