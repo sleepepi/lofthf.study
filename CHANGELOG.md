@@ -1,5 +1,7 @@
 ## 5.0.0
 
+- **Admin Changes**
+  - Account approval email now forwards to the account show page
 - **Gem Changes**
   - Update to ruby 2.6.0
   - Update to rails 6.0.0.beta1
