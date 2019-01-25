@@ -1,4 +1,4 @@
-## 5.0.0
+## 5.0.0 (January 25, 2019)
 
 - **Admin Changes**
   - Account approval email now forwards to the account show page
