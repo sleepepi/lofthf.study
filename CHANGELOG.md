@@ -1,4 +1,4 @@
-## 5.0.1
+## 5.0.1 (January 25, 2019)
 
 ### Bug Fix
 - Fix an issue downloading documents via ActiveStorage links
