@@ -1,5 +1,9 @@
 ## 6.0.0
 
+### Enhancements
+- **Gem Changes**
+  - Update to pg_search 2.1.4
+
 ## 5.0.1 (January 25, 2019)
 
 ### Bug Fix
@@ -7,6 +11,7 @@
 
 ## 5.0.0 (January 25, 2019)
 
+### Enhancements
 - **Admin Changes**
   - Account approval email now forwards to the account show page
 - **General Changes**

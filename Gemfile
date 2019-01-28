@@ -21,8 +21,7 @@ gem "jquery-rails",            "~> 4.3.3"
 gem "jquery-ui-rails",         "~> 6.0.1"
 gem "kaminari",                "~> 1.1.1"
 gem "mini_magick",             "~> 4.8.0"
-# gem "pg_search",               "~> 2.1.2"
-gem "pg_search", git: "https://github.com/Casecommons/pg_search.git", ref: "bd070786a014f6ea4f2767e0abd0d818861116ab"
+gem "pg_search",               "~> 2.1.4"
 
 # Rails defaults
 gem "bootsnap",                ">= 1.1.0", require: false
