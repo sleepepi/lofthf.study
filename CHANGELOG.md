@@ -4,6 +4,9 @@
 - **Gem Changes**
   - Update to pg_search 2.1.4
 
+### Bug Fix
+- Fix an issue downloading profile pictures via ActiveStorage links
+
 ## 5.0.1 (January 25, 2019)
 
 ### Bug Fix
