@@ -1,3 +1,5 @@
+## 7.0.0
+
 ## 6.0.0 (January 29, 2019)
 
 ### Enhancements
