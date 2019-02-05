@@ -3,6 +3,8 @@
 ### Enhancements
 - **General Changes**
   - Display profile picture in menu
+- **Gem Changes**
+  - Update to mini_magick 4.9.2
 
 ## 6.0.0 (January 29, 2019)
 
