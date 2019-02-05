@@ -1,5 +1,9 @@
 ## 7.0.0
 
+### Enhancements
+- **General Changes**
+  - Display profile picture in menu
+
 ## 6.0.0 (January 29, 2019)
 
 ### Enhancements
