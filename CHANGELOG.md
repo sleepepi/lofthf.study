@@ -4,6 +4,7 @@
 - **General Changes**
   - Display profile picture in menu
 - **Gem Changes**
+  - Update to ruby 2.6.1
   - Update to mini_magick 4.9.2
 
 ## 6.0.0 (January 29, 2019)
