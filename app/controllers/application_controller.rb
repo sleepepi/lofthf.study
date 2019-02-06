@@ -21,13 +21,11 @@ class ApplicationController < ActionController::Base
   end
 
   def check_admin!
-    return if current_user.admin?
-    redirect_to dashboard_path
+    redirect_to dashboard_path unless current_user.admin?
   end
 
   def check_editor!
-    return if current_user.editor?
-    redirect_to dashboard_path
+    redirect_to dashboard_path unless current_user.editor?
   end
 
   def empty_response_or_root_path(path = root_path)
