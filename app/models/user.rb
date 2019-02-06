@@ -72,6 +72,7 @@ class User < ApplicationRecord
 
   def check_approval_email
     return unless approved? && approval_sent_at.nil?
+
     update(approval_sent_at: Time.zone.now)
     send_approval_email!
   end
@@ -88,22 +89,26 @@ class User < ApplicationRecord
   # Override Devise built-in password reset notification email method
   def send_reset_password_instructions
     return unless EMAILS_ENABLED && !deleted?
+
     super
   end
 
   # Override Devise built-in unlock instructions notification email method
   def send_unlock_instructions
     return unless EMAILS_ENABLED && !deleted?
+
     super
   end
 
   def send_confirmation_instructions
     return unless EMAILS_ENABLED && !deleted? && !disposable_email?
+
     super
   end
 
   def send_on_create_confirmation_instructions
     return unless EMAILS_ENABLED && !deleted? && !disposable_email?
+
     send_welcome_email!
   end
 
@@ -113,6 +118,7 @@ class User < ApplicationRecord
 
   def new_registration!
     return unless EMAILS_ENABLED
+
     User.current.where(admin: true).find_each do |admin|
       RegistrationMailer.user_registered(admin, self).deliver_later
     end

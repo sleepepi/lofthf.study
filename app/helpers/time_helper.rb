@@ -4,6 +4,7 @@
 module TimeHelper
   def abbreviated_time(time_at)
     return "" if time_at.blank?
+
     time_ago_in_words(time_at)
       .gsub(/(about|less than|almost|over)\s/, "")
       .gsub(/minute/, "min")
