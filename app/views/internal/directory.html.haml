@@ -16,9 +16,8 @@
   .subheading
     Joined Recently
 
-  .key-contacts
-    - @users.each do |user|
-      = render "directory/contact", user: user
+  - @users.each do |user|
+    = render "directory/contact", user: user
 
   .jumbotron.jumbotron-custom-text.jumbotron-shadow
     = icon("fas", "info-circle")
