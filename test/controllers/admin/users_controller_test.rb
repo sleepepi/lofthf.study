@@ -18,9 +18,10 @@ class Admin::UsersControllerTest < ActionDispatch::IntegrationTest
       approved: "1",
       admin: "1",
       editor: "1",
+      phone: "555-123-4567",
       role: "Role",
       key_contact: "0",
-      keywords: "Nickname"
+      keywords: "nickname"
     }
   end
 
@@ -69,6 +70,9 @@ class Admin::UsersControllerTest < ActionDispatch::IntegrationTest
     assert_equal true, @user.approved
     assert_equal true, @user.admin
     assert_equal true, @user.editor
+    assert_equal "555-123-4567", @user.phone
+    assert_equal "Role", @user.role
+    assert_equal "nickname", @user.keywords
     assert_redirected_to admin_user_url(@user)
   end
 
