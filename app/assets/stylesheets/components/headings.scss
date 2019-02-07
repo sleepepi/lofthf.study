@@ -34,6 +34,7 @@
 
 .header-container {
   padding: 20px 0;
+  transition: $transition-bg;
 
   h1,
   h2,
@@ -46,28 +47,20 @@
 
   h1 {
     font-size: 30px;
+
+    @include media-breakpoint-up(sm) {
+      font-size: 38px;
+    }
+
+    @include media-breakpoint-up(md) {
+      font-size: 41px;
+    }
   }
 
   .dropdown,
   .float-right {
     font-variant: normal;
     letter-spacing: normal;
-  }
-}
-
-@include media-breakpoint-up(sm) {
-  .header-container {
-    h1 {
-      font-size: 38px;
-    }
-  }
-}
-
-@include media-breakpoint-up(md) {
-  .header-container {
-    h1 {
-      font-size: 41px;
-    }
   }
 }
 
