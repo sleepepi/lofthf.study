@@ -2,7 +2,6 @@
 
 # Allows documents to be downloaded.
 class DocumentsController < ApplicationController
-  before_action :set_cache_buster, only: [:download]
   before_action :authenticate_user!, except: [:download]
   before_action :check_editor!, only: [:new, :create, :edit, :update, :destroy]
   before_action :find_category_folder_document_or_redirect, only: [:download]

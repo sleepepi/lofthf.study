@@ -2,7 +2,6 @@
 
 # Displays user profile pictures.
 class ProfilesController < ApplicationController
-  before_action :set_cache_buster, only: [:picture]
   before_action :find_user, only: [:picture]
 
   def picture
