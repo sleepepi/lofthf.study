@@ -3,6 +3,8 @@
 ### Enhancements
 - **General Changes**
   - Display profile picture in menu
+  - Update welcome email to indicate that account approval is needed before site
+    access
 - **Gem Changes**
   - Update to ruby 2.6.1
   - Update to devise 4.6.0

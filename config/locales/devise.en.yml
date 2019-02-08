@@ -8,7 +8,7 @@ en:
       send_paranoid_instructions: "If your email address exists in our database, you will receive an email with instructions for how to confirm your email address in a few minutes."
     failure:
       already_authenticated: "" # "You are already signed in."
-      inactive: "Your account is not activated yet."
+      inactive: "Account under review. You will receive an email when your account is approved."
       invalid: "Wrong email or password. Did you <a href=\"password/new\">forget your password?</a>"
       locked: "Your account is locked. <a href=\"unlock/new\">Unlock my account.</a>"
       last_attempt: "You have one more attempt before your account is locked."
