@@ -7,6 +7,9 @@
   - Update to ruby 2.6.1
   - Update to mini_magick 4.9.2
 
+### Bug Fix
+- Fix bug where cached browser redirects prevented file downloads
+
 ## 6.0.0 (January 29, 2019)
 
 ### Enhancements
