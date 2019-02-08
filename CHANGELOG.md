@@ -1,4 +1,4 @@
-## 7.0.0
+## 7.0.0 (February 8, 2019)
 
 ### Enhancements
 - **General Changes**
