@@ -5,6 +5,7 @@
   - Display profile picture in menu
 - **Gem Changes**
   - Update to ruby 2.6.1
+  - Update to devise 4.6.0
   - Update to mini_magick 4.9.2
 
 ### Bug Fix
