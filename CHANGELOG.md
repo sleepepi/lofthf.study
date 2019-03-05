@@ -1,5 +1,9 @@
 ## 8.0.0
 
+### Enhancements
+- **Gem Changes**
+  - Update to bootstrap 4.3.1
+
 ## 7.0.1 (February 8, 2019)
 
 ### Enhancements
