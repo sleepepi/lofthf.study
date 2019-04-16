@@ -5,6 +5,7 @@
   - Update to ruby 2.6.2
   - Update to rails 6.0.0.beta3
   - Update to carrierwave 1.3.1
+  - Update to devise 4.6.1
 
 ## 7.1.0 (March 8, 2019)
 
