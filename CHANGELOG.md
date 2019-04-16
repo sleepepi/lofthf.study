@@ -1,5 +1,9 @@
 ## 8.0.0
 
+### Enhancements
+- **Gem Changes**
+  - Update to ruby 2.6.2
+
 ## 7.1.0 (March 8, 2019)
 
 ### Enhancements
