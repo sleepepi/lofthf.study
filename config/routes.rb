@@ -53,7 +53,6 @@ Rails.application.routes.draw do
     end
   end
 
-
   get :settings, to: redirect("settings/profile")
   namespace :settings do
     get :profile
@@ -87,4 +86,6 @@ Rails.application.routes.draw do
              },
              path_names: { sign_up: "join", sign_in: "login" },
              path: ""
+
+  resources :videos
 end
