@@ -1,4 +1,4 @@
-## 8.0.0
+## 8.0.0 (April 16, 2019)
 
 ### Enhancements
 - **Videos Added**
