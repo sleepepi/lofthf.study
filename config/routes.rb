@@ -45,6 +45,7 @@ Rails.application.routes.draw do
     get :report_card, path: "report-card"
     get :search
     get :pareto
+    get :report_table, path: "report/:report_id"
   end
 
   resources :profiles, only: [] do
@@ -52,6 +53,17 @@ Rails.application.routes.draw do
       get :picture
     end
   end
+
+  resources :projects
+
+  resources :reports do
+    member do
+      get :refresh, to: redirect("reports/%{id}")
+      post :refresh
+    end
+  end
+
+  resources :report_rows, only: :new, path: "report-rows"
 
   get :settings, to: redirect("settings/profile")
   namespace :settings do

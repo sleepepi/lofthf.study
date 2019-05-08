@@ -10,9 +10,8 @@
           %li= link_to "Report card", report_card_path, class: current_page?(report_card_path) ? "active" : nil
           %li= link_to "Randomizations", randomizations_path, class: current_page?(randomizations_path) ? "active" : nil
           %li= link_to "Pareto", pareto_path, class: current_page?(pareto_path) ? "active" : nil
-
-      - if false
-        .mx-3.my-0.ml-md-3.mb-md-3.mr-md-0
-          %ul.sidebar-menu.sidebar-menu-shadow
-            %li.sidebar-menu-header Another Header
-            %li= link_to "Link", dashboard_path, class: current_page?(dashboard_path) ? "active" : nil
+          - reports = Report.where(archived: false)
+          - if reports.present?
+            %li.sidebar-menu-header Slice
+            - reports.each do |report|
+              %li= link_to report.name, report_table_path(report), class: current_page?(report_table_path(report)) ? "active" : nil

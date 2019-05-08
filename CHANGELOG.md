@@ -1,6 +1,8 @@
 ## 9.0.0
 
 ### Enhancements
+- **Reports Added**
+  - Editors can now define reports to pull data from Slice
 - **Gem Changes**
   - Update to ruby 2.6.3
 

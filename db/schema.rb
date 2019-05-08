@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_16_191650) do
+ActiveRecord::Schema.define(version: 2019_05_08_200756) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -91,6 +91,40 @@ ActiveRecord::Schema.define(version: 2019_04_16_191650) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["searchable_type", "searchable_id"], name: "index_pg_search_documents_on_searchable_type_and_searchable_id"
+  end
+
+  create_table "projects", force: :cascade do |t|
+    t.string "name"
+    t.string "access_token"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "report_rows", force: :cascade do |t|
+    t.bigint "report_id"
+    t.string "label"
+    t.text "expression"
+    t.integer "position"
+    t.jsonb "result"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["position"], name: "index_report_rows_on_position"
+    t.index ["report_id"], name: "index_report_rows_on_report_id"
+  end
+
+  create_table "reports", force: :cascade do |t|
+    t.string "name"
+    t.string "slug"
+    t.string "header_label"
+    t.jsonb "header"
+    t.datetime "last_cached_at"
+    t.boolean "archived"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "project_id"
+    t.index ["archived"], name: "index_reports_on_archived"
+    t.index ["project_id"], name: "index_reports_on_project_id"
+    t.index ["slug"], name: "index_reports_on_slug", unique: true
   end
 
   create_table "sites", force: :cascade do |t|

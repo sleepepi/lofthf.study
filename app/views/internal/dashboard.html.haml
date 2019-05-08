@@ -64,7 +64,7 @@
     %div.text-shadow{ style: "color: #c07277;position: absolute;left: 3rem;top: calc(50% - 1.5rem);" }= icon("fas", "dna", class: "fa-2x")
     %div{ style: "position: relative;" }
       Part of the
-      %strong= link_to "Slice", "https://tryslice.io"
+      %strong= link_to "Slice", ENV["slice_url"]
       data network.
 
   .dashboard-container.text-center
