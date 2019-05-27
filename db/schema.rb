@@ -118,7 +118,7 @@ ActiveRecord::Schema.define(version: 2019_05_08_200756) do
     t.string "header_label"
     t.jsonb "header"
     t.datetime "last_cached_at"
-    t.boolean "archived"
+    t.boolean "archived", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "project_id"
