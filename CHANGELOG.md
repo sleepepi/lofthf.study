@@ -5,6 +5,7 @@
   - Editors can now define reports to pull data from Slice
 - **Gem Changes**
   - Update to ruby 2.6.3
+  - Update to haml 5.1.1
 
 ## 8.0.0 (April 16, 2019)
 
