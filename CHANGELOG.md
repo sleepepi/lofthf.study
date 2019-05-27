@@ -7,6 +7,7 @@
   - Update to ruby 2.6.3
   - Update to haml 5.1.1
   - Update to jbuilder 2.9
+  - Update to pg_search 2.2.0
 
 ## 8.0.0 (April 16, 2019)
 
