@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  resources :pages
   root "external#landing"
 
   get :admin, to: "admin#dashboard"
@@ -45,7 +46,13 @@ Rails.application.routes.draw do
     get :report_card, path: "report-card"
     get :search
     get :pareto
-    get :report_table, path: "report/:report_id"
+    get :report_page, path: "report/:page_id"
+  end
+
+  resources :pages do
+    collection do
+      post :add_report, path: "add-report"
+    end
   end
 
   resources :profiles, only: [] do

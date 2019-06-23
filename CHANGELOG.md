@@ -2,7 +2,9 @@
 
 ### Enhancements
 - **Reports Added**
-  - Editors can now define reports to pull data from Slice
+  - Editors can create reports that pull data from Slice on a daily basis
+  - Reports can be grouped on pages that users can see under the home tab on the
+    dashboard
 - **Gem Changes**
   - Update to ruby 2.6.3
   - Update to devise 4.6.2

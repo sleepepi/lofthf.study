@@ -23,7 +23,8 @@ class ReportsController < ApplicationController
 
   # GET /reports
   def index
-    @reports = Report.all.page(params[:page]).per(20)
+    scope = Report.all.search_any_order(params[:search])
+    @reports = scope_order(scope).page(params[:page]).per(20)
   end
 
   # # GET /reports/:id
@@ -67,16 +68,22 @@ class ReportsController < ApplicationController
   private
 
   def find_report_or_redirect
-    @report = Report.find_by_param(params[:id])
+    @report = Report.find_by(id: params[:id])
     empty_response_or_root_path(reports_path) unless @report
   end
 
   def report_params
     params.require(:report).permit(
-      :project_id, :name, :slug, :header_label, :archived,
+      :project_id, :report_type, :name, :header_label, :sites_enabled,
+      :archived, :filter_expression, :group_expression,
       row_hashes: [
-        :report_row_id, :label, :expression
+        :report_row_id, :label, :expression, :muted
       ]
     )
+  end
+
+  def scope_order(scope)
+    @order = params[:order]
+    scope.order(Arel.sql(Report::ORDERS[params[:order]] || Report::DEFAULT_ORDER))
   end
 end

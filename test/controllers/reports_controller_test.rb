@@ -13,8 +13,8 @@ class ReportsControllerTest < ActionDispatch::IntegrationTest
   def report_params
     {
       project_id: projects(:one).id,
+      report_type: "expressions_by_site",
       name: "New Report",
-      slug: "new-report",
       header_label: "Diagnosis",
       archived: "0",
       row_hashes: [
@@ -52,9 +52,15 @@ class ReportsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to report_url(Report.last)
   end
 
-  test "should show report" do
+  test "should show expressions by site report" do
     login(@admin)
     get report_url(@report)
+    assert_response :success
+  end
+
+  test "should show randomizations by site report" do
+    login(@admin)
+    get report_url(reports(:randomizations))
     assert_response :success
   end
 
@@ -67,7 +73,6 @@ class ReportsControllerTest < ActionDispatch::IntegrationTest
   test "should update report" do
     login(@admin)
     patch report_url(@report), params: { report: report_params }
-    @report.reload
     assert_redirected_to report_url(@report)
   end
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_08_200756) do
+ActiveRecord::Schema.define(version: 2019_06_23_212346) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -84,6 +84,27 @@ ActiveRecord::Schema.define(version: 2019_05_08_200756) do
     t.index ["position"], name: "index_folders_on_position"
   end
 
+  create_table "page_reports", force: :cascade do |t|
+    t.bigint "page_id"
+    t.bigint "report_id"
+    t.integer "position"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["page_id", "report_id"], name: "index_page_reports_on_page_id_and_report_id", unique: true
+    t.index ["position"], name: "index_page_reports_on_position"
+  end
+
+  create_table "pages", force: :cascade do |t|
+    t.string "name"
+    t.string "slug"
+    t.integer "position"
+    t.boolean "archived", default: false, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["archived"], name: "index_pages_on_archived"
+    t.index ["slug"], name: "index_pages_on_slug", unique: true
+  end
+
   create_table "pg_search_documents", force: :cascade do |t|
     t.text "content"
     t.string "searchable_type"
@@ -108,23 +129,27 @@ ActiveRecord::Schema.define(version: 2019_05_08_200756) do
     t.jsonb "result"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "muted", default: false, null: false
     t.index ["position"], name: "index_report_rows_on_position"
     t.index ["report_id"], name: "index_report_rows_on_report_id"
   end
 
   create_table "reports", force: :cascade do |t|
     t.string "name"
-    t.string "slug"
     t.string "header_label"
     t.jsonb "header"
     t.datetime "last_cached_at"
-    t.boolean "archived", default: false, null: false
+    t.boolean "archived"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "project_id"
+    t.boolean "sites_enabled", default: true, null: false
+    t.string "report_type"
+    t.text "filter_expression"
+    t.text "group_expression"
+    t.jsonb "data"
     t.index ["archived"], name: "index_reports_on_archived"
     t.index ["project_id"], name: "index_reports_on_project_id"
-    t.index ["slug"], name: "index_reports_on_slug", unique: true
   end
 
   create_table "sites", force: :cascade do |t|
