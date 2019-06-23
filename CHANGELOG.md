@@ -1,4 +1,4 @@
-## 9.0.0
+## 9.0.0 (June 23, 2019)
 
 ### Enhancements
 - **Reports Added**
