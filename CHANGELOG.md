@@ -1,4 +1,4 @@
-## 10.0.0
+## 10.0.0 (August 4, 2019)
 
 ### Enhancements
 - **Admin Changes**
