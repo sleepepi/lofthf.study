@@ -8,6 +8,7 @@
 
 @objectsReady = ->
   categoriesSort()
+  pageReportsSort()
   reportRowsSort()
 
 # These functions get called on initial page visit and on turbolink page changes
