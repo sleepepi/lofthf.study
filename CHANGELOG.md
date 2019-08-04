@@ -1,6 +1,8 @@
 ## 10.0.0
 
 ### Enhancements
+- **Admin Changes**
+  - Admins now receive an email when a user confirms their account
 - **General Changes**
   - Remove example reports from dashboard
 - **Gem Changes**
