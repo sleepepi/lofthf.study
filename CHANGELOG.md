@@ -1,6 +1,8 @@
 ## 10.0.0
 
 ### Enhancements
+- **General Changes**
+  - Remove example reports from dashboard
 - **Gem Changes**
   - Update to pg_search 2.3.0
 
