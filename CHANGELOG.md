@@ -1,6 +1,8 @@
 ## 12.0.0
 
 ### Enhancements
+- **Document Changes**
+  - Reduced size of folder names in documents sidebar
 - **User Changes**
   - Admins can now associate a Staff ID with a user that will display in the
     directory and in the menu bar
