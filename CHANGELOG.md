@@ -1,6 +1,8 @@
 ## 12.0.0
 
 ### Enhancements
+- **Folder Changes**
+  - Folders are now sorted alphabetically in each category
 - **Document Changes**
   - Reduced size of folder names in documents sidebar
   - Admins can now set keywords for documents to improve search results for
