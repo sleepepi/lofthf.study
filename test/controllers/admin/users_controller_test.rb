@@ -21,7 +21,8 @@ class Admin::UsersControllerTest < ActionDispatch::IntegrationTest
       phone: "555-123-4567",
       role: "Role",
       key_contact: "0",
-      keywords: "nickname"
+      keywords: "nickname",
+      staffid: "12-34"
     }
   end
 
@@ -73,6 +74,7 @@ class Admin::UsersControllerTest < ActionDispatch::IntegrationTest
     assert_equal "555-123-4567", @user.phone
     assert_equal "Role", @user.role
     assert_equal "nickname", @user.keywords
+    assert_equal "12-34", @user.staffid
     assert_redirected_to admin_user_url(@user)
   end
 

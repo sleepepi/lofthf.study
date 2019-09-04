@@ -29,14 +29,15 @@ class User < ApplicationRecord
 
   include Strippable
   strip :username
+  strip :staffid
 
   include Searchable
   def self.searchable_attributes
-    %w(full_name email username)
+    %w(full_name email username staffid)
   end
 
   include PgSearch::Model
-  multisearchable against: [:full_name, :email, :username, :keywords, :phone, :role]
+  multisearchable against: [:full_name, :email, :username, :keywords, :phone, :role, :staffid]
 
   # Scopes
   scope :admins, -> { current.where(admin: true) }

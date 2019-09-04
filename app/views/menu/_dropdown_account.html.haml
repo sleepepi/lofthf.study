@@ -6,9 +6,8 @@
     - else
       = link_to "#", class: "nav-link dropdown-toggle", data: { toggle: "dropdown" }, aria: { haspopup: "true", expanded: "false" } do
         = current_user.username
-        - if false
-          - if current_user && current_user.staff_id.present?
-            %code= current_user.staff_id
+        - if current_user&.staffid.present?
+          %small.text-monospace= current_user.staffid
         = profile_picture_tag(current_user, size: 20)
 
 

@@ -1,5 +1,10 @@
 ## 12.0.0
 
+### Enhancements
+- **User Changes**
+  - Admins can now associate a Staff ID with a user that will display in the
+    directory and in the menu bar
+
 ## 11.0.0 (August 10, 2019)
 
 ### Enhancements
