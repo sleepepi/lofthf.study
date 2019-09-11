@@ -10,6 +10,10 @@
 - **User Changes**
   - Admins can now associate a Staff ID with a user that will display in the
     directory and in the menu bar
+- **Gem Changes**
+  - Update to rails 6.0.0
+  - Update to devise 4.7.1
+  - Update to coffee-rails 5.0
 
 ## 11.0.0 (August 10, 2019)
 
