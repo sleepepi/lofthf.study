@@ -25,5 +25,5 @@ deploy:
   bucket_name: elasticbeanstalk-us-east-1-910353042999
   on:
     repo: sleepepi/lofthf.study
-    branch: master
+    branch: 12-0-stable
     rvm: 2.6.3
