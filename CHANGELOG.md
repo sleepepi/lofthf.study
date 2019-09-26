@@ -7,6 +7,8 @@
   - Reduced size of folder names in documents sidebar
   - Admins can now set keywords for documents to improve search results for
     documents
+- **Site Changes**
+  - Display Staff ID on site pages in the directory
 - **User Changes**
   - Admins can now associate a Staff ID with a user that will display in the
     directory and in the menu bar
