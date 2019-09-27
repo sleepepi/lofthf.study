@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_26_234257) do
+ActiveRecord::Schema.define(version: 2019_09_27_010705) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -80,6 +80,7 @@ ActiveRecord::Schema.define(version: 2019_09_26_234257) do
     t.datetime "updated_at", null: false
     t.integer "documents_count", default: 0, null: false
     t.string "zipped_folder"
+    t.bigint "zipped_folder_byte_size", default: 0, null: false
     t.index ["archived"], name: "index_folders_on_archived"
     t.index ["category_id", "name"], name: "index_folders_on_category_id_and_name", unique: true
     t.index ["category_id", "slug"], name: "index_folders_on_category_id_and_slug", unique: true

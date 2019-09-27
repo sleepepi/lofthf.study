@@ -37,25 +37,22 @@ class Folder < ApplicationRecord
   end
 
   def generate_zipped_folder!
-    zip_name = "folder.zip"
+    zip_name = "lofthf-study-#{category.slug}-#{slug}.zip"
     temp_zip_file = Tempfile.new(zip_name)
     begin
-      # Initialize temp zip file.
-      Zip::OutputStream.open(temp_zip_file) { |zos| }
-      # Write to temp zip file.
-      Zip::File.open(temp_zip_file, Zip::File::CREATE) do |zip|
+      stream = Zip::OutputStream::write_buffer do |zos|
         documents.each do |document|
-          # Two arguments:
-          # - The name of the file as it will appear in the archive
-          # - The original file, including the path to find it
-          zip.add(document.filename, document.file.path) if File.exist?(document.file.path) && File.size(document.file.path).positive?
+          zos.put_next_entry document.filename
+          zos.write document.file.read
         end
       end
+      stream.rewind
+      temp_zip_file.write(stream.sysread)
       temp_zip_file.define_singleton_method(:original_filename) do
         zip_name
       end
       update zipped_folder: temp_zip_file
-      # update file_size: zipped_folder.size # Cache after attaching to model.
+      update zipped_folder_byte_size: zipped_folder.size
     ensure
       # Close and delete the temp file
       temp_zip_file.close

@@ -30,12 +30,11 @@ class FoldersController < ApplicationController
   # GET /docs/:category/:folder/download-zip
   def download_zip
     @folder.generate_zipped_folder!
-    filename = "lofthf-study-#{@folder.category.slug}-#{@folder.slug}.zip"
 
     if Rails.env.production?
       redirect_to @folder.zipped_folder.url(query: { "response-content-disposition" => "attachment" }), allow_other_host: true
     else
-      send_file_if_present @folder.zipped_folder, filename: filename
+      send_file_if_present @folder.zipped_folder
     end
   end
 
