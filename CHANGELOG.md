@@ -3,6 +3,7 @@
 ### Enhancements
 - **Folder Changes**
   - Folders are now sorted alphabetically in each category
+  - All files in a folder can be downloaded as a single zip file
 - **Document Changes**
   - Reduced size of folder names in documents sidebar
   - Admins can now set keywords for documents to improve search results for

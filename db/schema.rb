@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_04_004415) do
+ActiveRecord::Schema.define(version: 2019_09_26_234257) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -79,6 +79,7 @@ ActiveRecord::Schema.define(version: 2019_09_04_004415) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "documents_count", default: 0, null: false
+    t.string "zipped_folder"
     t.index ["archived"], name: "index_folders_on_archived"
     t.index ["category_id", "name"], name: "index_folders_on_category_id_and_name", unique: true
     t.index ["category_id", "slug"], name: "index_folders_on_category_id_and_slug", unique: true
@@ -141,7 +142,7 @@ ActiveRecord::Schema.define(version: 2019_09_04_004415) do
     t.string "header_label"
     t.jsonb "header"
     t.datetime "last_cached_at"
-    t.boolean "archived"
+    t.boolean "archived", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "project_id"
