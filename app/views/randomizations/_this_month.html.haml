@@ -1,0 +1,8 @@
+- first_row = report.report_rows.first
+- if first_row
+  .mb-3
+    %strong
+      This month
+    %p
+      = pluralize(first_row.result.count, "subject")
+      randomized this month.

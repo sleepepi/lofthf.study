@@ -1,0 +1,32 @@
+- if report.header
+  - site_map = {}
+  - report.header.select{ |h| h.key?("id") }.each do |hash|
+    - site_map[hash["id"].to_s] = hash["label"]
+  - counts = {}
+  - report.report_rows.each do |report_row|
+    - result = report_row.result || {}
+    - (result["sites"] || []).each_with_index do |hash, index|
+      - if hash["site_id"]
+        - counts[site_map[hash["site_id"].to_s]] ||= 0
+        - counts[site_map[hash["site_id"].to_s]] += hash["count"].to_i
+
+  - max_count = counts.values.max
+  - sites = counts.select { |_, v| v == max_count }.collect { |k, _| k }
+
+- if sites.present?
+  .mb-3
+    %strong
+      Top
+      = "site".pluralize(sites.count)
+
+    %p
+      = sites.collect{ |site| content_tag(:span, site, class: "nowrap text-primary") }.to_sentence.html_safe
+      - if sites.size > 1
+        lead
+      - else
+        leads
+      with
+      = succeed "." do
+        %strong= pluralize(max_count, "total randomization")
+        - if sites.size > 1
+          each

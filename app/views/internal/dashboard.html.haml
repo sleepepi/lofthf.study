@@ -11,21 +11,29 @@
         %strong Complete your profile
       = render "directory/profile_form", user: current_user
 
+- @report = Report.where(archived: false).find_by(report_type: "randomizations_by_site_by_month")
+
 .d-flex.flex-column.flex-sm-row.justify-content-between
-  .dashboard-container.flex-fill
-    .mb-3
-      %strong
-        Welcome to the
-        = ENV["website_name"]
-        website!
-    %p
-      Quickly find
-      = icon("fas", "file-alt", class: "text-primary")
-      = link_to "documents", folders_path
-      and
-      = succeed "." do
-        = icon("fas", "user-circle", class: "text-primary")
-        = link_to "contact info", directory_path
+  .dashboard-container
+    - if @report
+      = render "randomizations/total", report: @report
+      = render "randomizations/this_month", report: @report
+      = render "randomizations/top_sites", report: @report
+      = render "reports/page_link", report: @report
+    - else
+      .mb-3
+        %strong
+          Welcome to the
+          = ENV["website_name"]
+          website!
+      %p
+        Quickly find
+        = icon("fas", "file-alt", class: "text-primary")
+        = link_to "documents", folders_path
+        and
+        = succeed "." do
+          = icon("fas", "user-circle", class: "text-primary")
+          = link_to "contact info", directory_path
 
   - if @featured_documents.present? || @top_documents.present?
     .dashboard-container.ml-0.ml-sm-3.flex-fill

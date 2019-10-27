@@ -47,6 +47,8 @@ class Report < ApplicationRecord
   def reverse_report_rows
     report_rows.reorder(Arel.sql("report_rows.position desc nulls first"))
   end
+  has_many :page_reports, -> { order(Arel.sql("position nulls last")) }
+  has_many :pages, through: :page_reports
 
   # Methods
   def refresh!

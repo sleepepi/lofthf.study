@@ -1,0 +1,8 @@
+- page = report.pages.where(archived: false).first
+- if page
+  .mb-3
+    = icon("fas", "chart-area")
+    View
+    = link_to report_page_path(page) do
+      = page.name
+      = icon("fas", "caret-right")
