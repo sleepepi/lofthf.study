@@ -22,6 +22,7 @@
   - Update to devise 4.7.1
   - Update to coffee-rails 5.0
   - Update to haml 5.1.2
+  - Update to jquery-rails 4.3.5
   - Update to rubyzip 2.0.0
 
 ## 11.0.0 (August 10, 2019)
