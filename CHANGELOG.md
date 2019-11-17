@@ -3,6 +3,7 @@
 ### Enhancements
 - **Dashboard Changes**
   - Dashboard now displays a randomization overview
+  - Complete profile widget no longer requires a photo to be uploaded
 - **Folder Changes**
   - Folders are now sorted alphabetically in each category
   - All files in a folder can be downloaded as a single zip file
