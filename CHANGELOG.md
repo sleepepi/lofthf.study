@@ -19,6 +19,7 @@
   - Update to rails 6.0.0
   - Update to devise 4.7.1
   - Update to coffee-rails 5.0
+  - Update to rubyzip 2.0.0
 
 ## 11.0.0 (August 10, 2019)
 
