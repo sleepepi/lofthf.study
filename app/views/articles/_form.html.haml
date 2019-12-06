@@ -1,0 +1,7 @@
+= form_with model: article, local: true do |form|
+  = render "forms/horizontal/text_field", form: form, object: article, key: :title, slug: "slug", autocomplete: "off", autocorrect: "off", autocapitalize: "none", spellcheck: "false"
+  = render "forms/horizontal/slug_field", form: form, object: article, key: :slug
+  = render "forms/horizontal/text_area", form: form, object: article, key: :description, rows: 7, help_text: "Supports markdown formatting."
+  = render "forms/horizontal/check_box", form: form, object: article, key: :published
+  = render "forms/horizontal/date_field", form: form, object: article, key: :publish_date
+  = render "forms/horizontal/submit", form: form, object: article

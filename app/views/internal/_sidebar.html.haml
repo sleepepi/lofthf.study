@@ -5,6 +5,7 @@
         %ul.sidebar-menu.sidebar-menu-shadow
           %li.sidebar-menu-header= render "sidebar/toggle", title: "Dashboard"
           %li= link_to "Overview", dashboard_path, class: current_page?(dashboard_path) ? "active" : nil
+          %li= link_to "Articles", articles_path, class: params[:controller] == "articles" ? "active" : nil
 
           - pages = Page.where(archived: false).order(Arel.sql("position nulls last"))
           - if pages.present?

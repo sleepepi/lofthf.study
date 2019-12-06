@@ -67,6 +67,16 @@
                         = link_to video.name, video
                       .text-muted
                         Videos
+              - when "Article"
+                - article = document.searchable
+                .dashboard-container.dashboard-container-border-accent.mb-3
+                  .d-flex.align-items-center
+                    .d-inline-block.mr-1.pr-3.text-shadow{ style: "color: #505050" }= icon("fas", "bullhorn", class: "fa-3x")
+                    .d-inline{ style: "font-weight: 200;" }
+                      .text-dark
+                        = link_to article.title, article
+                      .text-muted
+                        Articles
               - else
                 - if Rails.env.development?
                   .dashboard-container.dashboard-container-border-accent.mb-3

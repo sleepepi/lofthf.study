@@ -4,6 +4,7 @@
   paretoCharts()
 
 @extensionsReady = ->
+  datepickerReady()
   tooltipsReady()
 
 @objectsReady = ->

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_27_010705) do
+ActiveRecord::Schema.define(version: 2019_12_06_013247) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,23 @@ ActiveRecord::Schema.define(version: 2019_09_27_010705) do
     t.string "checksum", null: false
     t.datetime "created_at", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "articles", force: :cascade do |t|
+    t.string "title"
+    t.string "slug"
+    t.text "description"
+    t.date "publish_date"
+    t.boolean "published", default: false, null: false
+    t.boolean "deleted", default: false, null: false
+    t.datetime "deleted_at"
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["deleted"], name: "index_articles_on_deleted"
+    t.index ["published"], name: "index_articles_on_published"
+    t.index ["slug"], name: "index_articles_on_slug", unique: true
+    t.index ["user_id"], name: "index_articles_on_user_id"
   end
 
   create_table "categories", force: :cascade do |t|
@@ -219,6 +236,37 @@ ActiveRecord::Schema.define(version: 2019_09_27_010705) do
     t.index ["site_id"], name: "index_users_on_site_id"
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
     t.index ["username"], name: "index_users_on_username", unique: true
+  end
+
+  create_table "video_categories", force: :cascade do |t|
+    t.string "name"
+    t.string "slug"
+    t.integer "position"
+    t.integer "video_folders_count", default: 0, null: false
+    t.boolean "archived", default: false, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["archived"], name: "index_video_categories_on_archived"
+    t.index ["name"], name: "index_video_categories_on_name", unique: true
+    t.index ["position"], name: "index_video_categories_on_position"
+    t.index ["slug"], name: "index_video_categories_on_slug", unique: true
+    t.index ["video_folders_count"], name: "index_video_categories_on_video_folders_count"
+  end
+
+  create_table "video_folders", force: :cascade do |t|
+    t.integer "video_category_id"
+    t.string "name"
+    t.string "slug"
+    t.text "description"
+    t.integer "position"
+    t.boolean "archived", default: false, null: false
+    t.integer "videos_count", default: 0, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["archived"], name: "index_video_folders_on_archived"
+    t.index ["position"], name: "index_video_folders_on_position"
+    t.index ["video_category_id", "name"], name: "index_video_folders_on_video_category_id_and_name", unique: true
+    t.index ["video_category_id", "slug"], name: "index_video_folders_on_video_category_id_and_slug", unique: true
   end
 
   create_table "videos", force: :cascade do |t|

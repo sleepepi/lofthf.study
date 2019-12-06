@@ -4,6 +4,8 @@
 - **Dashboard Changes**
   - Dashboard now displays a randomization overview
   - Complete profile widget no longer requires a photo to be uploaded
+- **Articles Changes**
+  - Editors can now write short articles that will display on the dashboard
 - **Folder Changes**
   - Folders are now sorted alphabetically in each category
   - All files in a folder can be downloaded as a single zip file

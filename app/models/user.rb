@@ -65,6 +65,7 @@ class User < ApplicationRecord
 
   # Relationships
   belongs_to :site, optional: true
+  has_many :articles, -> { current }
 
   # Methods
   def incomplete_profile?

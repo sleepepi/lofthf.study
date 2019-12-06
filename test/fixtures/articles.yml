@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+published:
+  title: Welcome to the site
+  slug: welcome-to-the-site
+  description: This is the website. And now a quick note about us!
+  publish_date: 2019-12-05
+  published: true
+  user: editor
+
+draft:
+  title: Blog post draft.
+  slug: blog-post-draft
+  description: MyText
+  publish_date: 2019-12-30
+  published: false
+  user: editor

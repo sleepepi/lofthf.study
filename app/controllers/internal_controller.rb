@@ -10,6 +10,7 @@ class InternalController < ApplicationController
   def dashboard
     @featured_documents = Document.featured_files.limit(10)
     @top_documents = Document.top_files.limit(5)
+    @article = Article.current.published.order(publish_date: :desc).first
   end
 
   # GET /directory

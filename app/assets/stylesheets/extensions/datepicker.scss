@@ -1,0 +1,208 @@
+// scss-lint:disable SelectorDepth, NestingDepth
+// SelectorDepth is ignored since the tool is developed externally and the
+// DOM structure for the calendar is heavily dependent on the CSS selectors.
+
+input {
+  &.datepicker {
+    max-width: 120px;
+  }
+}
+
+.datepicker {
+  direction: ltr;
+
+  > div {
+    display: none;
+  }
+
+  &.days {
+    .datepicker-days,
+    .datepicker-months,
+    .datepicker-years {
+      display: block;
+    }
+  }
+
+  table {
+    margin: 0;
+
+    tr td span {
+      border-radius: $border-radius;
+      cursor: pointer;
+      display: block;
+      float: left;
+      height: 36px;
+      line-height: 36px;
+      margin: 1%;
+      width: 23%;
+    }
+  }
+
+  td,
+  th {
+    border: 0;
+    border-radius: $border-radius;
+    height: 20px;
+    text-align: center;
+    width: 20px;
+  }
+
+  .switch {
+    width: 145px;
+  }
+
+  .day:hover {
+    cursor: pointer;
+  }
+
+  .cw {
+    font-size: 10px;
+    padding: 0 2px 0 5px;
+    vertical-align: middle;
+    width: 12px;
+  }
+
+  thead tr:first-child .cw {
+    background-color: transparent;
+    cursor: default;
+  }
+}
+
+.datepicker-inline {
+  width: 220px;
+}
+
+.datepicker-dropdown {
+  left: 0;
+  padding: 4px;
+  top: 0;
+}
+
+.datepicker-dropdown::before {
+  border-bottom: 7px solid transparent;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  content: '';
+  display: inline-block;
+  left: 6px;
+  position: absolute;
+  top: -7px;
+}
+
+.datepicker-dropdown::after {
+  border-bottom: 6px solid transparent;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  content: '';
+  display: inline-block;
+  left: 7px;
+  position: absolute;
+  top: -6px;
+}
+
+.datepicker td,
+.datepicker th {
+  border: 0;
+  border-radius: $border-radius;
+  height: 20px;
+  text-align: center;
+  width: 20px;
+}
+
+.datepicker .disabled,
+.datepicker .disabled:hover {
+  background: none;
+  cursor: default;
+}
+
+.datepicker table tr td .disabled,
+.datepicker table tr td .disabled:hover {
+  background: none;
+  cursor: default;
+}
+
+.datepicker thead tr:first-child th,
+.datepicker tfoot tr:first-child th {
+  cursor: pointer;
+}
+
+.input-append.date .add-on i,
+.input-prepend.date .add-on i {
+  cursor: pointer;
+  display: block;
+  height: 16px;
+  width: 16px;
+}
+
+@each $name, $theme in $themes {
+  .theme-#{$name}-bg {
+    .datepicker {
+      table {
+        tr td span {
+          &:hover {
+            background: theme-color($theme, light, map-get($theme-colors, light));
+          }
+        }
+
+        tr td .old {
+          color: theme-color($theme, text-muted, $text-muted);
+        }
+      }
+
+      .day:hover {
+        background: theme-color($theme, light, map-get($theme-colors, light));
+      }
+    }
+
+    .datepicker-dropdown::before {
+      border-bottom-color: theme-color($theme, dropdown-fallback-border, $p400-grey);
+    }
+
+    .datepicker-dropdown::after {
+      border-bottom-color: theme-color($theme, dropdown-bg, $dropdown-bg);
+    }
+
+    .datepicker .old,
+    .datepicker .new,
+    .datepicker .disabled,
+    .datepicker .disabled:hover {
+      color: theme-color($theme, text-muted, $text-muted);
+    }
+
+    .datepicker .today,
+    .datepicker .today:hover,
+    .datepicker .today.disabled,
+    .datepicker .today.disabled:hover {
+      background-color: map-get($theme, primary);
+      border-color: map-get($theme, primary);
+    }
+
+    .datepicker .active,
+    .datepicker .active:hover,
+    .datepicker .active.disabled,
+    .datepicker .active.disabled:hover {
+      background-color: map-get($theme, primary);
+      border-color: map-get($theme, primary);
+      color: map-get($theme, brand-white);
+    }
+
+    .datepicker table tr td .disabled,
+    .datepicker table tr td .disabled:hover {
+      color: theme-color($theme, text-muted, $text-muted);
+    }
+
+    .datepicker table tr td .active,
+    .datepicker table tr td .active:hover,
+    .datepicker table tr td .active.disabled,
+    .datepicker table tr td .active.disabled:hover {
+      background-color: map-get($theme, primary);
+      border-color: map-get($theme, primary);
+      color: map-get($theme, brand-white);
+    }
+
+    .datepicker thead tr:first-child th:hover,
+    .datepicker tfoot tr:first-child th:hover {
+      background: theme-color($theme, light, map-get($theme-colors, light));
+    }
+  }
+}

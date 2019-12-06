@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  resources :pages
   root "external#landing"
 
   get :admin, to: "admin#dashboard"
@@ -9,6 +8,8 @@ Rails.application.routes.draw do
     get :debug
     resources :users
   end
+
+  resources :articles
 
   resources :categories, only: [:edit, :update, :destroy] do
     collection do

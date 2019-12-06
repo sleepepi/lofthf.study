@@ -45,4 +45,20 @@ class ApplicationController < ActionController::Base
       head :ok
     end
   end
+
+  def parse_date(date_string, default_date = "")
+    if date_string.to_s.split("/").last.size == 2
+      Date.strptime(date_string, "%m/%d/%y")
+    else
+      Date.strptime(date_string, "%m/%d/%Y")
+    end
+  rescue ArgumentError, NoMethodError
+    default_date
+  end
+
+  def parse_date_if_key_present(object, key)
+    return unless params[object].key?(key)
+
+    params[object][key] = parse_date(params[object][key]) if params[object].key?(key)
+  end
 end

@@ -67,6 +67,16 @@
                 =# icon("far", "star", style: "color: #fbc02d;") if document.featured?
                 = link_to document.filename, document_download_link(document)
 
+- if @article
+  .dashboard-container.dashboard-container-border-accent
+    .mb-3
+      .float-right
+        %small.text-muted= format_date @article.publish_date
+      %h4
+        %span= @article.title
+
+    = simple_markdown @article.description
+
 - if false
   .jumbotron.jumbotron-custom-text.jumbotron-shadow-inset{ style: "position: relative;" }
     %div.text-shadow{ style: "color: #c07277;position: absolute;left: 3rem;top: calc(50% - 1.5rem);" }= icon("fas", "dna", class: "fa-2x")
