@@ -1,4 +1,4 @@
-## 12.0.0
+## 12.0.0 (January 13, 2020)
 
 ### Enhancements
 - **Dashboard Changes**
