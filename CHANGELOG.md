@@ -22,6 +22,7 @@
 - **Gem Changes**
   - Update to ruby 2.6.4
   - Update to rails 6.0.2.1
+  - Update to bootstrap 4.4.1
   - Update to carrierwave 2.0.2
   - Update to devise 4.7.1
   - Update to coffee-rails 5.0
