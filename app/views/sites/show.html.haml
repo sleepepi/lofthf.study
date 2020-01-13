@@ -32,12 +32,14 @@
       %col
       %col
       %col.d-none.d-md-table-column
+      %col.d-none.d-lg-table-column
       %thead
         %tr
           %th.d-none.d-lg-table-cell.text-center.nowrap= order_to "Staff ID", primary: "staffid"
           %th= order_to "Name", primary: "name"
           %th= order_to "Email", primary: "email"
           %th.d-none.d-md-table-cell= order_to "Role", primary: "role"
+          %th.d-none.d-lg-table-cell Phone
 
       - @users.each do |user|
         %tr
@@ -46,6 +48,8 @@
           %td= user.full_name
           %td= user.email
           %td.d-none.d-md-table-cell= user.role
+          %td.d-none.d-lg-table-cell
+            %small= user.phone
   .center-horizontally= paginate @users, theme: "bootstrap"
   .jumbotron.jumbotron-custom-text.jumbotron-shadow
     = icon("far", "comments")

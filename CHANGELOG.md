@@ -15,6 +15,7 @@
     documents
 - **Site Changes**
   - Display Staff ID on site pages in the directory
+  - Display phone number on site pages in the directory
 - **User Changes**
   - Admins can now associate a Staff ID with a user that will display in the
     directory and in the menu bar
