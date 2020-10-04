@@ -1,5 +1,8 @@
 ## 13.0.1
 
+### Bug Fix
+- Fix issue renaming file on AWS
+
 ## 13.0.0 (October 4, 2020)
 
 ### Enhancements

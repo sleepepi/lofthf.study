@@ -55,10 +55,10 @@ class Document < ApplicationRecord
     return document if document.filename == filename
 
     sanitized_file = document.file.file
-    new_filename = "#{File.basename(filename, File.extname(sanitized_file.file))}#{File.extname(sanitized_file.file)}"
+    new_filename = "#{File.basename(filename, File.extname(sanitized_file.path))}#{File.extname(sanitized_file.path)}"
     return document if !document.folder.documents.where(filename: new_filename).count.zero?
 
-    new_path = File.join(File.dirname(sanitized_file.file), new_filename)
+    new_path = File.join(File.dirname(sanitized_file.path), new_filename)
     new_sanitized_file = CarrierWave::SanitizedFile.new sanitized_file.move_to(new_path)
     document.file.cache!(new_sanitized_file)
     document.filename = new_filename
