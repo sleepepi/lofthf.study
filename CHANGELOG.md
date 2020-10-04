@@ -1,6 +1,8 @@
 ## 13.0.0
 
 ### Enhancements
+- **General Changes**
+  - Changed "Sign in" to "Staff login" to reduce number of accidental sign ups
 - **Gem Changes**
   - Update to ruby 2.7.1
   - Update to rails 6.0.3.3
