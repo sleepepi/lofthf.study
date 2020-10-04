@@ -1,4 +1,4 @@
-## 13.0.0
+## 13.0.0 (October 4, 2020)
 
 ### Enhancements
 - **General Changes**
