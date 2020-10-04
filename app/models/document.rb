@@ -23,7 +23,7 @@ class Document < ApplicationRecord
 
   # Concerns
   include PgSearch::Model
-  multisearchable against: [:filename, :content_type, :keywords]
+  multisearchable against: [:filename, :content_type, :keywords], unless: :archived?
 
   # Validations
   validates :filename, presence: true,
@@ -31,15 +31,15 @@ class Document < ApplicationRecord
 
   # Scopes
   scope :latest_files, -> do
-    joins(:folder).merge(Folder.where(archived: false).joins(:category).merge(Category.sidebar)).reorder(created_at: :desc).limit(10)
+    joins(:folder).merge(Folder.where(archived: false).joins(:category).merge(Category.sidebar)).where(archived: false).reorder(created_at: :desc).limit(10)
   end
 
   scope :top_files, -> do
-    joins(:folder).merge(Folder.where(archived: false).joins(:category).merge(Category.sidebar)).reorder(download_count: :desc)
+    joins(:folder).merge(Folder.where(archived: false).joins(:category).merge(Category.sidebar)).where(archived: false).reorder(download_count: :desc)
   end
 
   scope :featured_files, -> do
-    joins(:folder).merge(Folder.where(archived: false).joins(:category).merge(Category.sidebar)).where(featured: true).reorder(created_at: :desc)
+    joins(:folder).merge(Folder.where(archived: false).joins(:category).merge(Category.sidebar)).where(featured: true, archived: false).reorder(created_at: :desc)
   end
 
   # Relationships

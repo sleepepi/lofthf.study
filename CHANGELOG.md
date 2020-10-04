@@ -8,6 +8,9 @@
 - **Document Changes**
   - Featured documents are now display on the Documents Overview
   - Documents can now be renamed
+  - Documents can now be archived
+    - Archived documents are only visible to editors
+    - Archived documents do not show up in search results
 - **Gem Changes**
   - Update to ruby 2.7.1
   - Update to rails 6.0.3.3

@@ -36,12 +36,14 @@ class Folder < ApplicationRecord
     )
   end
 
-  def generate_zipped_folder!
+  def generate_zipped_folder!(current_user)
+    documents_to_zip = current_user.editor? ? documents : documents.where(archived: false)
+
     zip_name = "lofthf-study-#{category.slug}-#{slug}.zip"
     temp_zip_file = Tempfile.new(zip_name)
     begin
       stream = Zip::OutputStream::write_buffer do |zos|
-        documents.each do |document|
+        documents_to_zip.each do |document|
           zos.put_next_entry document.filename
           zos.write document.file.read
         end

@@ -20,7 +20,11 @@
           %td.d-none.d-sm-table-cell
             = render "files/icon", document: document
           %td
-            = link_to document.filename, document_download_link(document)
+            = link_to document.filename, document_download_link(document), class: document.archived? ? "text-muted" : nil
+            - if document.archived?
+              %span.badge.badge-secondary
+                = icon("fas", "archive")
+                archived
           %td.d-none.d-md-table-cell.text-center.nowrap
             %small= number_to_human_size document.byte_size
           %td.d-none.d-sm-table-cell.text-center.nowrap

@@ -25,12 +25,17 @@ class FoldersController < ApplicationController
 
   # GET /docs/:category/:folder
   def show
-    @documents = docs_scope_order(@folder.documents).page(params[:page]).per(Folder::DOCS_PER_PAGE)
+    scope = if current_user.editor?
+      @folder.documents
+    else
+      @folder.documents.where(archived: false)
+    end
+    @documents = docs_scope_order(scope).page(params[:page]).per(Folder::DOCS_PER_PAGE)
   end
 
   # GET /docs/:category/:folder/download-zip
   def download_zip
-    @folder.generate_zipped_folder!
+    @folder.generate_zipped_folder!(current_user)
 
     if Rails.env.production?
       redirect_to @folder.zipped_folder.url(query: { "response-content-disposition" => "attachment" }), allow_other_host: true
