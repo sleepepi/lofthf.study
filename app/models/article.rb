@@ -9,7 +9,7 @@ class Article < ApplicationRecord
     "title desc" => "articles.title desc",
     "title" => "articles.title"
   }
-  DEFAULT_ORDER = "articles.title"
+  DEFAULT_ORDER = "articles.publish_date desc"
 
   # Concerns
   include PgSearch::Model

@@ -26,7 +26,7 @@
           - if current_user.editor?
             %th
           %th= order_to "Title", primary: "title desc", secondary: "title"
-          %th.text-center= order_to "Published", primary: "latest", secondary: "oldest"
+          %th.text-center= order_to "Published", primary: "oldest", secondary: "latest"
           - if current_user.editor?
             %th.text-center Actions
 
