@@ -20,6 +20,7 @@ class FoldersController < ApplicationController
   # GET /docs
   def index
     @documents = Document.latest_files
+    @featured_documents = Document.featured_files
   end
 
   # GET /docs/:category/:folder
