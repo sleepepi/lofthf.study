@@ -6,6 +6,7 @@ rvm:
 addons:
   postgresql: "10"
 before_install:
+- nvm install 10
 - gem install bundler
 before_script:
 - cp config/.travis.database.yml config/database.yml
