@@ -1,7 +1,6 @@
 language: ruby
 rvm:
-- 2.6.4
-- 2.7.0
+- 2.7.1
 - ruby-head
 # gemfile: "gems.rb"
 addons:
@@ -25,4 +24,4 @@ deploy:
   on:
     repo: sleepepi/lofthf.study
     branch: master
-    rvm: 2.6.4
+    rvm: 2.7.1

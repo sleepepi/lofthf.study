@@ -2,6 +2,7 @@
 
 ### Enhancements
 - **Gem Changes**
+  - Update to ruby 2.7.1
   - Update to rails 6.0.3.3
   - Update to carrierwave 2.1.0
   - Update to kaminari 1.2.1
