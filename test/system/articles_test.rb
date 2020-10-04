@@ -12,7 +12,7 @@ class ArticlesTest < ApplicationSystemTestCase
   test "visit the index" do
     visit_login(@editor)
     visit articles_url
-    assert_selector "h1", text: "Articles"
+    assert_selector "h1", text: "Newsletters"
     screenshot("visit-articles-index")
   end
 
