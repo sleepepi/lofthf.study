@@ -51,6 +51,19 @@ class Document < ApplicationRecord
     MIME::Types.type_for(filename).first.content_type
   end
 
+  def self.rename_file(document, filename)
+    return document if document.filename == filename
+
+    sanitized_file = document.file.file
+    new_filename = "#{File.basename(filename, File.extname(sanitized_file.file))}#{File.extname(sanitized_file.file)}"
+    new_path = File.join(File.dirname(sanitized_file.file), new_filename)
+    new_sanitized_file = CarrierWave::SanitizedFile.new sanitized_file.move_to(new_path)
+    document.file.cache!(new_sanitized_file)
+    document.filename = new_filename
+    document.save!
+    document
+  end
+
   def page
     index = folder.documents.order(Arel.sql("LOWER(documents.filename)")).pluck(:id).index(id)
     page = index / Folder::DOCS_PER_PAGE + 1 if index

@@ -56,6 +56,7 @@ class DocumentsController < ApplicationController
 
   # PATCH /documents/1
   def update
+    @document = Document.rename_file(@document, params[:document][:filename]) if params[:document][:filename].present?
     if @document.update(document_params)
       redirect_to category_folder_path(@document.folder.category, @document.folder), notice: "#{@document.filename} was successfully updated."
     else
