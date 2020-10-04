@@ -12,7 +12,7 @@ gem "pg",                      ">= 0.18", "< 2.0"
 gem "autoprefixer-rails"
 gem "aws-sdk-s3",                          require: false
 gem "bootstrap",               "~> 4.4.1"
-gem "carrierwave",             "~> 2.0.2"
+gem "carrierwave",             "~> 2.1.0"
 gem "devise",                  "~> 4.7.1"
 gem "fog-aws"
 gem "font-awesome-sass",       "~> 5.12.0"

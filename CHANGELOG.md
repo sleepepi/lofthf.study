@@ -3,6 +3,7 @@
 ### Enhancements
 - **Gem Changes**
   - Update to rails 6.0.3.3
+  - Update to carrierwave 2.1.0
 
 ## 12.0.0 (January 13, 2020)
 
