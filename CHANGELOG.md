@@ -1,5 +1,9 @@
 ## 14.0.0
 
+### Enhancements
+- **Gem Changes**
+  - Update to rails 6.0.3.4
+
 ## 13.0.1 (October 4, 2020)
 
 ### Bug Fix
