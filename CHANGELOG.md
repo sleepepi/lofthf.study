@@ -1,6 +1,11 @@
 ## 14.0.0
 
 ### Enhancements
+- **Dashboard Changes**
+  - Added the randomization graph to the dashboard
+    - The graph displays data labels on the graph
+    - The graph can be filtered to display only the past 6 or 12 months
+    - The graph can be filtered by site
 - **Gem Changes**
   - Update to rails 6.0.3.4
 

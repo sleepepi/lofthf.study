@@ -35,37 +35,61 @@
           = icon("fas", "user-circle", class: "text-primary")
           = link_to "contact info", directory_path
 
-  - if @featured_documents.present? || @top_documents.present?
+
+  - if @featured_documents.present? || @top_documents.present? || @report
     .dashboard-container.ml-0.ml-sm-3.flex-fill
-      - if @featured_documents.present?
-        %div.mb-3
-          %strong Featured docs
-        %div.ml-3.mb-4
-          - @featured_documents.each do |document|
-            .small.mb-1
-              .float-right.pl-2
-                = icon("far", "folder-open")
-                = link_to document.folder.name, category_folder_path(document.folder.category, document.folder), class: "link-blend"
+      - if @report
+        = render "reports/chart", report: @report, overall: true, individual: false, single: true, data_labels: true if @report.chart?
 
-              .nowrap.overflow-hidden
-                = render "files/icon", document: document
-                =# icon("far", "star", style: "color: #fbc02d;") if document.featured?
-                = link_to document.filename, document_download_link(document)
+        .btn-toolbar.d-flex.justify-content-center
+          .btn-group.mr-2
+            = link_to "All time", url_for, class: "btn btn-sm btn-light #{"active" if params[:range] != "12mo" && params[:range] != "6mo"}"
+            = link_to "Past 12 months", url_for(range: "12mo", site: params[:site]), class: "btn btn-sm btn-light #{"active" if params[:range] == "12mo"}"
+            = link_to "Past 6 months", url_for(range: "6mo", site: params[:site]), class: "btn btn-sm btn-light #{"active" if params[:range] == "6mo"}"
 
-      - if @top_documents.present?
-        %div.mb-3
-          %strong Top downloads
-        %div.ml-3
-          - @top_documents.each do |document|
-            .small.mb-1
-              .float-right.pl-2
-                = icon("far", "folder-open")
-                = link_to document.folder.name, category_folder_path(document.folder.category, document.folder), class: "link-blend"
+          - sites = {}
+          - ((@report.header || [])[1..] || []).each do |header|
+            - sites[header["id"]] = header["label"]
 
-              .nowrap.overflow-hidden
-                = render "files/icon", document: document
-                =# icon("far", "star", style: "color: #fbc02d;") if document.featured?
-                = link_to document.filename, document_download_link(document)
+          .btn-group
+            .dropdown{ style: "z-index: 1060;" }
+              = link_to sites[params[:site].to_i] || "Overall", "#", class: "btn btn-light btn-sm dropdown-toggle", data: { toggle: "dropdown" }
+              .dropdown-menu
+                = link_to "Overall", url_for(range: params[:range]), class: "dropdown-item #{"active" if params[:site].blank?}"
+                .dropdown-divider
+                - sites.each do |site_id, site_name|
+                  = link_to site_name, url_for(range: params[:range], site: site_id), class: "dropdown-item #{"active" if params[:site].to_i == site_id}"
+
+      - else
+        - if @featured_documents.present?
+          %div.mb-3
+            %strong Featured docs
+          %div.ml-3.mb-4
+            - @featured_documents.each do |document|
+              .small.mb-1
+                .float-right.pl-2
+                  = icon("far", "folder-open")
+                  = link_to document.folder.name, category_folder_path(document.folder.category, document.folder), class: "link-blend"
+
+                .nowrap.overflow-hidden
+                  = render "files/icon", document: document
+                  =# icon("far", "star", style: "color: #fbc02d;") if document.featured?
+                  = link_to document.filename, document_download_link(document)
+
+        - if @top_documents.present?
+          %div.mb-3
+            %strong Top downloads
+          %div.ml-3
+            - @top_documents.each do |document|
+              .small.mb-1
+                .float-right.pl-2
+                  = icon("far", "folder-open")
+                  = link_to document.folder.name, category_folder_path(document.folder.category, document.folder), class: "link-blend"
+
+                .nowrap.overflow-hidden
+                  = render "files/icon", document: document
+                  =# icon("far", "star", style: "color: #fbc02d;") if document.featured?
+                  = link_to document.filename, document_download_link(document)
 
 - if @article
   .dashboard-container.dashboard-container-border-accent
