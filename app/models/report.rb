@@ -11,7 +11,13 @@ class Report < ApplicationRecord
     ["Data Checks", "data_checks"]
   ]
 
-  EXPECTED_RANDOMIZATIONS = []
+  EXPECTED_RANDOMIZATIONS = [
+    0, 4, 9, 17, 27, 40, 54, 69, 87, 104, 122, 139,
+    157, 174, 192, 209, 227, 244, 262, 279, 297, 314, 332, 349,
+    367, 384, 402, 419, 437, 454, 472, 489, 507, 524, 542, 559,
+    577, 594, 612, 629, 647, 664, 682, 699, 717, 734, 752, 769,
+    787, 804, 822, 839, 858
+  ]
 
   ORDERS = {
     "archived" => "reports.archived desc",

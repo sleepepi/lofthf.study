@@ -3,7 +3,7 @@
 - individual_visible = defined?(individual) ? individual : true
 - show_data_labels = defined?(data_labels) ? data_labels : false
 
-- randomization_report = (report.report_type == "randomizations_by_site_by_month" && Report::EXPECTED_RANDOMIZATIONS.present?)
+- randomization_report = (report.report_type == "randomizations_by_site_by_month" && Report::EXPECTED_RANDOMIZATIONS.present? && params[:site].blank?)
 
 - offset = params[:site].blank? ? (randomization_report ? 2 : 1) : 0
 - series = params[:site].blank? ? [{ name: "Overall", visible: overall_visible, current_total: 0, data: [] }] : []
@@ -35,7 +35,7 @@
 
 - if randomization_report
   - series[1] = { name: "Expected", data: [], visible: false, dashStyle: "shortdot" }
-  - Report::EXPECTED_RANDOMIZATIONS[0...series[0][:data].size].each do |count|
+  - Report::EXPECTED_RANDOMIZATIONS[total_rows - range...total_rows].each_with_index do |count, row_index|
     - series[1][:data] << count.round
 
 .w-100.mb-3{ data: { object: "draw-chart", series: series.to_json, categories: categories.to_json, title: report.name, yaxis: "# #{report.name}", xaxis: nil, labels: show_data_labels.to_json } }

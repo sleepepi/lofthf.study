@@ -1,5 +1,9 @@
 ## 14.1.0
 
+### Enhancements
+- **Dashboard Changes**
+  - Expected randomizations are now viewable on randomization graphs
+
 ## 14.0.0 (November 1, 2020)
 
 ### Enhancements
