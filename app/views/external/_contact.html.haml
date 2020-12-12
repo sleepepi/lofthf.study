@@ -1,0 +1,20 @@
+.dashboard-container
+  %h2 Contact Us
+  .row
+    .col-md-6.mb-3.mb-md-0
+      .contact-title
+        via email
+      .contact-body
+        %strong= mail_to ActionMailer::Base.smtp_settings[:email], ActionMailer::Base.smtp_settings[:email], class: "text-dark"
+
+    .col-md-6
+      .contact-title
+        our address
+      .contact-body
+        %strong Brigham Health
+        %br
+        %strong Division of Sleep and Circadian Disorders
+        %br
+        221 Longwood Avenue, BLI 225
+        %br
+        Boston, MA 02115

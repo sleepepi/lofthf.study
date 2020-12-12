@@ -1,5 +1,9 @@
 ## 15.0.0
 
+### Enhancements
+- **Landing Page Changes**
+  - Added text describing the study, participation, and contact information
+
 ## 14.1.0 (November 2, 2020)
 
 ### Enhancements
