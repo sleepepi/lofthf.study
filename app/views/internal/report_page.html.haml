@@ -9,12 +9,13 @@
 - if @reports.present?
   - @reports.each do |report|
     = render "reports/description", report: report if report.description.present?
-    .dashboard-container
-      - if params[:original] == "1"
-        = render "reports/chart", report: report if report.chart?
-      - else
-        = render "reports/chart", report: report, overall: true, individual: false, single: true, data_labels: true if report.chart?
-        = render "reports/filters", report: report if report.chart?
+    - if report.chart?
+      .dashboard-container
+        - if params[:original] == "1"
+          = render "reports/chart", report: report
+        - else
+          = render "reports/chart", report: report, overall: true, individual: false, single: true, data_labels: true
+          = render "reports/filters", report: report
     = render "reports/table", report: report if report.table?
     = render "reports/grades", report: report if report.grades?
 - else
