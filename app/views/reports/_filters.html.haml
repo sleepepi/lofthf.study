@@ -1,0 +1,18 @@
+.btn-toolbar.d-flex.justify-content-center
+  .btn-group.mr-2
+    = link_to "All time", url_for(site: params[:site]), class: "btn btn-sm btn-light #{"active" if params[:range] != "12mo" && params[:range] != "6mo"}"
+    = link_to "Past 12 months", url_for(range: "12mo", site: params[:site]), class: "btn btn-sm btn-light #{"active" if params[:range] == "12mo"}"
+    = link_to "Past 6 months", url_for(range: "6mo", site: params[:site]), class: "btn btn-sm btn-light #{"active" if params[:range] == "6mo"}"
+
+  - sites = {}
+  - ((report.header || [])[1..] || []).each do |header|
+    - sites[header["id"]] = header["label"]
+
+  .btn-group
+    .dropdown{ style: "z-index: 1060;" }
+      = link_to sites[params[:site].to_i] || "Overall", "#", class: "btn btn-light btn-sm dropdown-toggle", data: { toggle: "dropdown" }
+      .dropdown-menu
+        = link_to "Overall", url_for(range: params[:range]), class: "dropdown-item #{"active" if params[:site].blank?}"
+        .dropdown-divider
+        - sites.each do |site_id, site_name|
+          = link_to site_name, url_for(range: params[:range], site: site_id), class: "dropdown-item #{"active" if params[:site].to_i == site_id}"

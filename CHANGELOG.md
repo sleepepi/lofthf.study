@@ -3,6 +3,9 @@
 ### Enhancements
 - **Landing Page Changes**
   - Updated the styling of the landing page content
+- **Report Changes**
+  - Graphs now display the overall count instead of displaying all sites
+    - Add `?original=1` to the URL to view the charts in their prior state
 
 ## 15.0.0 (December 12, 2020)
 
