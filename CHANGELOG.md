@@ -1,4 +1,4 @@
-## 16.0.0
+## 16.0.0 (December 23, 2020)
 
 ### Enhancements
 - **Landing Page Changes**
