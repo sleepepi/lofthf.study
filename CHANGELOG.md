@@ -1,5 +1,9 @@
 ## 16.0.0
 
+### Enhancements
+- **Landing Page Changes**
+  - Updated the styling of the landing page content
+
 ## 15.0.0 (December 12, 2020)
 
 ### Enhancements
